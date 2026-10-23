@@ -9,7 +9,7 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 - Klepnutí na díl bundy otevře výběr látky pod celým náhledem. Na širokém displeji je panel vedle bundy. Náhled zůstává viditelný a lze rovnou zvolit další díl. Pohledy Zepředu, Zezadu a Vnitřek sdílejí jeden návrh.
 - Úvodní animovaná ruka ukazuje na rukáv. Po prvním výběru dílu se už nezobrazuje; respektuje omezený pohyb.
 - Návrh nabízí vrácení a opakování změn. Trendy kombinace obsahují šest výchozích kombinací.
-- Moje návrhy ukládají rozpracované bundy v tomto prohlížeči. Nový návrh nebo inspirace zachovají předchozí práci.
+- Moje návrhy ukládají rozpracované bundy v tomto prohlížeči. Uložená bunda se otevře rovnou v přehledu pro sdílení a stažení PNG; do editoru se přejde tlačítkem Upravit. Nový návrh nebo trendy kombinace zachovají předchozí práci.
 - Hotovo vpravo nahoře potvrdí uložení a miniatura bundy přeletí do Moje návrhy. Poté se otevře souhrn s přejmenováním, stažením PNG a sdílením, pokud ho prohlížeč podporuje. Při omezeném pohybu se přelet přeskočí.
 - Všech 17 vnějších barev nebo 18 podšívek je vidět najednou. Tipy vedle bundy reagují na zvolenou látku i ostatní barvy návrhu. Stránkování zůstává pouze u delších seznamů návrhů a připravených kombinací; krátké displeje mají v souhrnu přepínač Náhled/Látky.
 

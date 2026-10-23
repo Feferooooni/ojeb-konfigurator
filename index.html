@@ -559,8 +559,10 @@ class Component extends DCLogic {
     if (this.state.saving) return;
     const r = this.state.records.find(r => r.id === id); if (!r) return;
     this.past = []; this.future = [];
-    this.setState({ draftId: r.id, draftName: r.name, cfg: { ...r.cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null });
-    this.replaceUI({ screen: 'design' });
+    this.previewRequest++; clearTimeout(this.savedNoticeTimer);
+    this.pushUI({ screen: 'finish', fromSaved: true });
+    this.setState({ draftId: r.id, draftName: r.name, cfg: { ...r.cfg }, screen: 'finish', view: 'front', sel: 'vrch', sheetOpen: false,
+      preview: null, exporting: false, exportError: '', savedNotice: false }, () => this.prepareExport().catch(() => {}));
   }
   finish(afterRender) { this.pushUI({ screen: 'finish' }); this.setState({ screen: 'finish', sheetOpen: false }, () => { this.prepareExport().catch(() => {}); afterRender?.(); }); }
   cancelSaveMotion() { this.saveSequence++; this.flightAnimation?.cancel(); this.flightAnimation = null; }
@@ -599,7 +601,12 @@ class Component extends DCLogic {
     const sequence = ++this.saveSequence;
     this.setState({ saving:true, savedNotice:false, saveSnapshot:{ ...this.state.cfg } }, () => this.animateSave(sequence));
   }
-  returnToDesign() { const owns = history.state?.ojebUX?.screen === 'finish'; this.setState({ screen: 'design' }); if (owns) history.back(); else this.replaceUI({ screen: 'design' }); }
+  returnToDesign() {
+    const ui = history.state?.ojebUX;
+    this.setState({ screen: 'design' });
+    if (ui?.screen === 'finish' && !ui.fromSaved) history.back();
+    else this.replaceUI({ screen: 'design' });
+  }
   openRename() { this.pushUI({ rename: true }); this.setState({ renameOpen: true, renameValue: this.state.draftName }, () => this.nameInput.current?.focus()); }
   closeRename() { const owns = !!history.state?.ojebUX?.rename; this.setState({ renameOpen: false }); if (owns) history.back(); else this.replaceUI({ screen: this.state.screen }); }
   submitName() { this.setState({ draftName: this.state.renameValue.trim().slice(0,60) || 'Moje bunda' }); this.closeRename(); }
