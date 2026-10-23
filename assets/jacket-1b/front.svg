@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 30 520 640" width="520" height="640" data-view="front">
+  <defs>
+    <pattern id="pLin" patternUnits="userSpaceOnUse" width="12" height="12">
+      <rect width="12" height="12" fill="#c1c7d6" />
+      <path d="M0 6H12M6 0V12" stroke="#9aa3b5" stroke-width="2" opacity=".55" />
+    </pattern>
+  </defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" />
+  <path data-part="vrch" d="M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z" fill="#434e67" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" />
+  <path data-part="stred" d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z" fill="#b0aeae" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" />
+  <path data-part="spodek" d="M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="#3a8498" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" />
+  <g data-deco="seams">
+    <path d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 M165.5,490 Q234,496 300,498 Q366,496 434.5,490 M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M167.8,273 Q234,281 300,285 Q366,281 432.2,273 M165.5,495 Q234,501 300,503 Q366,501 434.5,495 M164.6,616 Q232,622 300,624 Q368,622 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" />
+    <path d="M200,620 L198,634 M236,622 L235,636 M266,622 L266,638 M334,622 L334,638 M364,622 L365,636 M402,620 L404,634" fill="none" stroke="#1e2230" stroke-width="0.9" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <path data-part="kapsy" d="M180,352 L286,356 L286,482 L182,480 Z M420,352 L314,356 L314,482 L418,480 Z" fill="#8e7268" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" />
+  <g data-deco="pocket-stitch">
+    <path d="M186,362 L281,365 L281,476 L187,474 Z M181,368 L286,372 M414,362 L319,365 L319,476 L413,474 Z M419,368 L314,372" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" />
+    <path d="M180,352 L180,358 M286,356 L286,362 M420,352 L420,358 M314,356 L314,362" fill="none" stroke="#1e2230" stroke-width="2.4" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <path data-part="vrch" d="M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z" fill="#434e67" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" />
+  <path d="M260,56 Q300,48 340,56 Q324,74 300,76 Q276,74 260,56 Z" fill="#2c3346" stroke="#1e2230" stroke-width="1.2" />
+  <path d="M262,94 Q300,104 338,94" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" />
+  <path data-part="rukavy" d="M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="#434e67" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" />
+  <g data-deco="cuff">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M110,577 Q114,568 112,558 M126,579 Q128,570 126,562 M142,577 Q140,568 144,558 M490,577 Q486,568 488,558 M474,579 Q472,570 474,562 M458,577 Q460,568 456,558" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" />
+  </g>
+  <g data-deco="zip">
+    <rect x="296" y="52" width="8" height="586" fill="#2a2d35" stroke="#1e2230" stroke-width="1" />
+    <path d="M300,54 L300,636" fill="none" stroke-width="3" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke="#6b7080" stroke-dasharray="1.2 1.8" />
+    <rect x="294.5" y="58" width="11" height="14" rx="2" fill="#2a2d35" stroke="#1e2230" stroke-width="1" />
+  </g>
+  <g data-deco="drawcord">
+    <path d="M291,632 Q289,636 290,640 M309,632 Q311,636 310,640" fill="none" stroke="#1e2230" stroke-width="1.6" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="287" y="639" width="6" height="7" rx="2.5" fill="#2a2c31" stroke="#1e2230" stroke-width="1" />
+    <rect x="307" y="639" width="6" height="7" rx="2.5" fill="#2a2c31" stroke="#1e2230" stroke-width="1" />
+  </g>
+</svg>

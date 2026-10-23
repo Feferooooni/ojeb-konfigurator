@@ -120,80 +120,103 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 </header>
 <main class="editor" style="display:{{ panels.design }}">
 <div class="view-controls"><sc-for list="{{ views }}" as="v"><button data-view="{{ v.id }}" onClick="{{ onView }}" class="{{ v.activeClass }}" aria-pressed="{{ v.active }}">{{ v.label }}</button></sc-for></div>
-<div class="stage" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}"><div class="jacket-figure"><div style="display:{{ disp.front }};width:100%;height:100%"><svg ref="{{ svgFront }}" data-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
-<defs>{{ viewDefs.front }}</defs>
-<defs data-noexport="1">{{ clipDefs.front }}</defs>
-<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" onClick="{{ onPart }}" fill="url(#front-pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" fill="url(#front-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" onClick="{{ onPart }}" fill="url(#front-pt-spodek)" d="M165,490 L435,490 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="kapsy" onClick="{{ onPart }}" fill="url(#front-pt-kapsy)" d="M186,352 L286,357 L286,482 L188,480 Z M414,352 L314,357 L314,482 L412,480 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M192,359 L280,363 L280,476 L194,474 Z M408,359 L320,363 L320,476 L406,474 Z" style="fill:none; stroke:#fff; stroke-opacity:0.45; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" onClick="{{ onPart }}" fill="url(#front-pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M260,58 Q300,50 340,58 Q324,76 300,78 Q276,76 260,58 Z" style="fill:#000; fill-opacity:0.3; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" fill="url(#front-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#front-shadeX); pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#front-shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#front-shadeY); pointer-events:none"></path>
-<path d="M300,50 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
-<path d="M300,50 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
-<rect x="295" y="62" width="10" height="17" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
-<rect x="297.5" y="77" width="5" height="16" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
+<div class="stage" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}"><div class="jacket-figure"><div style="display:{{ disp.front }};width:100%;height:100%"><svg ref="{{ svgFront }}" data-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible"><defs>{{ viewDefs.front }}</defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" style="pointer-events:none"></ellipse>
+  <path data-part="vrch" d="M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z" fill="url(#front-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="stred" d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z" fill="url(#front-pt-stred)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="spodek" d="M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="url(#front-pt-spodek)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="seams" style="pointer-events:none">
+    <path d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 M165.5,490 Q234,496 300,498 Q366,496 434.5,490 M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M167.8,273 Q234,281 300,285 Q366,281 432.2,273 M165.5,495 Q234,501 300,503 Q366,501 434.5,495 M164.6,616 Q232,622 300,624 Q368,622 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+    <path d="M200,620 L198,634 M236,622 L235,636 M266,622 L266,638 M334,622 L334,638 M364,622 L365,636 M402,620 L404,634" fill="none" stroke="#1e2230" stroke-width="0.9" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+  <path data-part="kapsy" d="M180,352 L286,356 L286,482 L182,480 Z M420,352 L314,356 L314,482 L418,480 Z" fill="url(#front-pt-kapsy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="pocket-stitch" style="pointer-events:none">
+    <path d="M186,362 L281,365 L281,476 L187,474 Z M181,368 L286,372 M414,362 L319,365 L319,476 L413,474 Z M419,368 L314,372" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+    <path d="M180,352 L180,358 M286,356 L286,362 M420,352 L420,358 M314,356 L314,362" fill="none" stroke="#1e2230" stroke-width="2.4" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+  <path data-part="vrch" d="M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z" fill="url(#front-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path d="M260,56 Q300,48 340,56 Q324,74 300,76 Q276,74 260,56 Z" fill="#2c3346" stroke="#1e2230" stroke-width="1.2" style="pointer-events:none"></path>
+  <path d="M262,94 Q300,104 338,94" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" style="pointer-events:none"></path>
+  <path data-part="rukavy" d="M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="url(#front-pt-rukavy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="cuff" style="pointer-events:none">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M110,577 Q114,568 112,558 M126,579 Q128,570 126,562 M142,577 Q140,568 144,558 M490,577 Q486,568 488,558 M474,579 Q472,570 474,562 M458,577 Q460,568 456,558" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
+  <g data-deco="zip" style="pointer-events:none">
+    <rect x="296" y="52" width="8" height="586" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+    <path d="M300,54 L300,636" fill="none" stroke-width="3" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke="#6b7080" stroke-dasharray="1.2 1.8"></path>
+    <rect x="294.5" y="58" width="11" height="14" rx="2" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+  </g>
+  <g data-deco="drawcord" style="pointer-events:none">
+    <path d="M291,632 Q289,636 290,640 M309,632 Q311,636 310,640" fill="none" stroke="#1e2230" stroke-width="1.6" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <rect x="287" y="639" width="6" height="7" rx="2.5" fill="#2a2c31" stroke="#1e2230" stroke-width="1"></rect>
+    <rect x="307" y="639" width="6" height="7" rx="2.5" fill="#2a2c31" stroke="#1e2230" stroke-width="1"></rect>
+  </g>
 <path data-noexport="1" d="{{ hl.front.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.front.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.front.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.front }}</g>
-<g data-noexport="1">{{ tapHints.front }}</g>
-</svg></div>
-<div style="display:{{ disp.back }};width:100%;height:100%"><svg ref="{{ svgBack }}" data-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
-<defs>{{ viewDefs.back }}</defs>
-<defs data-noexport="1">{{ clipDefs.back }}</defs>
-<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" onClick="{{ onPart }}" fill="url(#back-pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" fill="url(#back-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" onClick="{{ onPart }}" fill="url(#back-pt-spodek)" d="M165,490 L435,490 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" onClick="{{ onPart }}" fill="url(#back-pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" fill="url(#back-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#back-shadeX); pointer-events:none"></path>
-<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#back-shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#back-shadeY); pointer-events:none"></path>
+<g data-noexport="1">{{ tapHints.front }}</g></svg></div>
+<div style="display:{{ disp.back }};width:100%;height:100%"><svg ref="{{ svgBack }}" data-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible"><defs>{{ viewDefs.back }}</defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" style="pointer-events:none"></ellipse>
+  <path data-part="vrch" d="M260,98 Q300,106 340,98 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z" fill="url(#back-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="stred" d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z" fill="url(#back-pt-stred)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="spodek" d="M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="url(#back-pt-spodek)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="seams" style="pointer-events:none">
+    <path d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 M165.5,490 Q234,496 300,498 Q366,496 434.5,490 M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M167.8,273 Q234,281 300,285 Q366,281 432.2,273 M165.5,495 Q234,501 300,503 Q366,501 434.5,495 M164.6,616 Q232,622 300,624 Q368,622 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+    <path d="M200,620 L198,634 M236,622 L235,636 M266,622 L266,638 M334,622 L334,638 M364,622 L365,636 M402,620 L404,634" fill="none" stroke="#1e2230" stroke-width="0.9" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+  <path data-part="vrch" d="M258,50 Q300,42 342,50 L340,100 Q300,108 260,100 Z" fill="url(#back-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path d="M260,92 Q300,100 340,92" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" style="pointer-events:none"></path>
+  <path data-part="rukavy" d="M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="url(#back-pt-rukavy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="cuff" style="pointer-events:none">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M110,577 Q114,568 112,558 M126,579 Q128,570 126,562 M142,577 Q140,568 144,558 M490,577 Q486,568 488,558 M474,579 Q472,570 474,562 M458,577 Q460,568 456,558" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
 <path data-noexport="1" d="{{ hl.back.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.back.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.back.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.back }}</g>
-<g data-noexport="1">{{ tapHints.back }}</g>
-</svg></div>
-<div style="display:{{ disp.inside }};width:100%;height:100%"><svg ref="{{ svgInside }}" data-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
-<defs>{{ viewDefs.inside }}</defs>
-<defs data-noexport="1">{{ clipDefs.inside }}</defs>
-<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="podsivka" onClick="{{ onPart }}" fill="url(#inside-pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M168,262 Q234,272 300,274 Q366,272 432,262 M165,490 L435,490" style="fill:none; stroke:#000; stroke-opacity:0.18; stroke-width:0.9; stroke-dasharray:3 3; pointer-events:none"></path>
-<path data-part="spodek" onClick="{{ onPart }}" fill="url(#inside-pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,490 L316,490 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" fill="url(#inside-pt-stred)" d="M284,274 L316,274 L316,490 L284,490 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" onClick="{{ onPart }}" fill="url(#inside-pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" onClick="{{ onPart }}" fill="url(#inside-pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" onClick="{{ onPart }}" fill="url(#inside-pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" onClick="{{ onPart }}" fill="url(#inside-pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" fill="url(#inside-pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#inside-shadeX); pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#inside-shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#inside-shadeY); pointer-events:none"></path>
-<path d="M300,64 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
-<path d="M300,64 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
-<rect x="276" y="112" width="48" height="20" rx="2" style="fill:#f6f3ec; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></rect>
-<text data-garment-logo="lining" x="300" y="126" style="font-family:Archivo, sans-serif; font-weight:800; font-size:10px; fill:#1e2230; text-anchor:middle; pointer-events:none">o’jeb</text>
+<g data-noexport="1">{{ tapHints.back }}</g></svg></div>
+<div style="display:{{ disp.inside }};width:100%;height:100%"><svg ref="{{ svgInside }}" data-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible"><defs>{{ viewDefs.inside }}</defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" style="pointer-events:none"></ellipse>
+  <path data-part="podsivka" d="M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 L168,252 Q164,186 178,122 Z" fill="url(#inside-pt-podsivka)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path d="M167.8,268 Q234,276 284,279 M316,279 Q366,276 432.2,268 M165.5,490 Q234,496 284,497.6 M316,497.6 Q366,496 434.5,490" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3" style="pointer-events:none"></path>
+  <path data-part="vrch" d="M284,108 L316,108 L316,280 L284,280 Z" fill="url(#inside-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="stred" d="M284,280 L316,280 L316,498 L284,498 Z" fill="url(#inside-pt-stred)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="spodek" d="M284,498 L316,498 L316,614 L284,614 Z M164.2,612 Q232,618 300,620 Q368,618 435.8,612 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="url(#inside-pt-spodek)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="seams" style="pointer-events:none">
+    <path d="M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M288,110 L288,612 M312,110 L312,612 M164.6,608 Q232,614 300,608 Q368,614 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
+  <path data-part="podsivka" d="M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z" fill="url(#inside-pt-podsivka)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="vrch" d="M258,52 Q300,44 342,52 L341.4,60 Q300,52 258.6,60 Z" fill="url(#inside-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path d="M262,94 Q300,104 338,94" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" style="pointer-events:none"></path>
+  <path data-part="podsivka" d="M178,122 C156,124 142,138 136,160 L104,572 Q103.6,575.5 103.7,579 Q127,585 152.3,579 Q152.4,575.5 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q496.4,575.5 496.3,579 Q473,585 447.7,579 Q447.6,575.5 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="url(#inside-pt-podsivka)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <path data-part="rukavy" d="M103.7,579 Q127,585 152.3,579 Q153,586 148,592 Q143,595 138,592 Q132,596 127,593 Q121,596 116,592 Q111,595 106,592 Q102,586 103.7,579 Z M496.3,579 Q473,585 447.7,579 Q447,586 452,592 Q457,595 462,592 Q468,596 473,593 Q479,596 484,592 Q489,595 494,592 Q498,586 496.3,579 Z" fill="url(#inside-pt-rukavy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" onClick="{{ onPart }}" style="cursor:pointer"></path>
+  <g data-deco="cuff" style="pointer-events:none">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
+  <g data-deco="zip" style="pointer-events:none">
+    <rect x="296" y="62" width="8" height="576" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+    <path d="M300,64 L300,636" fill="none" stroke-width="3" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke="#6b7080" stroke-dasharray="1.2 1.8"></path>
+    <rect x="294.5" y="68" width="11" height="14" rx="2" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+  </g>
+  <g data-deco="label" data-garment-logo="lining" style="pointer-events:none">
+    <path d="M293,104 Q300,124 307,104" fill="none" stroke="#1e2230" stroke-width="1.8" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <rect x="278" y="114" width="44" height="18" rx="2" fill="#f6f3ec" stroke="#1e2230" stroke-width="1"></rect>
+    <text x="300" y="127" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="10" fill="#1e2230" text-anchor="middle">o’jeb</text>
+  </g>
 <path data-noexport="1" d="{{ hl.inside.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.inside.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.inside.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.inside }}</g>
-<g data-noexport="1">{{ tapHints.inside }}</g>
-</svg></div></div><aside class="suggestions-panel" aria-label="Doporučené barvy" style="display:{{ suggestionsDisplay }}"><h2>Tipy</h2><p>{{ selectedFabric.name }}</p><sc-for list="{{ suggestions }}" as="f"><button class="recommended" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}"><span class="suggestion-swatch" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></span><span class="suggestion-name">{{ f.name }}</span></button></sc-for></aside></div>
+<g data-noexport="1">{{ tapHints.inside }}</g></svg></div></div><aside class="suggestions-panel" aria-label="Doporučené barvy" style="display:{{ suggestionsDisplay }}"><h2>Tipy</h2><p>{{ selectedFabric.name }}</p><sc-for list="{{ suggestions }}" as="f"><button class="recommended" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}"><span class="suggestion-swatch" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></span><span class="suggestion-name">{{ f.name }}</span></button></sc-for></aside></div>
 <p class="stage-hint">{{ editingHint }}</p>
 <div class="editor-actions"><button class="round" aria-label="Vrátit změnu" disabled="{{ undoDisabled }}" onClick="{{ undo }}">{{ icons.undo }}</button><button class="round" aria-label="Zopakovat změnu" disabled="{{ redoDisabled }}" onClick="{{ redo }}">{{ icons.redo }}</button></div>
 <section ref="{{ sheetRef }}" class="fabric-sheet" aria-labelledby="fabric-title" style="display:{{ sheetDisplay }}">
@@ -205,75 +228,98 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 <div class="name-row"><h1>{{ draftName }}</h1><button class="round" aria-label="Přejmenovat návrh" onClick="{{ openRename }}">{{ icons.pencil }}</button></div>
 <p class="saved-line">{{ saveIcon }}{{ saveExplanation }}</p>
 <div class="review-switch"><button class="{{ reviewViewClass }}" data-review="view" onClick="{{ switchReview }}">Náhled</button><button class="{{ reviewFabricsClass }}" data-review="fabrics" onClick="{{ switchReview }}">Látky</button></div>
-<div class="triptych" style="display:{{ reviewDisplays.view }}"><div><div class="small-jacket"><svg data-review-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
-<defs>{{ reviewDefs.front }}</defs>
-
-<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" fill="url(#review-front-pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" fill="url(#review-front-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" fill="url(#review-front-pt-spodek)" d="M165,490 L435,490 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="kapsy" fill="url(#review-front-pt-kapsy)" d="M186,352 L286,357 L286,482 L188,480 Z M414,352 L314,357 L314,482 L412,480 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M192,359 L280,363 L280,476 L194,474 Z M408,359 L320,363 L320,476 L406,474 Z" style="fill:none; stroke:#fff; stroke-opacity:0.45; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" fill="url(#review-front-pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M260,58 Q300,50 340,58 Q324,76 300,78 Q276,76 260,58 Z" style="fill:#000; fill-opacity:0.3; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></path>
-<path data-part="rukavy" fill="url(#review-front-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-front-shadeX); pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-front-shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#review-front-shadeY); pointer-events:none"></path>
-<path d="M300,50 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
-<path d="M300,50 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
-<rect x="295" y="62" width="10" height="17" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
-<rect x="297.5" y="77" width="5" height="16" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
-
+<div class="triptych" style="display:{{ reviewDisplays.view }}"><div><div class="small-jacket"><svg data-review-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible"><defs>{{ reviewDefs.front }}</defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" style="pointer-events:none"></ellipse>
+  <path data-part="vrch" d="M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z" fill="url(#review-front-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="stred" d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z" fill="url(#review-front-pt-stred)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="spodek" d="M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="url(#review-front-pt-spodek)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="seams" style="pointer-events:none">
+    <path d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 M165.5,490 Q234,496 300,498 Q366,496 434.5,490 M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M167.8,273 Q234,281 300,285 Q366,281 432.2,273 M165.5,495 Q234,501 300,503 Q366,501 434.5,495 M164.6,616 Q232,622 300,624 Q368,622 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+    <path d="M200,620 L198,634 M236,622 L235,636 M266,622 L266,638 M334,622 L334,638 M364,622 L365,636 M402,620 L404,634" fill="none" stroke="#1e2230" stroke-width="0.9" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+  <path data-part="kapsy" d="M180,352 L286,356 L286,482 L182,480 Z M420,352 L314,356 L314,482 L418,480 Z" fill="url(#review-front-pt-kapsy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="pocket-stitch" style="pointer-events:none">
+    <path d="M186,362 L281,365 L281,476 L187,474 Z M181,368 L286,372 M414,362 L319,365 L319,476 L413,474 Z M419,368 L314,372" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+    <path d="M180,352 L180,358 M286,356 L286,362 M420,352 L420,358 M314,356 L314,362" fill="none" stroke="#1e2230" stroke-width="2.4" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+  <path data-part="vrch" d="M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z" fill="url(#review-front-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path d="M260,56 Q300,48 340,56 Q324,74 300,76 Q276,74 260,56 Z" fill="#2c3346" stroke="#1e2230" stroke-width="1.2" style="pointer-events:none"></path>
+  <path d="M262,94 Q300,104 338,94" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" style="pointer-events:none"></path>
+  <path data-part="rukavy" d="M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="url(#review-front-pt-rukavy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="cuff" style="pointer-events:none">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M110,577 Q114,568 112,558 M126,579 Q128,570 126,562 M142,577 Q140,568 144,558 M490,577 Q486,568 488,558 M474,579 Q472,570 474,562 M458,577 Q460,568 456,558" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
+  <g data-deco="zip" style="pointer-events:none">
+    <rect x="296" y="52" width="8" height="586" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+    <path d="M300,54 L300,636" fill="none" stroke-width="3" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke="#6b7080" stroke-dasharray="1.2 1.8"></path>
+    <rect x="294.5" y="58" width="11" height="14" rx="2" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+  </g>
+  <g data-deco="drawcord" style="pointer-events:none">
+    <path d="M291,632 Q289,636 290,640 M309,632 Q311,636 310,640" fill="none" stroke="#1e2230" stroke-width="1.6" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <rect x="287" y="639" width="6" height="7" rx="2.5" fill="#2a2c31" stroke="#1e2230" stroke-width="1"></rect>
+    <rect x="307" y="639" width="6" height="7" rx="2.5" fill="#2a2c31" stroke="#1e2230" stroke-width="1"></rect>
+  </g>
 
 
 
 
 </svg></div><span>Zepředu</span></div>
-<div><div class="small-jacket"><svg data-review-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
-<defs>{{ reviewDefs.back }}</defs>
-
-<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" fill="url(#review-back-pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" fill="url(#review-back-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" fill="url(#review-back-pt-spodek)" d="M165,490 L435,490 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" fill="url(#review-back-pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" fill="url(#review-back-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-back-shadeX); pointer-events:none"></path>
-<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-back-shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#review-back-shadeY); pointer-events:none"></path>
-
+<div><div class="small-jacket"><svg data-review-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible"><defs>{{ reviewDefs.back }}</defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" style="pointer-events:none"></ellipse>
+  <path data-part="vrch" d="M260,98 Q300,106 340,98 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z" fill="url(#review-back-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="stred" d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z" fill="url(#review-back-pt-stred)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="spodek" d="M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="url(#review-back-pt-spodek)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="seams" style="pointer-events:none">
+    <path d="M167.8,268 Q234,276 300,280 Q366,276 432.2,268 M165.5,490 Q234,496 300,498 Q366,496 434.5,490 M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M167.8,273 Q234,281 300,285 Q366,281 432.2,273 M165.5,495 Q234,501 300,503 Q366,501 434.5,495 M164.6,616 Q232,622 300,624 Q368,622 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+    <path d="M200,620 L198,634 M236,622 L235,636 M266,622 L266,638 M334,622 L334,638 M364,622 L365,636 M402,620 L404,634" fill="none" stroke="#1e2230" stroke-width="0.9" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  </g>
+  <path data-part="vrch" d="M258,50 Q300,42 342,50 L340,100 Q300,108 260,100 Z" fill="url(#review-back-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path d="M260,92 Q300,100 340,92" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" style="pointer-events:none"></path>
+  <path data-part="rukavy" d="M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="url(#review-back-pt-rukavy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="cuff" style="pointer-events:none">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M110,577 Q114,568 112,558 M126,579 Q128,570 126,562 M142,577 Q140,568 144,558 M490,577 Q486,568 488,558 M474,579 Q472,570 474,562 M458,577 Q460,568 456,558" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
 
 
 
 
 </svg></div><span>Zezadu</span></div>
-<div><div class="small-jacket"><svg data-review-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
-<defs>{{ reviewDefs.inside }}</defs>
-
-<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="podsivka" fill="url(#review-inside-pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M168,262 Q234,272 300,274 Q366,272 432,262 M165,490 L435,490" style="fill:none; stroke:#000; stroke-opacity:0.18; stroke-width:0.9; stroke-dasharray:3 3; pointer-events:none"></path>
-<path data-part="spodek" fill="url(#review-inside-pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,490 L316,490 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" fill="url(#review-inside-pt-stred)" d="M284,274 L316,274 L316,490 L284,490 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" fill="url(#review-inside-pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" fill="url(#review-inside-pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" fill="url(#review-inside-pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" fill="url(#review-inside-pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" fill="url(#review-inside-pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path d="M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-inside-shadeX); pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-inside-shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#review-inside-shadeY); pointer-events:none"></path>
-<path d="M300,64 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
-<path d="M300,64 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
-<rect x="276" y="112" width="48" height="20" rx="2" style="fill:#f6f3ec; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></rect>
-<text data-garment-logo="lining" x="300" y="126" style="font-family:Archivo, sans-serif; font-weight:800; font-size:10px; fill:#1e2230; text-anchor:middle; pointer-events:none">o’jeb</text>
-
+<div><div class="small-jacket"><svg data-review-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible"><defs>{{ reviewDefs.inside }}</defs>
+  <ellipse cx="300" cy="660" rx="200" ry="8" fill="#000" opacity=".08" style="pointer-events:none"></ellipse>
+  <path data-part="podsivka" d="M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 L168,252 Q164,186 178,122 Z" fill="url(#review-inside-pt-podsivka)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path d="M167.8,268 Q234,276 284,279 M316,279 Q366,276 432.2,268 M165.5,490 Q234,496 284,497.6 M316,497.6 Q366,496 434.5,490" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3" style="pointer-events:none"></path>
+  <path data-part="vrch" d="M284,108 L316,108 L316,280 L284,280 Z" fill="url(#review-inside-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="stred" d="M284,280 L316,280 L316,498 L284,498 Z" fill="url(#review-inside-pt-stred)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="spodek" d="M284,498 L316,498 L316,614 L284,614 Z M164.2,612 Q232,618 300,620 Q368,618 435.8,612 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z" fill="url(#review-inside-pt-spodek)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="seams" style="pointer-events:none">
+    <path d="M168,252 Q164,186 178,122 M432,252 Q436,186 422,122" fill="none" stroke="#1e2230" stroke-width="1.2" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M288,110 L288,612 M312,110 L312,612 M164.6,608 Q232,614 300,608 Q368,614 435.4,616" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
+  <path data-part="podsivka" d="M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z" fill="url(#review-inside-pt-podsivka)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="vrch" d="M258,52 Q300,44 342,52 L341.4,60 Q300,52 258.6,60 Z" fill="url(#review-inside-pt-vrch)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path d="M262,94 Q300,104 338,94" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4" style="pointer-events:none"></path>
+  <path data-part="podsivka" d="M178,122 C156,124 142,138 136,160 L104,572 Q103.6,575.5 103.7,579 Q127,585 152.3,579 Q152.4,575.5 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q496.4,575.5 496.3,579 Q473,585 447.7,579 Q447.6,575.5 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z" fill="url(#review-inside-pt-podsivka)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <path data-part="rukavy" d="M103.7,579 Q127,585 152.3,579 Q153,586 148,592 Q143,595 138,592 Q132,596 127,593 Q121,596 116,592 Q111,595 106,592 Q102,586 103.7,579 Z M496.3,579 Q473,585 447.7,579 Q447,586 452,592 Q457,595 462,592 Q468,596 473,593 Q479,596 484,592 Q489,595 494,592 Q498,586 496.3,579 Z" fill="url(#review-inside-pt-rukavy)" stroke="#1e2230" stroke-width="1.6" stroke-linejoin="round" style="cursor:pointer"></path>
+  <g data-deco="cuff" style="pointer-events:none">
+    <path d="M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M104,579 Q127,585 152,579 M496,579 Q473,585 448,579" fill="none" stroke="#1e2230" stroke-width="0.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2.4"></path>
+  </g>
+  <g data-deco="zip" style="pointer-events:none">
+    <rect x="296" y="62" width="8" height="576" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+    <path d="M300,64 L300,636" fill="none" stroke-width="3" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke="#6b7080" stroke-dasharray="1.2 1.8"></path>
+    <rect x="294.5" y="68" width="11" height="14" rx="2" fill="#2a2d35" stroke="#1e2230" stroke-width="1"></rect>
+  </g>
+  <g data-deco="label" data-garment-logo="lining" style="pointer-events:none">
+    <path d="M293,104 Q300,124 307,104" fill="none" stroke="#1e2230" stroke-width="1.8" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    <rect x="278" y="114" width="44" height="18" rx="2" fill="#f6f3ec" stroke="#1e2230" stroke-width="1"></rect>
+    <text x="300" y="127" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="10" fill="#1e2230" text-anchor="middle">o’jeb</text>
+  </g>
 
 
 
@@ -347,31 +393,9 @@ const PNAME = Object.fromEntries(PARTS.map(p => [p.id, p.name]));
 const OUTER_PARTS = ['rukavy','vrch','stred','kapsy','spodek'];
 const HKEY = { rukavy:'r', vrch:'v', stred:'s', kapsy:'k', spodek:'d', podsivka:'p' };
 
-const SL = 'M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z';
-const SIL = 'M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z';
-const HL = {
-  front: {
-    rukavy: SL,
-    vrch: 'M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z',
-    stred: 'M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z',
-    kapsy: 'M186,352 L286,357 L286,482 L188,480 Z M414,352 L314,357 L314,482 L412,480 Z',
-    spodek: 'M165,490 L435,490 L438,640 Q300,650 162,640 Z', podsivka: ''
-  },
-  back: {
-    rukavy: SL,
-    vrch: 'M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z',
-    stred: 'M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z',
-    kapsy: '', spodek: 'M165,490 L435,490 L438,640 Q300,650 162,640 Z', podsivka: ''
-  },
-  inside: {
-    podsivka: SIL + ' M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z',
-    rukavy: 'M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z',
-    vrch: 'M284,108 L316,108 L316,274 L284,274 Z M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z',
-    stred: 'M284,274 L316,274 L316,490 L284,490 Z',
-    kapsy: '',
-    spodek: 'M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,490 L316,490 L316,646 L284,646 Z'
-  }
-};
+const SL = "M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z";
+const SIL = "M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 L168,252 Q164,186 178,122 Z";
+const HL = {"front": {"rukavy": "M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z", "vrch": "M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z", "stred": "M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z", "kapsy": "M180,352 L286,356 L286,482 L182,480 Z M420,352 L314,356 L314,482 L418,480 Z", "spodek": "M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z", "podsivka": ""}, "back": {"rukavy": "M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z", "vrch": "M260,98 Q300,106 340,98 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z M258,50 Q300,42 342,50 L340,100 Q300,108 260,100 Z", "stred": "M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z", "kapsy": "", "spodek": "M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z", "podsivka": ""}, "inside": {"rukavy": "M103.7,579 Q127,585 152.3,579 Q153,586 148,592 Q143,595 138,592 Q132,596 127,593 Q121,596 116,592 Q111,595 106,592 Q102,586 103.7,579 Z M496.3,579 Q473,585 447.7,579 Q447,586 452,592 Q457,595 462,592 Q468,596 473,593 Q479,596 484,592 Q489,595 494,592 Q498,586 496.3,579 Z", "vrch": "M284,108 L316,108 L316,280 L284,280 Z M258,52 Q300,44 342,52 L341.4,60 Q300,52 258.6,60 Z", "stred": "M284,280 L316,280 L316,498 L284,498 Z", "kapsy": "", "spodek": "M284,498 L316,498 L316,614 L284,614 Z M164.2,612 Q232,618 300,620 Q368,618 435.8,612 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z", "podsivka": "M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 L168,252 Q164,186 178,122 Z M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z M178,122 C156,124 142,138 136,160 L104,572 Q103.6,575.5 103.7,579 Q127,585 152.3,579 Q152.4,575.5 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q496.4,575.5 496.3,579 Q473,585 447.7,579 Q447.6,575.5 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z"}};
 
 const PRESETS = [
   { name:'Originál', sub:'Jak na fotce', cfg:{ rukavy:'out2-3', vrch:'out2-3', stred:'out1-3', kapsy:'out2-1', spodek:'out1-6', podsivka:'in2-2' } },
@@ -414,7 +438,7 @@ function makeViewDefs(view, patterns) {
 
 
 const ICON_PATHS = {"pencil": "M4 16.8V20h3.2L19.5 7.7l-3.2-3.2L4 16.8ZM14.9 5.9l3.2 3.2", "spark": "m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z", "folder": "M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3V7Z", "undo": "M8 7 3 12l5 5M4 12h10a6 6 0 0 1 6 6", "redo": "m16 7 5 5-5 5m4-5H10a6 6 0 0 0-6 6", "check": "m5 12 4 4L19 6", "share": "M12 15V3m-4 4 4-4 4 4M5 12v8h14v-8", "download": "M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4", "back": "m14 5-7 7 7 7", "next": "m10 5 7 7-7 7", "close": "m6 6 12 12M18 6 6 18", "plus": "M12 5v14M5 12h14", "shuffle": "m4 5 14 14m-4 0h4v-4M4 19 18 5m-4 0h4v4", "hanger": "M9.5 6a2.5 2.5 0 0 1 5 0c0 1.3-1 2-2.5 2.8V11M12 11l-8.4 5.6c-1.1.7-.6 2.4.7 2.4h15.4c1.3 0 1.8-1.7.7-2.4L12 11Z"};
-const MINI_PARTS = [{"id": "vrch", "d": "M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z"}, {"id": "stred", "d": "M168,262 Q234,272 300,274 Q366,272 432,262 L435,490 L165,490 Z"}, {"id": "spodek", "d": "M165,490 L435,490 L438,640 Q300,650 162,640 Z"}, {"id": "kapsy", "d": "M186,352 L286,357 L286,482 L188,480 Z M414,352 L314,357 L314,482 L412,480 Z"}, {"id": "vrch", "d": "M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z"}, {"id": "rukavy", "d": "M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z"}];
+const MINI_DRAWING = [{"tag": "ellipse", "attrs": {"cx": "300", "cy": "660", "rx": "200", "ry": "8", "fill": "#000", "opacity": ".08"}, "text": "", "children": []}, {"tag": "path", "attrs": {"data-part": "vrch", "d": "M262,100 Q300,112 338,100 L422,122 Q436,186 432,252 L432.2,268 Q366,276 300,280 Q234,276 167.8,268 L168,252 Q164,186 178,122 Z", "fill": "#434e67", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "path", "attrs": {"data-part": "stred", "d": "M167.8,268 Q234,276 300,280 Q366,276 432.2,268 L434.5,490 Q366,496 300,498 Q234,496 165.5,490 Z", "fill": "#b0aeae", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "path", "attrs": {"data-part": "spodek", "d": "M165.5,490 Q234,496 300,498 Q366,496 434.5,490 L436,630 Q404,636 370,634 Q336,640 300,638 Q264,640 230,634 Q196,636 164,630 Z", "fill": "#3a8498", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "g", "attrs": {"data-deco": "seams"}, "text": "", "children": [{"tag": "path", "attrs": {"d": "M167.8,268 Q234,276 300,280 Q366,276 432.2,268 M165.5,490 Q234,496 300,498 Q366,496 434.5,490 M168,252 Q164,186 178,122 M432,252 Q436,186 422,122", "fill": "none", "stroke": "#1e2230", "strokeWidth": "1.2", "strokeOpacity": "1", "strokeLinecap": "round", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M167.8,273 Q234,281 300,285 Q366,281 432.2,273 M165.5,495 Q234,501 300,503 Q366,501 434.5,495 M164.6,616 Q232,622 300,624 Q368,622 435.4,616", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.8", "strokeOpacity": "0.7", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeDasharray": "3 2.4"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M200,620 L198,634 M236,622 L235,636 M266,622 L266,638 M334,622 L334,638 M364,622 L365,636 M402,620 L404,634", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.9", "strokeOpacity": "0.5", "strokeLinecap": "round", "strokeLinejoin": "round"}, "text": "", "children": []}]}, {"tag": "path", "attrs": {"data-part": "kapsy", "d": "M180,352 L286,356 L286,482 L182,480 Z M420,352 L314,356 L314,482 L418,480 Z", "fill": "#8e7268", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "g", "attrs": {"data-deco": "pocket-stitch"}, "text": "", "children": [{"tag": "path", "attrs": {"d": "M186,362 L281,365 L281,476 L187,474 Z M181,368 L286,372 M414,362 L319,365 L319,476 L413,474 Z M419,368 L314,372", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.8", "strokeOpacity": "0.7", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeDasharray": "3 2.4"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M180,352 L180,358 M286,356 L286,362 M420,352 L420,358 M314,356 L314,362", "fill": "none", "stroke": "#1e2230", "strokeWidth": "2.4", "strokeOpacity": "1", "strokeLinecap": "round", "strokeLinejoin": "round"}, "text": "", "children": []}]}, {"tag": "path", "attrs": {"data-part": "vrch", "d": "M262,102 L258,52 Q300,44 342,52 L338,102 Q300,112 262,102 Z", "fill": "#434e67", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M260,56 Q300,48 340,56 Q324,74 300,76 Q276,74 260,56 Z", "fill": "#2c3346", "stroke": "#1e2230", "strokeWidth": "1.2"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M262,94 Q300,104 338,94", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.8", "strokeOpacity": "0.7", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeDasharray": "3 2.4"}, "text": "", "children": []}, {"tag": "path", "attrs": {"data-part": "rukavy", "d": "M178,122 C156,124 142,138 136,160 L104,572 Q101,582 106,592 Q111,595 116,592 Q121,596 127,593 Q132,596 138,592 Q143,595 148,592 Q153,582 152,572 L170,300 Q172,272 168,252 Q164,186 178,122 Z M422,122 C444,124 458,138 464,160 L496,572 Q499,582 494,592 Q489,595 484,592 Q479,596 473,593 Q468,596 462,592 Q457,595 452,592 Q447,582 448,572 L430,300 Q428,272 432,252 Q436,186 422,122 Z", "fill": "#434e67", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "g", "attrs": {"data-deco": "cuff"}, "text": "", "children": [{"tag": "path", "attrs": {"d": "M109,582 Q108,587 110,592 M116,583 Q118,588 116,593 M123,584 Q121,589 123,594 M130,584 Q132,589 130,594 M137,583 Q135,588 137,593 M144,582 Q146,587 144,592 M491,582 Q492,587 490,592 M484,583 Q482,588 484,593 M477,584 Q479,589 477,594 M470,584 Q468,589 470,594 M463,583 Q465,588 463,593 M456,582 Q454,587 456,592", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.8", "strokeOpacity": "0.7", "strokeLinecap": "round", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M110,577 Q114,568 112,558 M126,579 Q128,570 126,562 M142,577 Q140,568 144,558 M490,577 Q486,568 488,558 M474,579 Q472,570 474,562 M458,577 Q460,568 456,558", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.8", "strokeOpacity": "0.45", "strokeLinecap": "round", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M104,579 Q127,585 152,579 M496,579 Q473,585 448,579", "fill": "none", "stroke": "#1e2230", "strokeWidth": "0.8", "strokeOpacity": "0.7", "strokeLinecap": "round", "strokeLinejoin": "round", "strokeDasharray": "3 2.4"}, "text": "", "children": []}]}, {"tag": "g", "attrs": {"data-deco": "zip"}, "text": "", "children": [{"tag": "rect", "attrs": {"x": "296", "y": "52", "width": "8", "height": "586", "fill": "#2a2d35", "stroke": "#1e2230", "strokeWidth": "1"}, "text": "", "children": []}, {"tag": "path", "attrs": {"d": "M300,54 L300,636", "fill": "none", "strokeWidth": "3", "strokeOpacity": "1", "strokeLinecap": "round", "strokeLinejoin": "round", "stroke": "#6b7080", "strokeDasharray": "1.2 1.8"}, "text": "", "children": []}, {"tag": "rect", "attrs": {"x": "294.5", "y": "58", "width": "11", "height": "14", "rx": "2", "fill": "#2a2d35", "stroke": "#1e2230", "strokeWidth": "1"}, "text": "", "children": []}]}, {"tag": "g", "attrs": {"data-deco": "drawcord"}, "text": "", "children": [{"tag": "path", "attrs": {"d": "M291,632 Q289,636 290,640 M309,632 Q311,636 310,640", "fill": "none", "stroke": "#1e2230", "strokeWidth": "1.6", "strokeOpacity": "1", "strokeLinecap": "round", "strokeLinejoin": "round"}, "text": "", "children": []}, {"tag": "rect", "attrs": {"x": "287", "y": "639", "width": "6", "height": "7", "rx": "2.5", "fill": "#2a2c31", "stroke": "#1e2230", "strokeWidth": "1"}, "text": "", "children": []}, {"tag": "rect", "attrs": {"x": "307", "y": "639", "width": "6", "height": "7", "rx": "2.5", "fill": "#2a2c31", "stroke": "#1e2230", "strokeWidth": "1"}, "text": "", "children": []}]}];
 const STORAGE_KEY = 'ojeb-designs-v1';
 const configKey = cfg => PARTS.map(p => cfg[p.id]).join('|');
 const makeId = () => globalThis.crypto?.randomUUID?.() || 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2);
@@ -430,10 +454,14 @@ function patternsFor(cfg) {
 function icon(name) { return React.createElement('svg', { viewBox: '0 0 24 24', className: 'icon', 'aria-hidden': true }, React.createElement('path', { d: ICON_PATHS[name], fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' })); }
 function miniJacket(cfg, key) {
   const h = React.createElement, prefix = 'thumb-' + key.replace(/[^a-zA-Z0-9_-]/g, '');
+  const paint = (node, index) => {
+    const attrs = { ...node.attrs, key: index };
+    if (attrs['data-part']) attrs.fill = 'url(#' + prefix + '-pt-' + attrs['data-part'] + ')';
+    return h(node.tag, attrs, ...node.children.map(paint), ...(node.text ? [node.text] : []));
+  };
   return h('svg', { viewBox: '40 30 520 640', width: '100%', height: '100%', 'aria-hidden': true },
     h('defs', null, ...makeViewDefs(prefix, patternsFor(cfg))),
-    ...MINI_PARTS.map((p, i) => h('path', { key: i, d: p.d, fill: 'url(#' + prefix + '-pt-' + p.id + ')', stroke: '#1e2230', strokeWidth: 1.1 })),
-    h('path', { d: 'M300,54 L300,645', fill: 'none', stroke: '#1e2230', strokeWidth: 3 }));
+    ...MINI_DRAWING.map(paint));
 }
 function colorSuggestions(cfg, part) {
   const selected = FAB[cfg[part]], ids = part === 'podsivka' ? INNER_IDS : OUTER_IDS;

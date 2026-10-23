@@ -7,7 +7,7 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 ## Ovládání
 
 - Klepnutí na díl bundy otevře výběr látky pod celým náhledem. Na širokém displeji je panel vedle bundy. Náhled zůstává viditelný a lze rovnou zvolit další díl. Pohledy Zepředu, Zezadu a Vnitřek sdílejí jeden návrh.
-- Prostřední panel je nejvyšší; spodní šev a kapsy jsou posunuté o 60 jednotek dolů. Stejné proporce mají všechny pohledy, obrysy výběru, miniatury a export PNG.
+- Bunda používá dodaný technický nákres 1b: upravenou siluetu, prohnuté švy, prošití kapes, stažené manžety a zip se zoubky. Prostřední panel je nejvyšší. Vektory a cesty dílů jsou v `assets/jacket-1b/`; stejnou kresbu používají všechny pohledy, obrysy výběru, miniatury i export PNG.
 - Logo bundy je pouze na vnitřním štítku na podšívce. Vnější přední ani zadní pohled není označený. Stejně se vykresluje export PNG.
 - Animovaná ruka ukazuje na rukáv a neblokuje kliknutí. Na desktopu se při novém otevření webu znovu zobrazí, třikrát pokyne a zůstane viditelná do prvního kliknutí na díl. Text říká „Klikni na díl bundy a vyber látku.“ Na telefonu se po prvním použití znovu nezobrazuje; respektuje omezený pohyb.
 - Návrh nabízí vrácení a opakování změn. Trendy kombinace obsahují šest výchozích kombinací.
