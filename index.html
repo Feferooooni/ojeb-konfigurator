@@ -25,6 +25,69 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 @media(max-width:719px){.bottom-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.ojeb-preview{margin:auto 12px calc(12px + env(safe-area-inset-bottom));width:calc(100vw - 24px)}}
 @media(max-height:700px){.bottom-nav{height:calc(67px + env(safe-area-inset-bottom));padding-bottom:calc(12px + env(safe-area-inset-bottom))}.draft-thumb{height:74px}.collection{gap:9px;padding:12px}.collection h1{font-size:21px}.draft-card{padding:7px}.fabric-sheet{gap:8px;padding-bottom:calc(12px + env(safe-area-inset-bottom))}.finish{gap:6px;padding:10px}.triptych{min-height:0}.finish .summary-grid{min-height:0}.short-screen .review-switch,.tiny-screen .review-switch{display:flex;justify-content:center;gap:4px;flex:none}.review-switch button{height:30px;border-radius:99px;padding:0 20px;background:#ded8cd;font-size:12px;font-weight:650}.review-switch button.selected{background:var(--ink);color:var(--paper)}.finish-actions{gap:6px}.finish-actions>button{min-height:44px}.export-status{min-height:12px}.short-screen .triptych,.tiny-screen .triptych{flex:1;min-height:0}.suggestions .suggestion-note{display:none}}
 @media(max-height:499px){.app-header{height:40px;padding-inline:12px}.wordmark{font-size:24px}.bottom-nav{height:calc(52px + env(safe-area-inset-bottom));padding:3px 8px calc(6px + env(safe-area-inset-bottom))}.nav-item{font-size:10px;gap:1px}.nav-item:after{bottom:-3px!important}.nav-item .icon{width:20px;height:20px}.editor{padding:6px 12px}.view-controls{padding:2px}.view-controls button{height:27px}.editor-actions .round{height:40px;width:40px}.editor-actions .primary{min-height:40px}.stage{padding:3px 0}.stage-hint{display:none}.fabric-sheet{gap:5px;padding-top:6px;padding-bottom:8px}.fabric-sheet .handle{display:none}.fabric-sheet .sheet-header h1{font-size:18px}.fabric-sheet .sheet-header p{margin-top:1px;font-size:10px}.fabric-sheet .close{height:36px;width:36px}.fabric{height:40px}.fabric-sheet .palette-pages .round{height:30px}.fabric-sheet .suggestions{padding-top:4px;min-height:30px}.fabric-sheet .suggestions button{height:30px;width:30px;border-width:3px}.fabric-sheet .suggestion-note{display:none}.fabric-sheet .sheet-done{min-height:36px}.finish .saved-line,.finish .export-status{display:none}.finish .name-row h1{font-size:16px}.finish .name-row .round{width:28px;height:28px}.finish .summary-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.finish .summary-item{min-height:42px;padding:4px;grid-template-columns:23px 1fr}.finish .mini-fabric{width:23px;height:27px}.finish .summary-item small{font-size:8px}.finish .summary-item strong{font-size:9px}.finish .review-switch button{height:24px}.finish-actions{flex-direction:row}.finish-actions>button{min-height:36px;flex:1;font-size:11px;padding:0 8px}.collection p{display:none}.collection h1{font-size:18px}.collection{padding:8px;gap:6px}.collection-heading .round{width:34px;height:34px}.draft-thumb{height:51px}.draft-card strong{font-size:12px}.draft-card small{font-size:9px}.collection-pager .round{height:32px;width:32px}.collection-pager{font-size:10px}.collection .draft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Fabric selection occupies its own space and never covers the preview. */
+.app.fabric-open .app-header{height:54px}
+.app.fabric-open .editor{padding:0}
+.app.fabric-open .view-controls{margin:9px auto 4px;padding:3px}
+.app.fabric-open .view-controls button{height:30px;font-size:11px;padding:0 16px}
+.app.fabric-open .stage{max-width:none;padding:6px 20px 12px}
+.app.fabric-open .jacket-figure{max-width:350px}
+.app.fabric-open .stage-hint,.app.fabric-open .editor-actions{display:none}
+.app.fabric-open .bottom-nav{height:calc(60px + env(safe-area-inset-bottom));padding:5px 8px calc(10px + env(safe-area-inset-bottom))}
+.app.fabric-open .nav-item{font-size:10px;gap:3px}
+.app.fabric-open .nav-item .icon{width:22px;height:22px}
+.app.fabric-open .nav-item.active:after{bottom:-5px}
+.fabric-sheet{position:relative;inset:auto;flex:none;width:100%;max-width:none;max-height:none;margin:0;border:0;border-top:1px solid #d2cabd;border-radius:20px 20px 0 0;padding:12px 16px 14px;gap:9px;box-shadow:0 -3px 14px #1e223008}
+.fabric-sheet .sheet-header h1{font-size:19px}
+.fabric-sheet .sheet-header p{font-size:12px;margin:4px 0 0}
+.fabric-sheet .color-dot{width:10px;height:10px}
+.fabric-sheet .close{width:38px;height:38px}
+.fabric-sheet .palette{gap:8px;padding:3px}
+.fabric-sheet .fabric{height:44px;border-radius:8px}
+.fabric-sheet .palette-pages{height:36px}
+.fabric-sheet .palette-pages .round{width:40px;height:36px}
+.fabric-sheet .page-dots i{display:none}
+.fabric-sheet .page-dots>span{margin:0;font-size:11px}
+.fabric-sheet .suggestions{display:flex;min-height:32px;gap:8px;padding-top:7px}
+.fabric-sheet .suggestions>span:first-child{max-width:none;font-size:11px;font-weight:500;color:var(--muted);margin-right:2px}
+.fabric-sheet .suggestions button{height:30px;width:30px;border-width:4px}
+.fabric-sheet .suggestions .suggestion-note{display:none}
+.fabric-sheet .sheet-done{min-height:44px;margin:0;font-size:14px}
+@media(max-height:680px){
+  .app.fabric-open .app-header{height:48px}
+  .app.fabric-open .view-controls{margin:7px auto 3px}
+  .app.fabric-open .view-controls button{height:27px}
+  .app.fabric-open .stage{padding:4px 12px 8px}
+  .app.fabric-open .bottom-nav{height:calc(54px + env(safe-area-inset-bottom))}
+  .fabric-sheet{gap:6px;padding:10px 14px 12px}
+  .fabric-sheet .sheet-header h1{font-size:17px}
+  .fabric-sheet .sheet-header p{font-size:11px;margin-top:3px}
+  .fabric-sheet .close{width:35px;height:35px}
+  .fabric-sheet .fabric{height:42px}
+  .fabric-sheet .palette-pages,.fabric-sheet .palette-pages .round{height:34px}
+  .fabric-sheet .suggestions{display:none}
+  .fabric-sheet .sheet-done{min-height:40px;font-size:13px}
+}
+@media(min-width:900px),(min-width:520px) and (max-height:500px){
+  .app.fabric-open .editor{display:grid;grid-template-columns:minmax(0,1fr) 370px;grid-template-rows:auto minmax(0,1fr);column-gap:24px;width:100%;max-width:1100px;align-self:center;padding:20px 24px}
+  .app.fabric-open .view-controls{grid-column:1;grid-row:1;justify-self:center}
+  .app.fabric-open .stage{grid-column:1;grid-row:2;width:100%;height:100%}
+  .app.fabric-open .jacket-figure{max-width:500px}
+  .fabric-sheet{grid-column:2;grid-row:1 / -1;align-self:center;border:1px solid var(--line);border-radius:20px;box-shadow:none}
+}
+@media(min-width:520px) and (max-height:500px){
+  .app.fabric-open .app-header{height:40px}
+  .app.fabric-open .editor{grid-template-columns:minmax(0,1fr) 280px;column-gap:10px;padding:6px 12px}
+  .app.fabric-open .view-controls{margin:0 auto 3px}
+  .app.fabric-open .view-controls button{font-size:10px;padding:0 10px}
+  .app.fabric-open .bottom-nav{height:calc(52px + env(safe-area-inset-bottom));padding-top:3px;padding-bottom:calc(6px + env(safe-area-inset-bottom))}
+  .fabric-sheet{gap:4px;padding:8px 10px}
+  .fabric-sheet .sheet-header p{margin-top:1px}
+  .fabric-sheet .fabric{height:38px}
+  .fabric-sheet .palette-pages,.fabric-sheet .palette-pages .round{height:30px}
+  .fabric-sheet .sheet-done{min-height:36px}
+}
 </style>
 </helmet>
 <div class="app {{ appClass }}">
@@ -110,6 +173,13 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 <g data-noexport="1">{{ tapHints.inside }}</g></svg></div></div></div>
 <p class="stage-hint">Klepni na díl bundy a vyber látku.</p>
 <div class="editor-actions"><button class="round" aria-label="Vrátit změnu" disabled="{{ undoDisabled }}" onClick="{{ undo }}">{{ icons.undo }}</button><button class="round" aria-label="Zopakovat změnu" disabled="{{ redoDisabled }}" onClick="{{ redo }}">{{ icons.redo }}</button><button class="primary complete" onClick="{{ finish }}">Hotovo {{ icons.check }}</button></div>
+<section ref="{{ sheetRef }}" class="fabric-sheet" aria-labelledby="fabric-title" style="display:{{ sheetDisplay }}">
+<header class="sheet-header"><div><h1 id="fabric-title">{{ selectedPartName }}</h1><p><span class="color-dot" style="background:{{ selectedFabric.color }}"></span>{{ selectedFabric.name }}</p></div><button class="round close" aria-label="Zavřít výběr látky" onClick="{{ closeSheet }}">{{ icons.close }}</button></header>
+<div class="palette" onTouchStart="{{ onPaletteTouchStart }}" onTouchEnd="{{ onPaletteTouchEnd }}"><sc-for list="{{ fabricItems }}" as="f"><button class="fabric {{ f.activeClass }}" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" aria-pressed="{{ f.active }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})">{{ f.check }}</button></sc-for></div>
+<div class="palette-pages"><button class="round" aria-label="Předchozí látky" onClick="{{ previousFabric }}" disabled="{{ fabricPager.first }}">{{ icons.back }}</button><span class="page-dots"><sc-for list="{{ fabricDots }}" as="d"><i class="{{ d.activeClass }}"></i></sc-for><span>{{ fabricPager.label }}</span></span><button class="round" aria-label="Další látky" onClick="{{ nextFabric }}" disabled="{{ fabricPager.last }}">{{ icons.next }}</button></div>
+<div class="suggestions"><span>Tipy k bundě</span><sc-for list="{{ suggestions }}" as="f"><button data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></button></sc-for><span class="suggestion-note">Ladí s ostatními díly</span></div>
+<button class="primary sheet-done" onClick="{{ closeSheet }}">Hotovo {{ icons.check }}</button>
+</section>
 </main>
 <main class="finish" style="display:{{ panels.finish }}">
 <div class="name-row"><h1>{{ draftName }}</h1><button class="round" aria-label="Přejmenovat návrh" onClick="{{ openRename }}">{{ icons.pencil }}</button></div>
@@ -186,13 +256,7 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 </main>
 <nav class="bottom-nav" aria-label="Hlavní navigace"><sc-for list="{{ navigation }}" as="n"><button class="nav-item {{ n.activeClass }}" data-nav="{{ n.id }}" aria-pressed="{{ n.active }}" onClick="{{ onNavigation }}">{{ n.icon }}<span>{{ n.label }}</span></button></sc-for></nav>
 </div>
-<dialog ref="{{ sheetRef }}" class="fabric-sheet" aria-labelledby="fabric-title" onCancel="{{ closeSheet }}" onClick="{{ onSheetBackdrop }}"><div class="handle"></div>
-<header class="sheet-header"><div><h1 id="fabric-title">{{ selectedPartName }}</h1><p><span class="color-dot" style="background:{{ selectedFabric.color }}"></span>{{ selectedFabric.name }}</p></div><button class="round close" aria-label="Zavřít výběr látky" onClick="{{ closeSheet }}">{{ icons.close }}</button></header>
-<div class="palette" onTouchStart="{{ onPaletteTouchStart }}" onTouchEnd="{{ onPaletteTouchEnd }}"><sc-for list="{{ fabricItems }}" as="f"><button class="fabric {{ f.activeClass }}" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" aria-pressed="{{ f.active }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})">{{ f.check }}</button></sc-for></div>
-<div class="palette-pages"><button class="round" aria-label="Předchozí látky" onClick="{{ previousFabric }}" disabled="{{ fabricPager.first }}">{{ icons.back }}</button><span class="page-dots"><sc-for list="{{ fabricDots }}" as="d"><i class="{{ d.activeClass }}"></i></sc-for><span>{{ fabricPager.label }}</span></span><button class="round" aria-label="Další látky" onClick="{{ nextFabric }}" disabled="{{ fabricPager.last }}">{{ icons.next }}</button></div>
-<div class="suggestions"><span>Tipy k bundě</span><sc-for list="{{ suggestions }}" as="f"><button data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></button></sc-for><span class="suggestion-note">Ladí s ostatními díly</span></div>
-<button class="primary sheet-done" onClick="{{ closeSheet }}">Hotovo {{ icons.check }}</button>
-</dialog>
+
 <dialog ref="{{ renameRef }}" class="rename-dialog" aria-labelledby="rename-title" onCancel="{{ closeRename }}"><form onSubmit="{{ submitRename }}"><h2 id="rename-title">Název návrhu</h2><input ref="{{ nameInput }}" aria-label="Název návrhu" value="{{ renameValue }}" onChange="{{ changeName }}" maxlength="60" autocomplete="off"><div class="rename-actions"><button class="secondary" type="button" onClick="{{ closeRename }}">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form></dialog>
 <dialog ref="{{ previewRef }}" class="ojeb-preview" onCancel="{{ closePreview }}" onClick="{{ onPreviewBackdrop }}" aria-labelledby="ojeb-preview-title">
 <div class="ojeb-preview-content"><header><h2 id="ojeb-preview-title">{{ preview.title }}</h2><button class="ojeb-preview-close" onClick="{{ closePreview }}" aria-label="Zavřít náhled">×</button></header>
@@ -367,25 +431,36 @@ class Component extends DCLogic {
       active = { id: makeId(), name: 'Moje bunda', cfg: { ...PRESETS[0].cfg }, updatedAt: Date.now() }; records.push(active);
     }
     this.setState({ records, hintDismissed, draftId: active.id, draftName: active.name, cfg: { ...active.cfg }, viewportH: innerHeight, viewportW: innerWidth });
-    this.onResize = () => this.setState({ viewportH: innerHeight, viewportW: innerWidth });
+    this.onResize = () => {
+      const perPage = this.fabricPageSize(innerHeight), list = this.state.sel === 'podsivka' ? INNER_IDS : OUTER_IDS;
+      this.setState({ viewportH: innerHeight, viewportW: innerWidth,
+        ...(perPage !== this.fabricPageSize() ? { fabricPage: Math.floor(Math.max(0, list.indexOf(this.state.cfg[this.state.sel])) / perPage) } : {}) });
+    };
+    this.onKeyDown = e => { if (e.key === 'Escape' && this.state.sheetOpen) { e.preventDefault(); this.closeSheet(); } };
     this.onPop = e => {
       const ui = e.state?.ojebUX || {};
       this.previewRequest++;
+      const part = PNAME[ui.part] ? ui.part : this.state.sel, list = part === 'podsivka' ? INNER_IDS : OUTER_IDS;
+      let view = this.state.view;
+      if (PNAME[ui.part]) {
+        if (part === 'podsivka') view = 'inside';
+        else if (view === 'inside' || part === 'kapsy') view = 'front';
+      }
       this.setState({ screen: ['design','finish','inspiration','saved'].includes(ui.screen) ? ui.screen : 'design',
-        sheetOpen: !!PNAME[ui.part], sel: PNAME[ui.part] ? ui.part : this.state.sel, preview: null, renameOpen: false },
+        sheetOpen: !!PNAME[ui.part], sel: part, view, fabricPage: Math.floor(Math.max(0, list.indexOf(this.state.cfg[part])) / this.fabricPageSize()), preview: null, renameOpen: false },
         () => { if (this.state.screen === 'finish') this.prepareExport().catch(() => {}); });
     };
-    window.addEventListener('resize', this.onResize); window.addEventListener('popstate', this.onPop);
+    window.addEventListener('resize', this.onResize); window.addEventListener('popstate', this.onPop); window.addEventListener('keydown', this.onKeyDown);
     this.replaceUI({ screen: 'design' });
     this.persistCurrent();
   }
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize); window.removeEventListener('popstate', this.onPop);
+    window.removeEventListener('resize', this.onResize); window.removeEventListener('popstate', this.onPop); window.removeEventListener('keydown', this.onKeyDown);
     clearTimeout(this.toastTimer); if (this.previewCache) URL.revokeObjectURL(this.previewCache.url);
   }
   componentDidUpdate() {
     const syncDialog = (ref, open) => { const d = ref.current; if (!d) return; if (open && !d.open) d.showModal(); else if (!open && d.open) d.close(); };
-    syncDialog(this.sheetRef, this.state.sheetOpen); syncDialog(this.previewRef, !!this.state.preview); syncDialog(this.renameRef, this.state.renameOpen);
+    syncDialog(this.previewRef, !!this.state.preview); syncDialog(this.renameRef, this.state.renameOpen);
     const key = this.state.draftId + '|' + this.state.draftName + '|' + configKey(this.state.cfg) + '|' + this.state.hintDismissed;
     if (this.state.draftId && key !== this.persistedKey) this.persistCurrent();
     const hash = '#' + Object.keys(HKEY).map(k => HKEY[k] + '=' + this.state.cfg[k]).join('&');
@@ -413,13 +488,24 @@ class Component extends DCLogic {
   }
   undo() { if (!this.past.length) return; this.future.push({ ...this.state.cfg }); this.setState({ cfg: this.past.pop(), exportError: '' }); }
   redo() { if (!this.future.length) return; this.past.push({ ...this.state.cfg }); this.setState({ cfg: this.future.pop(), exportError: '' }); }
-  setView(view) { this.setState({ view }); }
+  fabricPageSize(height = this.state.viewportH) { return height <= 680 ? 6 : 12; }
+  setView(view) {
+    if (!['front','back','inside'].includes(view)) return;
+    if (!this.state.sheetOpen) { this.setState({ view }); return; }
+    let part = this.state.sel;
+    if (view === 'inside') part = 'podsivka';
+    else if (part === 'podsivka' || (view === 'back' && part === 'kapsy')) part = 'vrch';
+    const list = part === 'podsivka' ? INNER_IDS : OUTER_IDS;
+    this.replaceUI({ screen: 'design', part });
+    this.setState({ view, sel: part, fabricPage: Math.floor(Math.max(0, list.indexOf(this.state.cfg[part])) / this.fabricPageSize()) });
+  }
   openPart(part) {
     if (!PNAME[part]) return;
-    const list = part === 'podsivka' ? INNER_IDS : OUTER_IDS, perPage = this.state.viewportH < 500 ? 6 : 12;
+    const list = part === 'podsivka' ? INNER_IDS : OUTER_IDS, perPage = this.fabricPageSize();
     let view = this.state.view;
     if (part === 'podsivka') view = 'inside'; else if (view === 'inside' || part === 'kapsy') view = 'front';
     if (!this.state.sheetOpen) this.pushUI({ screen: 'design', part });
+    else this.replaceUI({ screen: 'design', part });
     this.setState({ screen: 'design', sheetOpen: true, hintDismissed: true, sel: part, view, fabricPage: Math.floor(Math.max(0,list.indexOf(this.state.cfg[part])) / perPage) });
   }
   closeSheet() {
@@ -488,7 +574,7 @@ class Component extends DCLogic {
     const s = this.state, short = s.viewportH < 600, tiny = s.viewportH < 500;
     const pat = patternsFor(s.cfg), icons = Object.fromEntries(Object.keys(ICON_PATHS).map(k => [k,icon(k)]));
     const pager = (count, size, value) => { const pages = Math.max(1,Math.ceil(count / size)), index = Math.max(0,Math.min(value,pages-1)); return { index, pages, first: index === 0, last: index === pages-1, visible: pages > 1, label: (index+1) + ' / ' + pages }; };
-    const list = s.sel === 'podsivka' ? INNER_IDS : OUTER_IDS, fabricSize = tiny ? 6 : 12, fabricPager = pager(list.length, fabricSize, s.fabricPage);
+    const list = s.sel === 'podsivka' ? INNER_IDS : OUTER_IDS, fabricSize = this.fabricPageSize(), fabricPager = pager(list.length, fabricSize, s.fabricPage);
     const cardSize = tiny ? 2 : (short ? 4 : 6), presetPager = pager(PRESETS.length,cardSize,s.presetPage), savedPager = pager(s.records.length,cardSize,s.savedPage);
     const makeCard = (cfg,key,name,description) => ({ name, description, preview: miniJacket(cfg,key) });
     const tips = this.tipsFor(s.sel).groups.flatMap(g => g.items).slice(0,3);
@@ -497,8 +583,9 @@ class Component extends DCLogic {
     const clipDefs = Object.fromEntries(['front','back','inside'].map(v=>[v,[]]));
     const cacheReady = this.previewCache?.key === this.exportKey();
     return {
-      icons, appClass: tiny ? 'tiny-screen' : (short ? 'short-screen' : ''),
-      isFinish, notFinish: !isFinish, panels: Object.fromEntries(['design','finish','inspiration','saved'].map(k=>[k,s.screen===k?'flex':'none'])),
+      icons, appClass: (tiny ? 'tiny-screen' : (short ? 'short-screen' : '')) + (s.sheetOpen && s.screen === 'design' ? ' fabric-open' : ''),
+      sheetDisplay: s.sheetOpen && s.screen === 'design' ? 'flex' : 'none',
+      isFinish, notFinish: !isFinish, panels: Object.fromEntries(['design','finish','inspiration','saved'].map(k=>[k,s.screen===k?(k==='design' && s.sheetOpen && (s.viewportW>=900 || (s.viewportW>=520 && s.viewportH<=500))?'grid':'flex'):'none'])),
       navigation: [['design','Návrh','pencil'],['inspiration','Inspirace','spark'],['saved','Moje návrhy','folder']].map(([id,label,k])=>({id,label,icon:icons[k],active:id===activeNav,activeClass:id===activeNav?'active':''})),
       onNavigation: e => this.navigate(e.currentTarget.dataset.nav),
       saveLabel: s.storageStatus === 'saved' ? 'Uloženo' : (s.storageStatus === 'pending' ? 'Ukládám' : 'Jen v relaci'),
@@ -521,7 +608,7 @@ class Component extends DCLogic {
       fabricItems:list.slice(fabricPager.index*fabricSize,(fabricPager.index+1)*fabricSize).map(id=>({...FAB[id],active:id===s.cfg[s.sel],activeClass:id===s.cfg[s.sel]?'chosen':'',check:id===s.cfg[s.sel]?icons.check:[]})),
       fabricPager,fabricDots:Array.from({length:fabricPager.pages},(_,i)=>({activeClass:i===fabricPager.index?'current':''})),
       previousFabric:()=>this.setState({fabricPage:Math.max(0,fabricPager.index-1)}),nextFabric:()=>this.setState({fabricPage:Math.min(fabricPager.pages-1,fabricPager.index+1)}),
-      onFabric:e=>this.chooseFabric(e.currentTarget.dataset.fab),closeSheet:e=>{e?.preventDefault();this.closeSheet();},onSheetBackdrop:e=>{if(e.target===this.sheetRef.current)this.closeSheet();},
+      onFabric:e=>this.chooseFabric(e.currentTarget.dataset.fab),closeSheet:e=>{e?.preventDefault();this.closeSheet();},
       onPaletteTouchStart:e=>{this.paletteStart=e.touches[0].clientX;},onPaletteTouchEnd:e=>{if(this.paletteStart==null)return;const dx=e.changedTouches[0].clientX-this.paletteStart;this.paletteStart=null;if(Math.abs(dx)>55)this.setState({fabricPage:Math.max(0,Math.min(fabricPager.pages-1,fabricPager.index+(dx<0?1:-1)))});},
       suggestions:tips,
       presetCards:PRESETS.map((p,index)=>({...makeCard(p.cfg,'preset'+index,p.name,p.sub),index})).slice(presetPager.index*cardSize,(presetPager.index+1)*cardSize),
