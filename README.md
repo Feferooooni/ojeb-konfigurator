@@ -7,6 +7,7 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 ## Ovládání
 
 - Klepnutí na díl bundy otevře výběr látky pod celým náhledem. Na širokém displeji je panel vedle bundy. Náhled zůstává viditelný a lze rovnou zvolit další díl. Pohledy Zepředu, Zezadu a Vnitřek sdílejí jeden návrh.
+- Prostřední panel je nejvyšší; spodní šev a kapsy jsou posunuté o 60 jednotek dolů. Stejné proporce mají všechny pohledy, obrysy výběru, miniatury a export PNG.
 - Logo bundy je pouze na vnitřním štítku na podšívce. Vnější přední ani zadní pohled není označený. Stejně se vykresluje export PNG.
 - Úvodní animovaná ruka ukazuje na rukáv. Po prvním výběru dílu se už nezobrazuje; respektuje omezený pohyb.
 - Návrh nabízí vrácení a opakování změn. Trendy kombinace obsahují šest výchozích kombinací.
