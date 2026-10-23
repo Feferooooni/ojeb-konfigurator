@@ -738,7 +738,7 @@ class Component extends DCLogic {
     const L = M ? {
       rootMinH: '0', rootH: '100dvh', rootOv: 'hidden', headPad: '8px 12px', logo: '24px', desk: 'none', mob: 'flex',
       shareLbl: 'Sdílet', saveLbl: 'Uložit', mainDir: 'column', mainWrap: 'nowrap',
-      stageFlex: '0 0 auto', stageDisplay: (compact && overview) || s.viewportH < 500 ? 'none' : 'flex', stageH: overview ? 'clamp(100px, calc(100dvh - 680px), 170px)' : 'clamp(100px, calc(100dvh - 430px), 300px)', stageMinH: '0', stagePad: '6px 12px',
+      stageFlex: '0 0 auto', stageDisplay: s.viewportH < 500 ? 'none' : 'flex', stageH: s.mtab === 'souhrn' ? 'clamp(90px, calc(100dvh - 440px), 380px)' : s.mtab === 'kombinace' ? (compact ? 'clamp(90px, calc(100dvh - 400px), 300px)' : 'clamp(90px, calc(100dvh - 530px), 280px)') : 'clamp(100px, calc(100dvh - 430px), 300px)', stageMinH: '0', stagePad: '6px 12px',
       jw: 'min(100%, 300px)', jh: '100%', jratio: 'auto', capMinH: '0', capFs: '14px',
       asideOv: 'hidden', asideBorder: 'none', asidePad: '8px 12px', asideGap: '8px'
     } : {
