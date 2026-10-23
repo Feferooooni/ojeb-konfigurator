@@ -1,137 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#faf8f4">
+<title>O’Jeb — moje bunda</title>
 <script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+</head><body><x-dc><helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;650;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-body{margin:0;background:#f3f0ea}
-html,body{height:100%;overflow:hidden}
-button:disabled{cursor:default;opacity:.35}
-.ojeb-tabs{display:flex;flex:none;border-bottom:1px solid #dcd6ca}
-.ojeb-tabs button{flex:1;min-width:0;height:40px;padding:0 4px;border:0;background:transparent;font-size:13px;font-weight:700}
-.ojeb-parts-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px!important}
-.ojeb-parts-grid button{grid-template-columns:32px minmax(0,1fr)!important;gap:8px!important;padding:5px!important;min-width:0}
-.ojeb-parts-grid button>span:first-child{width:32px!important;height:32px!important}
-.ojeb-parts-grid button>span:last-child{display:none}
-.ojeb-parts-grid button>span:nth-child(2)>span:first-child{font-size:13px!important}
-.ojeb-parts-grid button>span:nth-child(2)>span:last-child{font-size:11px!important}
-.ojeb-part-select{display:flex;align-items:center;gap:10px;padding:6px 12px;background:#faf8f4;flex:none}
-.ojeb-part-select label{font-size:12px;font-weight:700}
-.ojeb-part-select select{flex:1;min-width:0;height:36px;padding:0 10px;border:1px solid #cfc8ba;border-radius:8px;background:#faf8f4;color:#1e2230;font:600 14px Archivo,system-ui,sans-serif}
-.ojeb-options>.ojeb-pane{flex:1 1 auto;min-height:0;gap:8px!important;overflow:hidden}
-.ojeb-mode-hint{display:none!important}
-.ojeb-palette{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:6px!important}
-.ojeb-palette button{height:54px;aspect-ratio:auto!important;min-width:0}
-.ojeb-info{min-height:32px!important;line-height:1.2}
-.ojeb-info>div:first-child{font-size:14px!important}
-.ojeb-info>div:last-child{font-size:11px!important}
-.ojeb-pager{display:flex;align-items:center;justify-content:space-between;gap:8px;flex:none;margin-top:auto;font-size:12px;color:#6b6f7a}
-.ojeb-pager button{height:34px;min-width:42px;padding:0 12px;border:1px solid #cfc8ba;border-radius:999px;background:transparent;color:#1e2230;font-size:18px}
-.ojeb-presets-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-.ojeb-presets-grid>button{min-width:0;padding:6px!important;gap:5px!important}
-.ojeb-presets-grid>button>span:first-child{height:52px!important}
-.ojeb-presets-grid>button>span:last-child>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ojeb-presets-actions{display:flex!important;gap:6px!important;flex-wrap:wrap}
-.ojeb-presets-actions button{flex:1;min-width:0;padding:0 8px!important;height:38px!important;font-size:12px!important}
-.ojeb-summary h2{font-size:18px;margin:0;font-weight:800}
-.ojeb-summary p{font-size:12px;color:#6b6f7a;margin:0;line-height:1.3}
-.ojeb-summary-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.ojeb-primary,.ojeb-secondary{height:42px;padding:0 12px;border-radius:999px;font:700 13px Archivo,system-ui,sans-serif;cursor:pointer}
-.ojeb-primary{border:1px solid #1e2230;background:#1e2230;color:#f3f0ea}
-.ojeb-secondary{border:1px solid #bfb7a7;background:transparent;color:#1e2230}
-.ojeb-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;min-height:0}
-.ojeb-summary-row{display:grid;grid-template-columns:32px minmax(0,1fr);gap:8px;align-items:center;min-height:66px;min-width:0;padding:8px;border:1px solid #dcd6ca;border-radius:10px;background:#fff;text-align:left;color:#1e2230}
-.ojeb-summary-row>.swatch{width:32px;height:40px;border-radius:7px;background-size:cover}
-.ojeb-summary-row small{display:block;font-size:10px;line-height:1.2;color:#6b6f7a;margin-bottom:3px}
-.ojeb-summary-row strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;font-weight:700;line-height:1.25}
-.ojeb-preview{width:min(520px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);box-sizing:border-box;padding:18px;border:0;border-radius:20px;background:#faf8f4;color:#1e2230;overflow:hidden}
-.ojeb-preview::backdrop{background:rgba(30,34,48,.38)}
-.ojeb-preview-content{display:flex;flex-direction:column;gap:12px;min-height:0;max-height:calc(100dvh - 60px)}
-.ojeb-preview header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}
-.ojeb-preview h2{font-size:18px;margin:0;font-weight:800}
-.ojeb-preview-close{width:34px;height:34px;border:0;border-radius:50%;background:#e9e4da;color:#1e2230;font-size:24px}
-.ojeb-preview-image{display:flex;min-height:0;flex:1;justify-content:center}
-.ojeb-preview-image img{display:block;max-width:100%;max-height:calc(100dvh - 250px);object-fit:contain;border-radius:8px}
-.ojeb-preview p{font-size:12px;line-height:1.4;margin:0;color:#5d616c;flex:none}
-.ojeb-preview-actions{display:flex;flex-direction:column;gap:8px;flex:none}
-.ojeb-preview-status{padding:24px 0;font-size:14px;text-align:center}
-.is-compact .ojeb-palette button{height:44px}
-.is-compact .ojeb-palette-label{display:none}
-.is-compact .ojeb-presets-grid>button>span:first-child{height:42px!important}
-.is-compact .ojeb-summary-row{min-height:58px;padding:6px}
-.is-short .ojeb-info,.is-short .ojeb-summary p{display:none!important}
-@media(max-height:499px) and (orientation:landscape){.ojeb-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:719px){
- .ojeb-stage-center{padding:4px 0!important}
- .ojeb-view-controls{flex:none}.ojeb-view-controls button{height:30px!important;padding:0 13px!important;font-size:13px!important}
- .ojeb-options{gap:8px!important}.ojeb-caption>div:first-child{font-size:10px!important}
- .is-compact .ojeb-caption{display:none!important}
- .ojeb-preview{margin:auto 12px 12px;width:calc(100vw - 24px)}
-}
+:root{color-scheme:light;--ink:#1e2230;--muted:#6b6f7a;--paper:#faf8f4;--canvas:#e9e4da;--line:#dcd6ca;--orange:#e07a2e}*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:Archivo,system-ui,sans-serif}button{font:inherit;border:0;color:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--orange);outline-offset:3px}.icon{width:23px;height:23px;display:block;flex:none}.app{height:100dvh;display:flex;flex-direction:column;overflow:hidden}.app-header{height:64px;flex:none;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--paper)}.wordmark{font-size:29px;font-weight:800;letter-spacing:-1.1px;line-height:1}.wordmark span{color:var(--orange)}.save-status{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}.save-status .icon{width:15px;height:15px}.editor{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;background:var(--canvas);padding:16px 16px 14px}.view-controls{display:flex;flex:none;gap:3px;padding:4px;background:#dcd5c7;border-radius:99px}.view-controls button{height:34px;border-radius:99px;padding:0 17px;background:transparent;font-size:12px;font-weight:650}.view-controls .selected{background:var(--ink);color:var(--paper)}.stage{flex:1;width:100%;min-height:0;padding:12px 16px 0;display:flex;align-items:center;justify-content:center}.jacket-figure{width:100%;height:100%;min-height:0}.jacket-figure>svg{width:100%;height:100%;max-height:100%}.stage-hint{flex:none;font-size:12px;line-height:1.4;text-align:center;color:#60646d;margin:5px 0 16px}.editor-actions{display:flex;align-items:center;gap:8px;flex:none;width:100%}.round{width:46px;height:46px;flex:none;border:1px solid #bfb7a7;border-radius:50%;display:flex;align-items:center;justify-content:center;background:transparent}.muted{color:#a8a69f}.primary,.secondary{min-height:48px;padding:0 18px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:14px;font-weight:700}.primary{background:var(--ink);color:var(--paper)}.secondary{background:transparent;border:1px solid #bfb7a7}.complete{flex:1;justify-content:space-between}.complete .icon{width:20px;height:20px}.bottom-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));height:76px;flex:none;background:var(--paper);border-top:1px solid var(--line);padding:7px 8px 12px}.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:none;color:#8a8d96;font-size:11px;font-weight:600;position:relative}.nav-item.active{color:var(--ink)}.nav-item.active:after{content:'';width:18px;height:3px;border-radius:9px;background:var(--orange);position:absolute;bottom:-7px}.nav-item .icon{width:24px;height:24px}.scrim{position:absolute;inset:0;background:rgba(30,34,48,.14)}.fabric-sheet{position:absolute;bottom:0;left:0;right:0;border-radius:24px 24px 0 0;background:var(--paper);padding:10px 16px 22px;box-shadow:0 -6px 28px rgba(30,34,48,.12);display:flex;flex-direction:column;gap:12px}.handle{height:4px;width:34px;flex:none;background:#d6d0c5;border-radius:99px;margin:0 auto 1px}.sheet-header{display:flex;align-items:center;justify-content:space-between;gap:16px}.sheet-header h1{margin:0;font-size:21px;font-weight:800}.sheet-header p{display:flex;gap:6px;align-items:center;margin:5px 0 0;font-size:12px;color:var(--muted)}.color-dot{width:12px;height:12px;border-radius:50%;background:#80424d}.close{width:44px;height:44px;border:0;background:#ece7dd}.close .icon{width:19px;height:19px}.palette{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;padding:3px}.fabric{height:45px;min-width:0;border-radius:9px;background-size:cover;position:relative}.fabric.chosen{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}.fabric .icon{position:absolute;inset:0;margin:auto;color:white;width:22px;filter:drop-shadow(0 1px 2px #0008)}.palette-pages{display:flex;align-items:center;justify-content:space-between}.palette-pages .round{width:44px;height:44px;border:0}.page-dots{display:flex;align-items:center;gap:6px}.page-dots i{height:6px;width:6px;border-radius:99px;background:#d6d0c5}.page-dots i.current{width:16px;background:var(--ink)}.page-dots>span{margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}.suggestions{display:flex;align-items:center;gap:7px;border-top:1px solid var(--line);padding-top:12px;min-height:45px}.suggestions>span:first-child{font-size:11px;font-weight:650;max-width:56px}.suggestions button{width:44px;height:44px;flex:none;border-radius:50%;border:6px solid var(--paper);box-shadow:0 0 0 1px #d6d0c5}.suggestion-note{margin-left:0;font-size:10px;color:var(--muted);line-height:1.4;max-width:85px}.sheet-done{margin-top:2px;justify-content:space-between}.finish{min-height:0;flex:1;display:flex;flex-direction:column;gap:12px;padding:12px 16px 16px;background:#f3f0ea}.detail-title{font-size:14px;font-weight:700}.finish-top{display:flex;align-items:center;justify-content:space-between;min-height:30px}.back-link{background:none;display:flex;align-items:center;gap:2px;padding:0;font-size:12px;font-weight:600;height:32px}.back-link .icon{width:19px}.finish-kicker{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.1px;color:var(--muted)}.name-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.name-row h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.4px}.name-row .round{width:36px;height:36px;border:0}.name-row .icon{width:19px}.saved-line{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin:-6px 0 0}.saved-line .icon{width:14px;height:14px}.triptych{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border-radius:14px;padding:12px 5px 10px;background:var(--canvas);min-height:160px;flex:1}.triptych>div{display:flex;flex-direction:column;min-height:0;align-items:center;gap:5px}.small-jacket{flex:1;min-height:0;width:100%}.small-jacket>svg{width:100%;height:100%;display:block}.triptych span{font-size:9px;color:#6b6f7a;flex:none}.summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.summary-item{display:grid;grid-template-columns:30px 1fr;min-width:0;align-items:center;gap:8px;min-height:57px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);text-align:left}.mini-fabric{width:30px;height:36px;border-radius:6px;background-size:cover}.summary-item small{display:block;font-size:9px;color:var(--muted);line-height:1.3}.summary-item strong{display:block;font-size:11px;line-height:1.25;margin-top:3px;font-weight:650}.finish-actions{display:flex;flex-direction:column;gap:8px;flex:none}.finish-actions>button{min-height:46px}.finish-actions .icon{width:19px;height:19px}
+@media(max-height:700px){.stage{padding-top:8px}.stage-hint{margin-bottom:8px;font-size:11px}.editor{padding-top:9px;padding-bottom:10px}.fabric-sheet{gap:8px;padding-bottom:12px}.palette{gap:7px}.fabric{height:44px}.suggestions{display:none}.triptych{min-height:96px}.finish{gap:6px;padding:10px}.name-row .round{width:32px;height:32px}.summary-grid{gap:6px}.summary-item{min-height:48px;padding:4px 6px;grid-template-columns:26px 1fr;gap:6px}.mini-fabric{width:26px;height:31px}.summary-item strong{font-size:10.5px}.summary-item small{font-size:9px}.finish-actions{gap:6px}.finish-actions>button{min-height:44px}.finish-top{min-height:24px}.name-row h1{font-size:19px}.bottom-nav{height:67px}.app-header{height:56px}}
+@media(max-width:350px){.fabric-sheet{padding-left:12px;padding-right:12px}.palette{gap:5px}}
 
-a{color:#1e2230}
-a:hover{color:#c4611a}
-button{font-family:inherit}
-.ojeb-options>div{flex-shrink:0}
-@media(min-width:720px){
-  .ojeb-view-controls,.ojeb-caption{flex:none}
-  .ojeb-jacket{min-height:0;max-height:100%}
-  .ojeb-options{overscroll-behavior:contain;scrollbar-gutter:stable}
-}
-@keyframes ojRipple{from{transform:scale(0);opacity:.6}to{transform:scale(1);opacity:0}}
-@keyframes ojPop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes hint-hand-tap{0%,50%,100%{transform:translateY(0)}18%,30%{transform:translateY(4px)}}
+@keyframes hint-ring{0%,35%,100%{opacity:0;transform:scale(.6)}15%{opacity:.8;transform:scale(1.2)}}
+@keyframes hint-fade{to{opacity:0}}
+.tap-hand{animation:hint-hand-tap 2.6s ease-in-out 3;transform-box:fill-box;transform-origin:center}.tap-ring{animation:hint-ring 2.6s ease-out 3;transform-box:fill-box;transform-origin:center}.tap-hint{animation:hint-fade .4s linear 7.6s forwards;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.tap-hint,.tap-ring,.tap-hand{animation:none}.tap-ring{opacity:.5}}
+
+html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{padding-top:env(safe-area-inset-top);max-width:1440px;margin:auto;position:relative}.bottom-nav{height:calc(76px + env(safe-area-inset-bottom));padding-bottom:calc(12px + env(safe-area-inset-bottom));grid-template-columns:repeat(3,minmax(0,180px));justify-content:center}.stage{max-width:650px}.editor{justify-content:flex-start}.editor-actions{max-width:520px}.stage svg [data-part]{cursor:pointer}.collection{display:flex;flex-direction:column;flex:1;min-height:0;gap:14px;padding:18px;width:100%;max-width:840px;align-self:center;background:#f3f0ea}.collection-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}.collection h1{font-size:23px;font-weight:800;letter-spacing:-.4px;margin:0}.collection p{font-size:12px;line-height:1.4;color:var(--muted);margin:5px 0 0}.draft-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;min-height:0}.draft-card{display:flex;flex-direction:column;gap:4px;min-width:0;min-height:0;padding:9px;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:12px}.draft-card strong{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.draft-card small{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.draft-thumb{height:100px;display:flex;justify-content:center;min-height:0;border-radius:7px;background:var(--canvas);padding:5px}.draft-thumb svg{height:100%;width:100%;max-width:100%}.collection-pager{display:flex;align-items:center;justify-content:space-between;flex:none;margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}.collection-pager .round{width:44px;height:44px}.finish{width:100%;max-width:840px;align-self:center}.finish-actions{max-width:520px;width:100%;align-self:center}.review-switch{display:none}.export-status{font-size:11px;color:var(--muted);line-height:1.2;min-height:13px;margin:0;text-align:center;flex:none}.draft-card:active,.summary-item:active{background:#ece7dd}.fabric-sheet .suggestions button{background-size:cover;background-origin:padding-box}.fabric-sheet .suggestions{display:flex}.suggestions .suggestion-note{display:block}.fabric-sheet{max-width:none;border:0;margin:0;width:100%;max-height:calc(100dvh - env(safe-area-inset-top));padding-bottom:calc(22px + env(safe-area-inset-bottom))}.fabric-sheet::backdrop{background:rgba(30,34,48,.14)}dialog:not([open]){display:none!important}.rename-dialog{width:min(380px,calc(100vw - 24px));border:0;border-radius:18px;padding:20px;background:var(--paper);color:var(--ink)}.rename-dialog::backdrop{background:#1e223055}.rename-dialog form{display:flex;flex-direction:column;gap:16px}.rename-dialog h2{font-size:18px;margin:0}.rename-dialog input{font:500 16px Archivo,system-ui;width:100%;min-height:44px;padding:8px 10px;border:1px solid #bfb7a7;border-radius:8px;background:white;color:var(--ink)}.rename-actions{display:flex;gap:8px}.rename-actions button{flex:1}.ojeb-preview{width:min(520px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);box-sizing:border-box;padding:18px;border:0;border-radius:20px;background:var(--paper);color:var(--ink);overflow:hidden}.ojeb-preview::backdrop{background:rgba(30,34,48,.38)}.ojeb-preview-content{display:flex;flex-direction:column;gap:12px;min-height:0;max-height:calc(100dvh - 60px)}.ojeb-preview header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}.ojeb-preview h2{font-size:18px;margin:0;font-weight:800}.ojeb-preview-close{width:36px;height:36px;border:0;border-radius:50%;background:#e9e4da;color:var(--ink);font-size:24px}.ojeb-preview-image{display:flex;min-height:0;flex:1;justify-content:center}.ojeb-preview-image img{display:block;max-width:100%;max-height:calc(100dvh - 240px);object-fit:contain;border-radius:8px}.ojeb-preview p{font-size:12px;line-height:1.4;margin:0;color:var(--muted);flex:none}.ojeb-preview-actions{display:flex;flex-direction:column;gap:8px;flex:none}.ojeb-primary,.ojeb-secondary{min-height:44px;padding:0 12px;border-radius:99px;font:700 13px Archivo,system-ui,sans-serif}.ojeb-primary{background:var(--ink);color:var(--paper)}.ojeb-secondary{border:1px solid #bfb7a7;background:transparent;color:var(--ink)}.ojeb-preview-status{padding:24px 0;font-size:14px;text-align:center}.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);max-width:calc(100% - 24px);padding:12px 16px;border-radius:12px;background:var(--ink);color:var(--paper);font-size:13px;z-index:99}.toast input{width:100%;font-size:12px}
+@media(min-width:720px){.fabric-sheet{width:390px;left:auto;right:max(24px,calc((100vw - 1440px)/2 + 24px));bottom:calc(90px + env(safe-area-inset-bottom));border-radius:24px;padding:14px 16px 20px;max-height:calc(100dvh - 120px)}.draft-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.draft-thumb{height:145px}.triptych{max-height:400px}.summary-grid{width:100%}.editor .stage{width:min(100%,650px)}}
+@media(max-width:719px){.bottom-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.ojeb-preview{margin:auto 12px calc(12px + env(safe-area-inset-bottom));width:calc(100vw - 24px)}}
+@media(max-height:700px){.bottom-nav{height:calc(67px + env(safe-area-inset-bottom));padding-bottom:calc(12px + env(safe-area-inset-bottom))}.draft-thumb{height:74px}.collection{gap:9px;padding:12px}.collection h1{font-size:21px}.draft-card{padding:7px}.fabric-sheet{gap:8px;padding-bottom:calc(12px + env(safe-area-inset-bottom))}.finish{gap:6px;padding:10px}.triptych{min-height:0}.finish .summary-grid{min-height:0}.short-screen .review-switch,.tiny-screen .review-switch{display:flex;justify-content:center;gap:4px;flex:none}.review-switch button{height:30px;border-radius:99px;padding:0 20px;background:#ded8cd;font-size:12px;font-weight:650}.review-switch button.selected{background:var(--ink);color:var(--paper)}.finish-actions{gap:6px}.finish-actions>button{min-height:44px}.export-status{min-height:12px}.short-screen .triptych,.tiny-screen .triptych{flex:1;min-height:0}.suggestions .suggestion-note{display:none}}
+@media(max-height:499px){.app-header{height:40px;padding-inline:12px}.wordmark{font-size:24px}.bottom-nav{height:52px;padding:3px 8px 6px}.nav-item{font-size:10px;gap:1px}.nav-item:after{bottom:-3px!important}.nav-item .icon{width:20px;height:20px}.editor{padding:6px 12px}.view-controls{padding:2px}.view-controls button{height:27px}.editor-actions .round{height:40px;width:40px}.editor-actions .primary{min-height:40px}.stage{padding:3px 0}.stage-hint{display:none}.fabric-sheet{gap:5px;padding-top:6px;padding-bottom:8px}.fabric-sheet .handle{display:none}.fabric-sheet .sheet-header h1{font-size:18px}.fabric-sheet .sheet-header p{margin-top:1px;font-size:10px}.fabric-sheet .close{height:36px;width:36px}.fabric{height:40px}.fabric-sheet .palette-pages .round{height:30px}.fabric-sheet .suggestions{padding-top:4px;min-height:30px}.fabric-sheet .suggestions button{height:30px;width:30px;border-width:3px}.fabric-sheet .suggestion-note{display:none}.fabric-sheet .sheet-done{min-height:36px}.finish .saved-line,.finish .export-status{display:none}.finish .name-row h1{font-size:16px}.finish .name-row .round{width:28px;height:28px}.finish .summary-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.finish .summary-item{min-height:42px;padding:4px;grid-template-columns:23px 1fr}.finish .mini-fabric{width:23px;height:27px}.finish .summary-item small{font-size:8px}.finish .summary-item strong{font-size:9px}.finish .review-switch button{height:24px}.finish-actions{flex-direction:row}.finish-actions>button{min-height:36px;flex:1;font-size:11px;padding:0 8px}.collection p{display:none}.collection h1{font-size:18px}.collection{padding:8px;gap:6px}.collection-heading .round{width:34px;height:34px}.draft-thumb{height:51px}.draft-card strong{font-size:12px}.draft-card small{font-size:9px}.collection-pager .round{height:32px;width:32px}.collection-pager{font-size:10px}.collection .draft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </helmet>
-<div class="{{ appClass }}" style="min-height:{{ L.rootMinH }}; height:{{ L.rootH }}; overflow:{{ L.rootOv }}; background:#f3f0ea; color:#1e2230; font-family:'Archivo', system-ui, sans-serif; display:flex; flex-direction:column">
-
-<header style="flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:{{ L.headPad }}; border-bottom:1px solid #dcd6ca">
-<div style="display:flex; align-items:baseline; gap:16px">
-<div style="font-size:{{ L.logo }}; font-weight:800; letter-spacing:-0.03em; line-height:1">o<span style="color:#e07a2e">’</span>jeb</div>
-<div style="display:{{ L.desk }}; font-size:14px; color:#5d616c">Konfigurátor bundy na míru</div>
-</div>
-<div style="display:flex; gap:8px">
-<button onClick="{{ share }}" style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #1e2230; background:transparent; color:#1e2230; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap" style-hover="background:#e6e0d4">{{ L.shareLbl }}</button>
-<button onClick="{{ saveImage }}" style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #1e2230; background:#1e2230; color:#f3f0ea; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap" style-hover="background:#343a4d">{{ L.saveLbl }}</button>
-</div>
+<div class="app {{ appClass }}">
+<header class="app-header">
+<sc-if value="{{ isFinish }}"><button class="back-link" onClick="{{ returnToDesign }}">{{ icons.back }}Upravit</button><strong class="detail-title">Přehled</strong></sc-if>
+<sc-if value="{{ notFinish }}"><div class="wordmark">o<span>’</span>jeb</div></sc-if>
+<div class="save-status" role="status">{{ saveIcon }}{{ saveLabel }}</div>
 </header>
-
-<main style="flex:1 1 0; display:flex; flex-direction:{{ L.mainDir }}; flex-wrap:{{ L.mainWrap }}; align-items:stretch; min-height:0; overflow:{{ L.rootOv }}">
-
-<section ref="{{ stageRef }}" onClick="{{ closePop }}" onDragOver="{{ onDragOver }}" onDrop="{{ onDrop }}" onDragLeave="{{ onDragLeave }}" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}" style="position:relative; flex:{{ L.stageFlex }}; height:{{ L.stageH }}; min-width:0; min-height:{{ L.stageMinH }}; background:#e9e4da; display:{{ L.stageDisplay }}; flex-direction:column; align-items:center; padding:{{ L.stagePad }}; box-sizing:border-box; overflow:hidden; cursor:{{ stageCursor }}">
-
-<div class="ojeb-view-controls" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center">
-<div style="display:flex; gap:4px; padding:4px; background:#dcd5c7; border-radius:999px">
-<sc-for list="{{ views }}" as="v" hint-placeholder-count="3">
-<button data-view="{{ v.id }}" onClick="{{ onViewBtn }}" style="height:34px; padding:0 16px; border:none; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer; background:{{ v.bg }}; color:{{ v.fg }}">{{ v.label }}</button>
-</sc-for>
-</div>
-<button onClick="{{ spin }}" title="Otočit bundu" style="display:{{ L.desk }}; align-items:center; justify-content:center; height:42px; padding:0 16px; border:1px solid #bfb7a7; border-radius:999px; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="background:#dcd5c7">↻ Otočit</button>
-</div>
-
-<div class="ojeb-stage-center" style="flex:1; width:100%; min-height:0; display:flex; align-items:center; justify-content:center; padding:10px 0">
-<div class="ojeb-jacket" style="width:{{ L.jw }}; height:{{ L.jh }}; aspect-ratio:{{ L.jratio }}">
-
-<div style="display:{{ disp.front }}; width:100%; height:100%">
-<svg ref="{{ svgFront }}" data-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<main class="editor" style="display:{{ panels.design }}">
+<div class="view-controls"><sc-for list="{{ views }}" as="v"><button data-view="{{ v.id }}" onClick="{{ onView }}" class="{{ v.activeClass }}" aria-pressed="{{ v.active }}">{{ v.label }}</button></sc-for></div>
+<div class="stage" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}"><div class="jacket-figure"><div style="display:{{ disp.front }};width:100%;height:100%"><svg ref="{{ svgFront }}" data-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
 <defs>{{ viewDefs.front }}</defs>
 <defs data-noexport="1">{{ clipDefs.front }}</defs>
 <ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" fill="url(#front-pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" fill="url(#front-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" fill="url(#front-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="kapsy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-kapsy)" d="M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="kapsy" onClick="{{ onPart }}" fill="url(#front-pt-kapsy)" d="M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M192,299 L280,303 L280,416 L194,414 Z M408,299 L320,303 L320,416 L406,414 Z" style="fill:none; stroke:#fff; stroke-opacity:0.45; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" fill="url(#front-pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M260,58 Q300,50 340,58 Q324,76 300,78 Q276,76 260,58 Z" style="fill:#000; fill-opacity:0.3; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" fill="url(#front-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
 <path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#front-shadeX); pointer-events:none"></path>
 <path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#front-shadeY); pointer-events:none"></path>
@@ -146,20 +62,17 @@ button{font-family:inherit}
 <path data-noexport="1" d="{{ hl.front.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.front.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.front }}</g>
-</svg>
-</div>
-
-<div style="display:{{ disp.back }}; width:100%; height:100%">
-<svg ref="{{ svgBack }}" data-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<g data-noexport="1">{{ tapHints.front }}</g></svg></div>
+<div style="display:{{ disp.back }};width:100%;height:100%"><svg ref="{{ svgBack }}" data-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
 <defs>{{ viewDefs.back }}</defs>
 <defs data-noexport="1">{{ clipDefs.back }}</defs>
 <ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" fill="url(#back-pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" fill="url(#back-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" fill="url(#back-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" fill="url(#back-pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" fill="url(#back-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
 <path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#back-shadeX); pointer-events:none"></path>
 <path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#back-shadeY); pointer-events:none"></path>
@@ -168,23 +81,20 @@ button{font-family:inherit}
 <path data-noexport="1" d="{{ hl.back.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.back.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.back }}</g>
-</svg>
-</div>
-
-<div style="display:{{ disp.inside }}; width:100%; height:100%">
-<svg ref="{{ svgInside }}" data-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<g data-noexport="1">{{ tapHints.back }}</g></svg></div>
+<div style="display:{{ disp.inside }};width:100%;height:100%"><svg ref="{{ svgInside }}" data-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
 <defs>{{ viewDefs.inside }}</defs>
 <defs data-noexport="1">{{ clipDefs.inside }}</defs>
 <ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" fill="url(#inside-pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M168,262 Q234,272 300,274 Q366,272 432,262 M166,430 L434,430" style="fill:none; stroke:#000; stroke-opacity:0.18; stroke-width:0.9; stroke-dasharray:3 3; pointer-events:none"></path>
-<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-stred)" d="M284,274 L316,274 L316,430 L284,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" fill="url(#inside-pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" fill="url(#inside-pt-stred)" d="M284,274 L316,274 L316,430 L284,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" fill="url(#inside-pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" fill="url(#inside-pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" fill="url(#inside-pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" fill="url(#inside-pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" fill="url(#inside-pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
 <path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#inside-shadeX); pointer-events:none"></path>
 <path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#inside-shadeY); pointer-events:none"></path>
@@ -197,168 +107,101 @@ button{font-family:inherit}
 <path data-noexport="1" d="{{ hl.inside.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.inside.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.inside }}</g>
-</svg>
-</div>
-
-</div>
-</div>
-
-<div class="ojeb-caption" style="display:flex; flex-direction:column; align-items:center; gap:2px; text-align:center; min-height:{{ L.capMinH }}">
-<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">{{ capPart }}</div>
-<div style="font-size:{{ L.capFs }}; font-weight:700">{{ capFab }}</div>
-<div style="display:{{ L.desk }}; font-size:13px; color:#6b6f7a">{{ capHint }}</div>
-</div>
-
-</section>
-
-<sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
-<div style="flex:none; background:#faf8f4; border-top:1px solid #dcd6ca">
-<sc-if value="{{ showPartSelect }}"><div class="ojeb-part-select"><label for="ojeb-part">Díl bundy</label><select id="ojeb-part" value="{{ selectedPart }}" onChange="{{ onSelectPart }}"><sc-for list="{{ partRows }}" as="p"><option value="{{ p.id }}">{{ p.name }}</option></sc-for></select></div></sc-if>
-<div class="ojeb-tabs"><sc-for list="{{ mtabs }}" as="t"><button data-mtab="{{ t.id }}" onClick="{{ onMTab }}" style="color:{{ t.fg }}; box-shadow:inset 0 -2px 0 {{ t.bd }}" aria-pressed="{{ t.active }}">{{ t.label }}</button></sc-for></div>
-</div>
-</sc-if>
-
-<aside ref="{{ optionsRef }}" class="ojeb-options" style="flex:{{ asideFlex }}; min-width:0; min-height:0; overflow-y:{{ L.asideOv }}; background:#faf8f4; border-left:{{ L.asideBorder }}; padding:{{ L.asidePad }}; box-sizing:border-box; display:flex; flex-direction:column; gap:{{ L.asideGap }}">
-
-<div style="display:{{ sec.parts }}; flex-direction:column; gap:10px">
-<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Díly bundy</div>
-<div class="ojeb-parts-grid" style="display:flex; flex-direction:column; gap:4px">
-<sc-for list="{{ partRows }}" as="p" hint-placeholder-count="6">
-<button data-part="{{ p.id }}" onClick="{{ onPartRow }}" onDragOver="{{ onRowDragOver }}" onDrop="{{ onRowDrop }}" style="display:grid; grid-template-columns:40px minmax(0,1fr) auto; gap:12px; align-items:center; padding:7px 10px 7px 7px; border:none; border-radius:10px; text-align:left; cursor:pointer; background:{{ p.bg }}; color:{{ p.fg }}">
-<span style="width:40px; height:40px; border-radius:8px; background-color:{{ p.color }}; background-image:url({{ p.sw }}); background-size:cover; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.1)"></span>
-<span style="display:flex; flex-direction:column; gap:1px; min-width:0">
-<span style="font-size:15px; font-weight:700">{{ p.name }}</span>
-<span style="font-size:13px; opacity:0.75; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ p.fab }}</span>
-</span>
-<span style="font-family:'IBM Plex Mono', monospace; font-size:11px; opacity:0.6">{{ p.note }}</span>
-</button>
-</sc-for>
-</div>
-
-</div>
-
-<sc-if value="{{ showDesktopSelect }}"><div class="ojeb-part-select"><label for="ojeb-desktop-part">Díl bundy</label><select id="ojeb-desktop-part" value="{{ selectedPart }}" onChange="{{ onSelectPart }}"><sc-for list="{{ partRows }}" as="p"><option value="{{ p.id }}">{{ p.name }}</option></sc-for></select></div></sc-if>
-<sc-if value="{{ desktop }}"><div class="ojeb-tabs"><sc-for list="{{ mtabs }}" as="t"><button data-mtab="{{ t.id }}" onClick="{{ onMTab }}" style="color:{{ t.fg }}; box-shadow:inset 0 -2px 0 {{ t.bd }}" aria-pressed="{{ t.active }}">{{ t.label }}</button></sc-for></div></sc-if>
-
-<div class="ojeb-pane ojeb-fabrics" style="display:{{ sec.fabrics }}; flex-direction:column; gap:12px">
-<div style="display:{{ L.desk }}; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
-<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Vzorník</div>
-<div style="display:flex; gap:3px; padding:3px; background:#ece7dd; border-radius:999px">
-<sc-for list="{{ modes }}" as="m" hint-placeholder-count="2">
-<button data-mode="{{ m.id }}" onClick="{{ onMode }}" style="height:30px; padding:0 12px; border:none; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; background:{{ m.bg }}; color:{{ m.fg }}">{{ m.label }}</button>
-</sc-for>
-</div>
-</div>
-<div class="ojeb-mode-hint" style="display:{{ L.desk }}; font-size:14px; line-height:1.45; color:#3d414c; text-wrap:pretty">{{ modeHint }}</div>
-<div style="display:flex; gap:18px; border-bottom:1px solid #dcd6ca">
-<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
-<button data-tab="{{ t.id }}" onClick="{{ onTab }}" style="padding:8px 0 10px; margin-bottom:-1px; border:none; background:transparent; font-size:15px; font-weight:700; cursor:pointer; color:{{ t.fg }}; border-bottom:2px solid {{ t.bd }}">{{ t.label }}</button>
-</sc-for>
-</div>
-<sc-for list="{{ palette }}" as="g" hint-placeholder-count="2">
-<div style="display:flex; flex-direction:column; gap:8px">
-<div class="ojeb-palette-label" style="font-size:12px; color:#6b6f7a">{{ g.label }}</div>
-<div class="ojeb-palette">
-<sc-for list="{{ g.items }}" as="f" hint-placeholder-count="8">
-<button draggable="true" data-fab="{{ f.id }}" title="{{ f.name }}" onClick="{{ onFab }}" onDragStart="{{ onFabDrag }}" onDragEnd="{{ onFabDragEnd }}" onMouseEnter="{{ onFabEnter }}" onMouseLeave="{{ onFabLeave }}" style="aspect-ratio:1; border:none; padding:0; border-radius:8px; cursor:grab; background-color:{{ f.color }}; background-image:url({{ f.sw }}); background-size:cover; box-shadow:{{ f.ring }}"></button>
-</sc-for>
-</div>
-</div>
-</sc-for>
-<div class="ojeb-info" style="display:flex; flex-direction:column; gap:2px; min-height:40px">
-<div style="font-size:15px; font-weight:700">{{ info.name }}</div>
-<div style="font-size:13px; color:#6b6f7a">{{ info.group }}</div>
-</div>
-<sc-if value="{{ fabricPager.show }}"><div class="ojeb-pager"><button onClick="{{ previousFabrics }}" disabled="{{ fabricPager.first }}" aria-label="Předchozí stránka">‹</button><span>{{ fabricPager.label }}</span><button onClick="{{ nextFabrics }}" disabled="{{ fabricPager.last }}" aria-label="Další stránka">›</button></div></sc-if>
-</div>
-
-<sc-if value="{{ showTips }}" hint-placeholder-val="{{ true }}">
-<div class="ojeb-pane ojeb-tips" style="display:{{ sec.tips }}; flex-direction:column; gap:12px">
-<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Tipy · {{ tips.forName }}</div>
-<div style="font-size:14px; color:#3d414c; line-height:1.45">{{ tips.lead }}</div>
-<sc-for list="{{ tips.groups }}" as="g" hint-placeholder-count="3">
-<div style="display:flex; flex-direction:column; gap:6px">
-<div style="font-size:13px; font-weight:700">{{ g.label }} <span style="font-weight:400; color:#6b6f7a">· {{ g.why }}</span></div>
-<div style="display:flex; gap:6px; flex-wrap:wrap">
-<sc-for list="{{ g.items }}" as="f" hint-placeholder-count="3">
-<button data-fab="{{ f.id }}" onClick="{{ onTip }}" draggable="true" onDragStart="{{ onFabDrag }}" onDragEnd="{{ onFabDragEnd }}" style="display:flex; align-items:center; gap:8px; height:36px; padding:0 12px 0 4px; border-radius:999px; border:1px solid #dcd6ca; background:#fff; font-size:13px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="border-color:#1e2230">
-<span style="width:28px; height:28px; border-radius:999px; background-color:{{ f.color }}; background-image:url({{ f.sw }}); background-size:cover"></span>
-<span>{{ f.name }}</span>
-</button>
-</sc-for>
-</div>
-</div>
-</sc-for>
-<sc-if value="{{ tips.warn }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex; gap:10px; align-items:flex-start; padding:12px 14px; background:#fbeee2; border-radius:10px; font-size:14px; line-height:1.4; color:#5a3414">
-<span style="flex:none; width:8px; height:8px; margin-top:6px; border-radius:999px; background:#e07a2e"></span>
-<span>{{ tips.warn }}</span>
-</div>
-</sc-if>
-<sc-if value="{{ tipPager.show }}"><div class="ojeb-pager"><button onClick="{{ previousTips }}" disabled="{{ tipPager.first }}" aria-label="Předchozí stránka">‹</button><span>{{ tipPager.label }}</span><button onClick="{{ nextTips }}" disabled="{{ tipPager.last }}" aria-label="Další stránka">›</button></div></sc-if>
-</div>
-</sc-if>
-
-<div class="ojeb-pane ojeb-presets" style="display:{{ sec.presets }}; flex-direction:column; gap:12px">
-<div class="ojeb-presets-actions" style="display:{{ L.mob }}; gap:8px; flex-wrap:wrap">
-<button onClick="{{ allSame }}" style="height:44px; padding:0 16px; border-radius:999px; border:1px solid #cfc8ba; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer">{{ allSameLabel }}</button>
-<button onClick="{{ shuffle }}" style="height:44px; padding:0 16px; border-radius:999px; border:1px solid #cfc8ba; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer">Zamíchat kombinaci</button>
-</div>
-<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Hotové kombinace</div>
-<div class="ojeb-presets-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px">
-<sc-for list="{{ presets }}" as="pr" hint-placeholder-count="6">
-<button data-preset="{{ pr.i }}" onClick="{{ onPreset }}" style="display:flex; flex-direction:column; gap:8px; padding:8px; border-radius:12px; border:1px solid #dcd6ca; background:#fff; text-align:left; cursor:pointer; color:#1e2230" style-hover="border-color:#1e2230">
-<span style="display:flex; height:64px; border-radius:6px; overflow:hidden; gap:2px; background:#1e2230">
-<span style="flex:0 0 14%; background-color:{{ pr.c.rukavy }}; background-image:url({{ pr.s.rukavy }}); background-size:cover"></span>
-<span style="flex:1; display:flex; flex-direction:column; gap:2px">
-<span style="flex:3; background-color:{{ pr.c.vrch }}; background-image:url({{ pr.s.vrch }}); background-size:cover"></span>
-<span style="flex:3; display:flex; gap:2px; background-color:{{ pr.c.stred }}; background-image:url({{ pr.s.stred }}); background-size:cover; padding:4px 6px; box-sizing:border-box; justify-content:space-between">
-<span style="width:34%; background-color:{{ pr.c.kapsy }}; background-image:url({{ pr.s.kapsy }}); background-size:cover"></span>
-<span style="width:34%; background-color:{{ pr.c.kapsy }}; background-image:url({{ pr.s.kapsy }}); background-size:cover"></span>
-</span>
-<span style="flex:4; background-color:{{ pr.c.spodek }}; background-image:url({{ pr.s.spodek }}); background-size:cover"></span>
-</span>
-<span style="flex:0 0 14%; background-color:{{ pr.c.podsivka }}; background-image:url({{ pr.s.podsivka }}); background-size:cover"></span>
-</span>
-<span style="display:flex; flex-direction:column; gap:1px; padding:0 2px 2px">
-<span style="font-size:14px; font-weight:700">{{ pr.name }}</span>
-<span style="font-size:12px; color:#6b6f7a">{{ pr.sub }}</span>
-</span>
-</button>
-</sc-for>
-</div>
-<sc-if value="{{ presetPager.show }}"><div class="ojeb-pager"><button onClick="{{ previousPresets }}" disabled="{{ presetPager.first }}" aria-label="Předchozí stránka">‹</button><span>{{ presetPager.label }}</span><button onClick="{{ nextPresets }}" disabled="{{ presetPager.last }}" aria-label="Další stránka">›</button></div></sc-if>
-</div>
-
-<div class="ojeb-pane ojeb-summary" style="display:{{ sec.summary }}; flex-direction:column">
-<h2>Moje kombinace</h2>
-<div class="ojeb-summary-actions"><button class="ojeb-primary" onClick="{{ saveImage }}">Náhled a uložení</button><button class="ojeb-secondary" onClick="{{ share }}">Sdílet odkaz</button></div>
-<p>Klepnutím na díl změníš jeho látku.</p>
-<div class="ojeb-summary-grid"><sc-for list="{{ partRows }}" as="p"><button class="ojeb-summary-row" data-part="{{ p.id }}" onClick="{{ onPartRow }}" title="{{ p.title }}"><span class="swatch" style="background-color:{{ p.color }};background-image:url({{ p.sw }})"></span><span><small>{{ p.name }}</small><strong>{{ p.fab }}</strong></span></button></sc-for></div>
-</div>
-
-</aside>
+<g data-noexport="1">{{ tapHints.inside }}</g></svg></div></div></div>
+<p class="stage-hint">Klepni na díl bundy a vyber látku.</p>
+<div class="editor-actions"><button class="round" aria-label="Vrátit změnu" disabled="{{ undoDisabled }}" onClick="{{ undo }}">{{ icons.undo }}</button><button class="round" aria-label="Zopakovat změnu" disabled="{{ redoDisabled }}" onClick="{{ redo }}">{{ icons.redo }}</button><button class="primary complete" onClick="{{ finish }}">Hotovo {{ icons.check }}</button></div>
 </main>
-
+<main class="finish" style="display:{{ panels.finish }}">
+<div class="name-row"><h1>{{ draftName }}</h1><button class="round" aria-label="Přejmenovat návrh" onClick="{{ openRename }}">{{ icons.pencil }}</button></div>
+<p class="saved-line">{{ saveIcon }}{{ saveExplanation }}</p>
+<div class="review-switch"><button class="{{ reviewViewClass }}" data-review="view" onClick="{{ switchReview }}">Náhled</button><button class="{{ reviewFabricsClass }}" data-review="fabrics" onClick="{{ switchReview }}">Látky</button></div>
+<div class="triptych" style="display:{{ reviewDisplays.view }}"><div><div class="small-jacket"><svg data-review-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<defs>{{ reviewDefs.front }}</defs>
+<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
+<path data-part="vrch" fill="url(#review-front-pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" fill="url(#review-front-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" fill="url(#review-front-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
+<path data-part="kapsy" fill="url(#review-front-pt-kapsy)" d="M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M192,299 L280,303 L280,416 L194,414 Z M408,299 L320,303 L320,416 L406,414 Z" style="fill:none; stroke:#fff; stroke-opacity:0.45; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
+<path data-part="vrch" fill="url(#review-front-pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M260,58 Q300,50 340,58 Q324,76 300,78 Q276,76 260,58 Z" style="fill:#000; fill-opacity:0.3; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></path>
+<path data-part="rukavy" fill="url(#review-front-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-front-shadeX); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-front-shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#review-front-shadeY); pointer-events:none"></path>
+<path d="M300,50 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
+<path d="M300,50 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
+<rect x="295" y="62" width="10" height="17" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
+<rect x="297.5" y="77" width="5" height="16" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
+<text x="384" y="204" style="font-family:Archivo, sans-serif; font-weight:800; font-size:17px; fill:#e8853a; text-anchor:middle; pointer-events:none">o’jeb</text>
+<text x="384" y="213" style="font-family:Archivo, sans-serif; font-weight:700; font-size:5.6px; letter-spacing:0.6px; fill:#e8853a; text-anchor:middle; pointer-events:none">TRAVEL SMART</text></div><span>Zepředu</span></div>
+<div><div class="small-jacket"><svg data-review-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<defs>{{ reviewDefs.back }}</defs>
+<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
+<path data-part="vrch" fill="url(#review-back-pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" fill="url(#review-back-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" fill="url(#review-back-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
+<path data-part="vrch" fill="url(#review-back-pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" fill="url(#review-back-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
+<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-back-shadeX); pointer-events:none"></path>
+<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-back-shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#review-back-shadeY); pointer-events:none"></path></div><span>Zezadu</span></div>
+<div><div class="small-jacket"><svg data-review-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<defs>{{ reviewDefs.inside }}</defs>
+<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
+<path data-part="podsivka" fill="url(#review-inside-pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M168,262 Q234,272 300,274 Q366,272 432,262 M166,430 L434,430" style="fill:none; stroke:#000; stroke-opacity:0.18; stroke-width:0.9; stroke-dasharray:3 3; pointer-events:none"></path>
+<path data-part="spodek" fill="url(#review-inside-pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" fill="url(#review-inside-pt-stred)" d="M284,274 L316,274 L316,430 L284,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" fill="url(#review-inside-pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" fill="url(#review-inside-pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" fill="url(#review-inside-pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" fill="url(#review-inside-pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" fill="url(#review-inside-pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-inside-shadeX); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#review-inside-shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#review-inside-shadeY); pointer-events:none"></path>
+<path d="M300,64 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
+<path d="M300,64 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
+<rect x="276" y="112" width="48" height="20" rx="2" style="fill:#f6f3ec; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></rect>
+<text x="300" y="126" style="font-family:Archivo, sans-serif; font-weight:800; font-size:10px; fill:#1e2230; text-anchor:middle; pointer-events:none">o’jeb</text></div><span>Vnitřek</span></div></div>
+<div class="summary-grid" style="display:{{ reviewDisplays.fabrics }}"><sc-for list="{{ partRows }}" as="p"><button class="summary-item" data-part="{{ p.id }}" onClick="{{ onPartRow }}" title="{{ p.fullTitle }}"><span class="mini-fabric" style="background-image:url({{ p.sw }})"></span><span><small>{{ p.name }}</small><strong>{{ p.fabric }}</strong></span></button></sc-for></div>
+<p class="export-status" role="status">{{ exportStatus }}</p>
+<div class="finish-actions"><button class="primary" onClick="{{ shareImage }}" disabled="{{ exportBusy }}">{{ icons.share }}{{ exportActionLabel }}</button><button class="secondary" onClick="{{ downloadImage }}" disabled="{{ exportBusy }}">{{ icons.download }}Stáhnout PNG</button></div>
+</main>
+<main class="collection" style="display:{{ panels.inspiration }}">
+<div class="collection-heading"><div><h1>Inspirace</h1><p>Vyber základ a dolaď si ho po svém.</p></div><button class="round" aria-label="Náhodná kombinace" onClick="{{ randomDraft }}">{{ icons.shuffle }}</button></div>
+<div class="draft-grid"><sc-for list="{{ presetCards }}" as="c"><button class="draft-card" data-preset="{{ c.index }}" onClick="{{ onPreset }}"><div class="draft-thumb">{{ c.preview }}</div><strong>{{ c.name }}</strong><small>{{ c.description }}</small></button></sc-for></div>
+<sc-if value="{{ presetPager.visible }}"><div class="collection-pager"><button class="round" onClick="{{ previousPreset }}" disabled="{{ presetPager.first }}" aria-label="Předchozí inspirace">{{ icons.back }}</button><span>{{ presetPager.label }}</span><button class="round" onClick="{{ nextPreset }}" disabled="{{ presetPager.last }}" aria-label="Další inspirace">{{ icons.next }}</button></div></sc-if>
+</main>
+<main class="collection" style="display:{{ panels.saved }}">
+<div class="collection-heading"><div><h1>Moje návrhy</h1><p>{{ libraryExplanation }}</p></div><button class="round" aria-label="Nový návrh" onClick="{{ newDraft }}">{{ icons.plus }}</button></div>
+<div class="draft-grid"><sc-for list="{{ savedCards }}" as="c"><button class="draft-card" data-id="{{ c.id }}" onClick="{{ onSaved }}"><div class="draft-thumb">{{ c.preview }}</div><strong>{{ c.name }}</strong><small>{{ c.description }}</small></button></sc-for></div>
+<sc-if value="{{ savedPager.visible }}"><div class="collection-pager"><button class="round" onClick="{{ previousSaved }}" disabled="{{ savedPager.first }}" aria-label="Předchozí návrhy">{{ icons.back }}</button><span>{{ savedPager.label }}</span><button class="round" onClick="{{ nextSaved }}" disabled="{{ savedPager.last }}" aria-label="Další návrhy">{{ icons.next }}</button></div></sc-if>
+</main>
+<nav class="bottom-nav" aria-label="Hlavní navigace"><sc-for list="{{ navigation }}" as="n"><button class="nav-item {{ n.activeClass }}" data-nav="{{ n.id }}" aria-pressed="{{ n.active }}" onClick="{{ onNavigation }}">{{ n.icon }}<span>{{ n.label }}</span></button></sc-for></nav>
+</div>
+<dialog ref="{{ sheetRef }}" class="fabric-sheet" aria-labelledby="fabric-title" onCancel="{{ closeSheet }}" onClick="{{ onSheetBackdrop }}"><div class="handle"></div>
+<header class="sheet-header"><div><h1 id="fabric-title">{{ selectedPartName }}</h1><p><span class="color-dot" style="background:{{ selectedFabric.color }}"></span>{{ selectedFabric.name }}</p></div><button class="round close" aria-label="Zavřít výběr látky" onClick="{{ closeSheet }}">{{ icons.close }}</button></header>
+<div class="palette" onTouchStart="{{ onPaletteTouchStart }}" onTouchEnd="{{ onPaletteTouchEnd }}"><sc-for list="{{ fabricItems }}" as="f"><button class="fabric {{ f.activeClass }}" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" aria-pressed="{{ f.active }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})">{{ f.check }}</button></sc-for></div>
+<div class="palette-pages"><button class="round" aria-label="Předchozí látky" onClick="{{ previousFabric }}" disabled="{{ fabricPager.first }}">{{ icons.back }}</button><span class="page-dots"><sc-for list="{{ fabricDots }}" as="d"><i class="{{ d.activeClass }}"></i></sc-for><span>{{ fabricPager.label }}</span></span><button class="round" aria-label="Další látky" onClick="{{ nextFabric }}" disabled="{{ fabricPager.last }}">{{ icons.next }}</button></div>
+<div class="suggestions"><span>Tipy k bundě</span><sc-for list="{{ suggestions }}" as="f"><button data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></button></sc-for><span class="suggestion-note">Ladí s ostatními díly</span></div>
+<button class="primary sheet-done" onClick="{{ closeSheet }}">Hotovo {{ icons.check }}</button>
+</dialog>
+<dialog ref="{{ renameRef }}" class="rename-dialog" aria-labelledby="rename-title" onCancel="{{ closeRename }}"><form onSubmit="{{ submitRename }}"><h2 id="rename-title">Název návrhu</h2><input ref="{{ nameInput }}" aria-label="Název návrhu" value="{{ renameValue }}" onChange="{{ changeName }}" maxlength="60" autocomplete="off"><div class="rename-actions"><button class="secondary" type="button" onClick="{{ closeRename }}">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form></dialog>
 <dialog ref="{{ previewRef }}" class="ojeb-preview" onCancel="{{ closePreview }}" onClick="{{ onPreviewBackdrop }}" aria-labelledby="ojeb-preview-title">
 <div class="ojeb-preview-content"><header><h2 id="ojeb-preview-title">{{ preview.title }}</h2><button class="ojeb-preview-close" onClick="{{ closePreview }}" aria-label="Zavřít náhled">×</button></header>
 <sc-if value="{{ preview.loading }}"><div class="ojeb-preview-status" role="status">Připravuji obrázek…</div></sc-if>
 <sc-if value="{{ preview.error }}"><p role="alert">{{ preview.error }}</p><button class="ojeb-secondary" onClick="{{ saveImage }}">Zkusit znovu</button></sc-if>
 <sc-if value="{{ preview.ready }}"><a class="ojeb-preview-image" href="{{ preview.url }}" target="_blank" rel="noopener" aria-label="Otevřít obrázek v plné velikosti"><img src="{{ preview.url }}" alt="Přední, zadní a vnitřní pohled na vybranou bundu a přehled látek"></a><p>V obrázku jsou všechny tři pohledy a přehled vybraných látek.</p><div class="ojeb-preview-actions"><button class="ojeb-primary" onClick="{{ downloadPreview }}">Stáhnout obrázek PNG</button><sc-if value="{{ preview.canShare }}"><button class="ojeb-secondary" onClick="{{ sharePreview }}">Sdílet obrázek…</button></sc-if></div></sc-if>
 </div></dialog>
-
-<sc-if value="{{ toast.open }}" hint-placeholder-val="{{ false }}">
-<div style="position:fixed; left:50%; bottom:24px; transform:translateX(-50%); max-width:calc(100% - 32px); background:#1e2230; color:#f3f0ea; padding:12px 18px; border-radius:12px; font-size:14px; box-shadow:0 10px 30px rgba(0,0,0,0.25); animation:ojPop 160ms ease-out; z-index:20; display:flex; flex-direction:column; gap:6px">
-<span>{{ toast.text }}</span>
-<sc-if value="{{ toast.url }}" hint-placeholder-val="{{ false }}">
-<input readonly="readonly" value="{{ toast.url }}" onFocus="{{ selectAll }}" style="width:min(520px, 80vw); font-family:'IBM Plex Mono', monospace; font-size:12px; padding:6px 8px; border-radius:6px; border:none; background:#343a4d; color:#f3f0ea">
-</sc-if>
-</div>
-</sc-if>
-
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;defaultView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Zepředu&quot;,&quot;Zezadu&quot;,&quot;Vnitřek&quot;],&quot;default&quot;:&quot;Zepředu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;startPreset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Originál&quot;,&quot;Les&quot;,&quot;Noc&quot;,&quot;Pastel&quot;,&quot;Signál&quot;,&quot;Celá petrolej&quot;],&quot;default&quot;:&quot;Originál&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showTips&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<sc-if value="{{ toast.open }}"><div class="toast" role="status"><span>{{ toast.text }}</span><sc-if value="{{ toast.url }}"><input readonly value="{{ toast.url }}" aria-label="Odkaz na návrh" onFocus="{{ selectAll }}"></sc-if></div></sc-if>
+</x-dc><script type="text/x-dc" data-dc-script>
 const BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 const G_SOFT = 'Jednobarevný softshell 18/12', G_BAV = 'Vzorník bavlny';
 const FAB_LIST = [
@@ -463,41 +306,238 @@ function makeViewDefs(view, patterns) {
   ];
 }
 
-class Component extends DCLogic {
-  state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', mode: 'part', brush: 'out2-3', tab: 'out',
-    hoverPart: null, dropPart: null, hoverFab: null, pop: null, toast: null, ripple: null, narrow: false, mobile: false, mtab: 'latky', viewportH: 800, viewportW: 1280, fabricPage: 0, tipPage: 0, presetPage: 0, preview: null };
-  stageRef = React.createRef(); optionsRef = React.createRef(); previewRef = React.createRef();
-  svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
 
+const ICON_PATHS = {"pencil": "M4 16.8V20h3.2L19.5 7.7l-3.2-3.2L4 16.8ZM14.9 5.9l3.2 3.2", "spark": "m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z", "folder": "M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3V7Z", "undo": "M8 7 3 12l5 5M4 12h10a6 6 0 0 1 6 6", "redo": "m16 7 5 5-5 5m4-5H10a6 6 0 0 0-6 6", "check": "m5 12 4 4L19 6", "share": "M12 15V3m-4 4 4-4 4 4M5 12v8h14v-8", "download": "M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4", "back": "m14 5-7 7 7 7", "next": "m10 5 7 7-7 7", "close": "m6 6 12 12M18 6 6 18", "plus": "M12 5v14M5 12h14", "shuffle": "m4 5 14 14m-4 0h4v-4M4 19 18 5m-4 0h4v4"};
+const MINI_PARTS = [{"id": "vrch", "d": "M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z"}, {"id": "stred", "d": "M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z"}, {"id": "spodek", "d": "M166,430 L434,430 L438,640 Q300,650 162,640 Z"}, {"id": "kapsy", "d": "M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z"}, {"id": "vrch", "d": "M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z"}, {"id": "rukavy", "d": "M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z"}];
+const STORAGE_KEY = 'ojeb-designs-v1';
+const configKey = cfg => PARTS.map(p => cfg[p.id]).join('|');
+const makeId = () => globalThis.crypto?.randomUUID?.() || 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+function cleanConfig(input) {
+  if (!input || typeof input !== 'object') return null;
+  const cfg = { ...PRESETS[0].cfg }; let found = false;
+  PARTS.forEach(p => { const f = FAB[input[p.id]]; if (f && f.inner === (p.id === 'podsivka')) { cfg[p.id] = f.id; found = true; } });
+  return found ? cfg : null;
+}
+function patternsFor(cfg) {
+  return Object.fromEntries(PARTS.map(p => { const f = FAB[cfg[p.id]]; return [p.id, { color: f.color, img: f.tile || BLANK, s: f.tile ? (f.inner ? 130 : 150) : 120, grain: f.tile ? 0 : .55 }]; }));
+}
+function icon(name) { return React.createElement('svg', { viewBox: '0 0 24 24', className: 'icon', 'aria-hidden': true }, React.createElement('path', { d: ICON_PATHS[name], fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' })); }
+function miniJacket(cfg, key) {
+  const h = React.createElement, prefix = 'thumb-' + key.replace(/[^a-zA-Z0-9_-]/g, '');
+  return h('svg', { viewBox: '40 30 520 640', width: '100%', height: '100%', 'aria-hidden': true },
+    h('defs', null, ...makeViewDefs(prefix, patternsFor(cfg))),
+    ...MINI_PARTS.map((p, i) => h('path', { key: i, d: p.d, fill: 'url(#' + prefix + '-pt-' + p.id + ')', stroke: '#1e2230', strokeWidth: 1.1 })),
+    h('path', { d: 'M300,54 L300,645', fill: 'none', stroke: '#1e2230', strokeWidth: 3 }));
+}
+function tapHint() {
+  const h = React.createElement;
+  return h('g', { transform: 'translate(111 346)', className: 'tap-hint', 'aria-hidden': true, pointerEvents: 'none' },
+    h('circle', { className: 'tap-ring', cx: 22.5, cy: 4.5, r: 15, fill: 'none', stroke: '#e07a2e', strokeWidth: 3 }),
+    h('g', { transform: 'scale(1.8)' }, h('path', { className: 'tap-hand', d: 'M10 16V5a2.5 2.5 0 0 1 5 0v8l1.5-1a2.4 2.4 0 0 1 3.5 1.3l1-.4a2.4 2.4 0 0 1 3 1.9l.7-.1a2.4 2.4 0 0 1 2.3 2.4V23c0 5-3.7 9-8.5 9H16c-3.3 0-5.8-1.7-7.6-4.1L2.8 20a2.6 2.6 0 0 1 3.8-3.5L10 20', fill: '#faf8f4', stroke: '#1e2230', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' })));
+}
+class Component extends DCLogic {
+  state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', screen: 'design', sheetOpen: false,
+    viewportH: 800, viewportW: 1280, fabricPage: 0, presetPage: 0, savedPage: 0, review: 'view',
+    hintDismissed: false, draftId: '', draftName: 'Moje bunda', records: [], storageStatus: 'pending', renameOpen: false, renameValue: '',
+    exporting: false, exportError: '', preview: null, toast: null };
+  svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
+  sheetRef = React.createRef(); renameRef = React.createRef(); nameInput = React.createRef(); previewRef = React.createRef();
+  past = []; future = []; previewRequest = 0;
   componentDidMount() {
-    const cfg = this.readHash();
-    if (cfg) this.setState({ cfg });
-    else {
-      const pi = PRESETS.findIndex(p => p.name === this.props.startPreset);
-      if (pi > 0) this.setState({ cfg: { ...PRESETS[pi].cfg } });
+    let records = [], activeId = '', hintDismissed = false;
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (saved && saved.version === 1 && Array.isArray(saved.drafts)) {
+        const used = new Set();
+        records = saved.drafts.flatMap(r => {
+          const cfg = cleanConfig(r?.cfg);
+          if (!cfg || typeof r.id !== 'string' || !r.id || used.has(r.id)) return [];
+          used.add(r.id);
+          return [{ id: r.id, name: typeof r.name === 'string' && r.name.trim() ? r.name.slice(0,60) : 'Moje bunda', cfg, updatedAt: Number(r.updatedAt) || Date.now() }];
+        });
+        activeId = saved.activeId; hintDismissed = saved.hintDismissed === true;
+      }
+    } catch (e) {}
+    let active = records.find(r => r.id === activeId) || records[0];
+    const shared = this.readHash();
+    if (shared && (!active || configKey(shared) !== configKey(active.cfg))) {
+      active = { id: makeId(), name: 'Sdílený návrh', cfg: shared, updatedAt: Date.now() }; records.unshift(active);
     }
-    const dv = { 'Zepředu':'front', 'Zezadu':'back', 'Vnitřek':'inside' }[this.props.defaultView];
-    if (dv && dv !== 'front') this.setState({ view: dv, sel: dv === 'inside' ? 'podsivka' : 'vrch', tab: dv === 'inside' ? 'in' : 'out' });
-    this.onResize = () => { const w = window.innerWidth, h = window.innerHeight, n = w < 1000, m = w < 720; if (w !== this.state.viewportW || h !== this.state.viewportH || m !== this.state.mobile) this.setState({ narrow: n, mobile: m, viewportW: w, viewportH: h, mode: m ? 'part' : this.state.mode }); };
-    this.onKey = e => { if (e.key === 'Escape') this.setState({ pop: null }); };
-    window.addEventListener('resize', this.onResize); window.addEventListener('keydown', this.onKey);
-    this.onResize();
+    if (!active) {
+      active = { id: makeId(), name: 'Moje bunda', cfg: { ...PRESETS[0].cfg }, updatedAt: Date.now() }; records.push(active);
+    }
+    this.setState({ records, hintDismissed, draftId: active.id, draftName: active.name, cfg: { ...active.cfg }, viewportH: innerHeight, viewportW: innerWidth });
+    this.onResize = () => this.setState({ viewportH: innerHeight, viewportW: innerWidth });
+    this.onPop = e => {
+      const ui = e.state?.ojebUX || {};
+      this.previewRequest++;
+      this.setState({ screen: ['design','finish','inspiration','saved'].includes(ui.screen) ? ui.screen : 'design',
+        sheetOpen: !!PNAME[ui.part], sel: PNAME[ui.part] ? ui.part : this.state.sel, preview: null, renameOpen: false },
+        () => { if (this.state.screen === 'finish') this.prepareExport().catch(() => {}); });
+    };
+    window.addEventListener('resize', this.onResize); window.addEventListener('popstate', this.onPop);
+    this.replaceUI({ screen: 'design' });
+    this.persistCurrent();
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); clearTimeout(this.tt); if (this.previewCache) URL.revokeObjectURL(this.previewCache.url); }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize); window.removeEventListener('popstate', this.onPop);
+    clearTimeout(this.toastTimer); if (this.previewCache) URL.revokeObjectURL(this.previewCache.url);
+  }
   componentDidUpdate() {
-    const dialog = this.previewRef.current;
-    if (dialog) {
-      if (this.state.preview && !dialog.open) dialog.showModal();
-      else if (!this.state.preview && dialog.open) dialog.close();
-    }
-    if (this.state.mobile && this.lastMobileTab !== this.state.mtab) {
-      this.lastMobileTab = this.state.mtab;
-      if (this.optionsRef.current) this.optionsRef.current.scrollTop = 0;
-    }
-    const qs = Object.keys(HKEY).map(k => HKEY[k] + '=' + this.state.cfg[k]).join('&');
-    if (location.hash !== '#' + qs) {
-      try { history.replaceState(null, '', '#' + qs); } catch (e) {}
-    }
+    const syncDialog = (ref, open) => { const d = ref.current; if (!d) return; if (open && !d.open) d.showModal(); else if (!open && d.open) d.close(); };
+    syncDialog(this.sheetRef, this.state.sheetOpen); syncDialog(this.previewRef, !!this.state.preview); syncDialog(this.renameRef, this.state.renameOpen);
+    const key = this.state.draftId + '|' + this.state.draftName + '|' + configKey(this.state.cfg) + '|' + this.state.hintDismissed;
+    if (this.state.draftId && key !== this.persistedKey) this.persistCurrent();
+    const hash = '#' + Object.keys(HKEY).map(k => HKEY[k] + '=' + this.state.cfg[k]).join('&');
+    if (location.hash !== hash) history.replaceState(history.state, '', hash);
+  }
+  persistCurrent() {
+    if (!this.state.draftId) return;
+    this.persistedKey = this.state.draftId + '|' + this.state.draftName + '|' + configKey(this.state.cfg) + '|' + this.state.hintDismissed;
+    const item = { id: this.state.draftId, name: this.state.draftName, cfg: { ...this.state.cfg }, updatedAt: Date.now() };
+    const records = [item, ...this.state.records.filter(r => r.id !== item.id)];
+    let storageStatus = 'saved';
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, activeId: item.id, drafts: records, hintDismissed: this.state.hintDismissed })); }
+    catch (e) { storageStatus = 'session'; }
+    this.setState({ records, storageStatus });
+  }
+  uiState(flags = {}) { return { screen: this.state.screen, ...flags }; }
+  replaceUI(flags) { history.replaceState({ ...(history.state || {}), ojebUX: this.uiState(flags) }, '', location.href); }
+  pushUI(flags) { history.pushState({ ...(history.state || {}), ojebUX: this.uiState(flags) }, '', location.href); }
+  navigate(screen) { this.previewRequest++; this.setState({ screen, sheetOpen: false, renameOpen: false, preview: null }); this.replaceUI({ screen }); }
+  toast(text, url) { clearTimeout(this.toastTimer); this.setState({ toast: { text, url: url || '' } }); this.toastTimer = setTimeout(() => this.setState({ toast: null }), 4000); }
+  commitConfig(cfg) {
+    if (configKey(cfg) === configKey(this.state.cfg)) return;
+    this.past.push({ ...this.state.cfg }); if (this.past.length > 100) this.past.shift(); this.future = [];
+    this.setState({ cfg: { ...cfg }, exportError: '' });
+  }
+  undo() { if (!this.past.length) return; this.future.push({ ...this.state.cfg }); this.setState({ cfg: this.past.pop(), exportError: '' }); }
+  redo() { if (!this.future.length) return; this.past.push({ ...this.state.cfg }); this.setState({ cfg: this.future.pop(), exportError: '' }); }
+  setView(view) { this.setState({ view }); }
+  openPart(part) {
+    if (!PNAME[part]) return;
+    const list = part === 'podsivka' ? INNER_IDS : OUTER_IDS, perPage = this.state.viewportH < 500 ? 6 : 12;
+    let view = this.state.view;
+    if (part === 'podsivka') view = 'inside'; else if (view === 'inside' || part === 'kapsy') view = 'front';
+    if (!this.state.sheetOpen) this.pushUI({ screen: 'design', part });
+    this.setState({ screen: 'design', sheetOpen: true, hintDismissed: true, sel: part, view, fabricPage: Math.floor(Math.max(0,list.indexOf(this.state.cfg[part])) / perPage) });
+  }
+  closeSheet() {
+    const owns = !!history.state?.ojebUX?.part; this.setState({ sheetOpen: false });
+    if (owns) history.back(); else this.replaceUI({ screen: 'design' });
+  }
+  chooseFabric(id) {
+    const f = FAB[id], part = this.state.sel;
+    if (!f || f.inner !== (part === 'podsivka')) return;
+    this.commitConfig({ ...this.state.cfg, [part]: id });
+  }
+  newDraft(cfg = PRESETS[0].cfg, name = 'Moje bunda') {
+    this.past = []; this.future = [];
+    this.setState({ draftId: makeId(), draftName: name, cfg: { ...cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null, fabricPage: 0 });
+    this.replaceUI({ screen: 'design' });
+  }
+  openDraft(id) {
+    const r = this.state.records.find(r => r.id === id); if (!r) return;
+    this.past = []; this.future = [];
+    this.setState({ draftId: r.id, draftName: r.name, cfg: { ...r.cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null, fabricPage: 0 });
+    this.replaceUI({ screen: 'design' });
+  }
+  finish() { this.pushUI({ screen: 'finish' }); this.setState({ screen: 'finish', sheetOpen: false }, () => this.prepareExport().catch(() => {})); }
+  returnToDesign() { const owns = history.state?.ojebUX?.screen === 'finish'; this.setState({ screen: 'design' }); if (owns) history.back(); else this.replaceUI({ screen: 'design' }); }
+  openRename() { this.pushUI({ rename: true }); this.setState({ renameOpen: true, renameValue: this.state.draftName }, () => this.nameInput.current?.focus()); }
+  closeRename() { const owns = !!history.state?.ojebUX?.rename; this.setState({ renameOpen: false }); if (owns) history.back(); else this.replaceUI({ screen: this.state.screen }); }
+  submitName() { this.setState({ draftName: this.state.renameValue.trim().slice(0,60) || 'Moje bunda' }); this.closeRename(); }
+  exportKey() { return configKey(this.state.cfg) + '|' + this.state.draftName; }
+  prepareExport() {
+    const key = this.exportKey();
+    if (this.previewCache?.key === key) return Promise.resolve(this.previewCache);
+    if (this.exportWork?.key === key) return this.exportWork.promise;
+    this.setState({ exporting: true, exportError: '' });
+    const promise = this.buildImage().then(blob => {
+      if (this.exportKey() !== key) throw new Error('Návrh se během přípravy změnil.');
+      if (this.previewCache) URL.revokeObjectURL(this.previewCache.url);
+      const cache = this.previewCache = { key, blob, url: URL.createObjectURL(blob) };
+      this.setState({ exporting: false }); return cache;
+    }).catch(e => { if (this.exportKey() === key) this.setState({ exporting: false, exportError: 'Obrázek se nepodařilo připravit.' }); throw e; }).finally(() => { if (this.exportWork?.key === key) this.exportWork = null; });
+    this.exportWork = { key, promise }; return promise;
+  }
+  canShareFile() {
+    if (!this.previewCache || this.previewCache.key !== this.exportKey()) return false;
+    try { return !!(navigator.share && navigator.canShare && navigator.canShare({ files: [new File([this.previewCache.blob], 'ojeb-bunda.png', { type: 'image/png' })] })); }
+    catch (e) { return false; }
+  }
+  async saveImage() {
+    const request = ++this.previewRequest;
+    if (!this.state.preview) this.pushUI({ preview: true });
+    this.setState({ preview: { loading: true, url: '', error: '' } });
+    try { const cache = await this.prepareExport(); if (request === this.previewRequest) this.setState({ preview: { loading: false, url: cache.url, error: '' } }); }
+    catch (e) { if (request === this.previewRequest) this.setState({ preview: { loading: false, url: '', error: 'Obrázek se nepodařilo vytvořit.' } }); }
+  }
+  closePreview() { const owns = !!history.state?.ojebUX?.preview; this.previewRequest++; this.setState({ preview: null }); if (owns) history.back(); else this.replaceUI({ screen: this.state.screen }); }
+  downloadImage() {
+    if (!this.previewCache || this.previewCache.key !== this.exportKey()) { this.saveImage(); return; }
+    const url = URL.createObjectURL(this.previewCache.blob), a = document.createElement('a');
+    a.href = url; a.download = 'ojeb-bunda.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 60000);
+  }
+  async shareImage() {
+    if (!this.canShareFile()) { this.saveImage(); return; }
+    try { await navigator.share({ files: [new File([this.previewCache.blob], 'ojeb-bunda.png', { type: 'image/png' })], title: this.state.draftName }); }
+    catch (e) { if (e.name !== 'AbortError') this.toast('Sdílení se nepodařilo. Obrázek můžeš stáhnout.'); }
+  }
+  renderVals() {
+    const s = this.state, short = s.viewportH < 600, tiny = s.viewportH < 500;
+    const pat = patternsFor(s.cfg), icons = Object.fromEntries(Object.keys(ICON_PATHS).map(k => [k,icon(k)]));
+    const pager = (count, size, value) => { const pages = Math.max(1,Math.ceil(count / size)), index = Math.max(0,Math.min(value,pages-1)); return { index, pages, first: index === 0, last: index === pages-1, visible: pages > 1, label: (index+1) + ' / ' + pages }; };
+    const list = s.sel === 'podsivka' ? INNER_IDS : OUTER_IDS, fabricSize = tiny ? 6 : 12, fabricPager = pager(list.length, fabricSize, s.fabricPage);
+    const cardSize = tiny ? 2 : (short ? 4 : 6), presetPager = pager(PRESETS.length,cardSize,s.presetPage), savedPager = pager(s.records.length,cardSize,s.savedPage);
+    const makeCard = (cfg,key,name,description) => ({ name, description, preview: miniJacket(cfg,key) });
+    const tips = this.tipsFor(s.sel).groups.flatMap(g => g.items).slice(0,3);
+    const isFinish = s.screen === 'finish', activeNav = isFinish ? 'design' : s.screen;
+    const hl = Object.fromEntries(['front','back','inside'].map(v=>[v,{sel:s.sheetOpen && v===s.view ? HL[v][s.sel] || '' : '',hover:'',drop:''}]));
+    const clipDefs = Object.fromEntries(['front','back','inside'].map(v=>[v,[]]));
+    const cacheReady = this.previewCache?.key === this.exportKey();
+    return {
+      icons, appClass: tiny ? 'tiny-screen' : (short ? 'short-screen' : ''),
+      isFinish, notFinish: !isFinish, panels: Object.fromEntries(['design','finish','inspiration','saved'].map(k=>[k,s.screen===k?'flex':'none'])),
+      navigation: [['design','Návrh','pencil'],['inspiration','Inspirace','spark'],['saved','Moje návrhy','folder']].map(([id,label,k])=>({id,label,icon:icons[k],active:id===activeNav,activeClass:id===activeNav?'active':''})),
+      onNavigation: e => this.navigate(e.currentTarget.dataset.nav),
+      saveLabel: s.storageStatus === 'saved' ? 'Uloženo' : (s.storageStatus === 'pending' ? 'Ukládám' : 'Jen v relaci'),
+      saveIcon: s.storageStatus === 'saved' ? icons.check : [],
+      saveExplanation: s.storageStatus === 'saved' ? 'Návrh máš uložený v tomto prohlížeči.' : 'Ukládání není dostupné. Návrh si stáhni jako obrázek.',
+      libraryExplanation: s.storageStatus === 'saved' ? 'Uložené v tomto prohlížeči.' : 'Dočasné návrhy pro tuto relaci.',
+      draftName:s.draftName, undoDisabled:!this.past.length,redoDisabled:!this.future.length,
+      undo:()=>this.undo(),redo:()=>this.redo(),finish:()=>this.finish(),returnToDesign:()=>this.returnToDesign(),
+      views:[['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id,label])=>({id,label,active:id===s.view,activeClass:id===s.view?'selected':''})),
+      onView:e=>this.setView(e.currentTarget.dataset.view), onPart:e=>this.openPart(e.currentTarget.dataset.part), onPartRow:e=>this.openPart(e.currentTarget.dataset.part),
+      onTouchStart:e=>{this.swipeStart=e.touches[0].clientX;},onTouchEnd:e=>{if(this.swipeStart==null)return;const dx=e.changedTouches[0].clientX-this.swipeStart;this.swipeStart=null;if(Math.abs(dx)>60){const order=['front','back','inside'];this.setView(order[(order.indexOf(s.view)+(dx<0?1:2))%3]);}},
+      tapHints:Object.fromEntries(['front','back','inside'].map(v=>[v,!s.hintDismissed && !s.sheetOpen && s.screen==='design'?tapHint():[]])),
+      svgFront:this.svgFront,svgBack:this.svgBack,svgInside:this.svgInside,pat,hl,clipDefs,ripple:{front:[],back:[],inside:[]},
+      disp:Object.fromEntries(['front','back','inside'].map(v=>[v,s.view===v?'block':'none'])),
+      viewDefs:Object.fromEntries(['front','back','inside'].map(v=>[v,makeViewDefs(v,pat)])),reviewDefs:Object.fromEntries(['front','back','inside'].map(v=>[v,makeViewDefs('review-'+v,pat)])),
+      partRows:PARTS.map(p=>({id:p.id,name:p.name,fabric:FAB[s.cfg[p.id]].name,sw:FAB[s.cfg[p.id]].sw,fullTitle:p.name+': '+FAB[s.cfg[p.id]].name})),
+      reviewViewClass:s.review==='view'?'selected':'',reviewFabricsClass:s.review==='fabrics'?'selected':'',switchReview:e=>this.setState({review:e.currentTarget.dataset.review}),
+      reviewDisplays:{view:short?(s.review==='view'?'grid':'none'):'grid',fabrics:short?(s.review==='fabrics'?'grid':'none'):'grid'},
+      selectedPartName:PNAME[s.sel],selectedFabric:FAB[s.cfg[s.sel]],sheetRef:this.sheetRef,
+      fabricItems:list.slice(fabricPager.index*fabricSize,(fabricPager.index+1)*fabricSize).map(id=>({...FAB[id],active:id===s.cfg[s.sel],activeClass:id===s.cfg[s.sel]?'chosen':'',check:id===s.cfg[s.sel]?icons.check:[]})),
+      fabricPager,fabricDots:Array.from({length:fabricPager.pages},(_,i)=>({activeClass:i===fabricPager.index?'current':''})),
+      previousFabric:()=>this.setState({fabricPage:Math.max(0,fabricPager.index-1)}),nextFabric:()=>this.setState({fabricPage:Math.min(fabricPager.pages-1,fabricPager.index+1)}),
+      onFabric:e=>this.chooseFabric(e.currentTarget.dataset.fab),closeSheet:e=>{e?.preventDefault();this.closeSheet();},onSheetBackdrop:e=>{if(e.target===this.sheetRef.current)this.closeSheet();},
+      onPaletteTouchStart:e=>{this.paletteStart=e.touches[0].clientX;},onPaletteTouchEnd:e=>{if(this.paletteStart==null)return;const dx=e.changedTouches[0].clientX-this.paletteStart;this.paletteStart=null;if(Math.abs(dx)>55)this.setState({fabricPage:Math.max(0,Math.min(fabricPager.pages-1,fabricPager.index+(dx<0?1:-1)))});},
+      suggestions:tips,
+      presetCards:PRESETS.map((p,index)=>({...makeCard(p.cfg,'preset'+index,p.name,p.sub),index})).slice(presetPager.index*cardSize,(presetPager.index+1)*cardSize),
+      savedCards:s.records.map(r=>({...makeCard(r.cfg,r.id,r.name,r.id===s.draftId?'Právě otevřený':'Uložený návrh'),id:r.id})).slice(savedPager.index*cardSize,(savedPager.index+1)*cardSize),
+      presetPager,savedPager,onPreset:e=>{const p=PRESETS[+e.currentTarget.dataset.preset];if(p)this.newDraft(p.cfg,p.name);},onSaved:e=>this.openDraft(e.currentTarget.dataset.id),newDraft:()=>this.newDraft(),
+      randomDraft:()=>{const cfg={...PRESETS[Math.floor(Math.random()*PRESETS.length)].cfg};this.newDraft(cfg,'Nová kombinace');},
+      previousPreset:()=>this.setState({presetPage:Math.max(0,presetPager.index-1)}),nextPreset:()=>this.setState({presetPage:Math.min(presetPager.pages-1,presetPager.index+1)}),
+      previousSaved:()=>this.setState({savedPage:Math.max(0,savedPager.index-1)}),nextSaved:()=>this.setState({savedPage:Math.min(savedPager.pages-1,savedPager.index+1)}),
+      openRename:()=>this.openRename(),renameRef:this.renameRef,nameInput:this.nameInput,renameValue:s.renameValue,
+      changeName:e=>this.setState({renameValue:e.target.value}),closeRename:e=>{e?.preventDefault();this.closeRename();},submitRename:e=>{e.preventDefault();this.submitName();},
+      exportBusy:s.exporting,exportStatus:s.exporting?'Připravuji obrázek…':s.exportError || (cacheReady?'Obrázek je připravený.':''),exportActionLabel:this.canShareFile()?'Sdílet obrázek':'Náhled obrázku',
+      shareImage:()=>this.shareImage(),downloadImage:()=>this.downloadImage(),saveImage:()=>this.saveImage(),previewRef:this.previewRef,
+      preview:{...(s.preview||{}),ready:!!s.preview?.url,canShare:this.canShareFile(),title:s.preview?.loading?'Připravuji obrázek':'Obrázek je připravený'},
+      closePreview:e=>{e?.preventDefault();this.closePreview();},onPreviewBackdrop:e=>{if(e.target===this.previewRef.current)this.closePreview();},downloadPreview:()=>this.downloadImage(),sharePreview:()=>this.shareImage(),
+      toast:s.toast?{open:true,...s.toast}:{open:false,text:'',url:''},selectAll:e=>e.currentTarget.select()
+    };
   }
   readHash() {
     const h = (location.hash || '').slice(1); if (!h) return null;
@@ -506,40 +546,6 @@ class Component extends DCLogic {
     Object.keys(HKEY).forEach(k => { const v = p[HKEY[k]]; if (FAB[v] && FAB[v].inner === (k === 'podsivka')) { cfg[k] = v; ok = true; } });
     return ok ? cfg : null;
   }
-  toast(text, url) { clearTimeout(this.tt); this.setState({ toast: { text, url } }); this.tt = setTimeout(() => this.setState({ toast: null }), url ? 9000 : 2600); }
-
-  setView(v) {
-    if (v === this.state.view) return;
-    this.setState({ view: v, pop: null });
-  }
-
-  apply(part, fabId, pt) {
-    const f = FAB[fabId]; if (!f) return false;
-    if (f.inner) part = 'podsivka';
-    else if (part === 'podsivka') return false;
-    let view = this.state.view;
-    if (part === 'podsivka' && view !== 'inside') { this.setView('inside'); view = 'inside'; }
-    if (part === 'kapsy' && view !== 'front') { this.setView('front'); view = 'front'; }
-    if (!pt) {
-      const el = document.querySelector(`svg[data-view="${view}"] [data-part="${part}"]`);
-      try { const b = el.getBBox(); pt = { x: b.x + b.width / 2, y: b.y + b.height / 2 }; } catch (e) { pt = { x: 300, y: 340 }; }
-    }
-    this.setState(s => ({ cfg: { ...s.cfg, [part]: fabId }, ripple: { id: Date.now(), view, part, x: pt.x, y: pt.y } }));
-    return true;
-  }
-  selectPart(id, fromPanel) {
-    this.setState({ sel: id, fabricPage: 0, tipPage: 0, tab: id === 'podsivka' ? 'in' : 'out', mtab: this.state.mtab === 'souhrn' || this.state.mtab === 'kombinace' ? 'latky' : this.state.mtab });
-    if (!fromPanel) return;
-    const v = this.state.view;
-    if (id === 'podsivka' && v !== 'inside') this.setView('inside');
-    else if (id === 'kapsy' && v !== 'front') this.setView('front');
-    else if (id !== 'podsivka' && v === 'inside') this.setView('front');
-  }
-  svgPt(e) {
-    const svg = e.currentTarget.ownerSVGElement; const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
-    return p.matrixTransform(svg.getScreenCTM().inverse());
-  }
-  partAt(x, y) { const el = document.elementFromPoint(x, y); const p = el && el.closest && el.closest('svg[data-view] [data-part]'); return p ? p.getAttribute('data-part') : null; }
 
   tipsFor(part) {
     const cfg = this.state.cfg, cur = cfg[part];
@@ -574,21 +580,10 @@ class Component extends DCLogic {
     groups.forEach(g => { g.items = g.items.filter(f => !used.has(f.id)); g.items.forEach(f => used.add(f.id)); });
     return { forName: PNAME[part], lead: `Vychází z látky ${a.name} (${PNAME[ap].toLowerCase()}).`, groups: groups.filter(g => g.items.length) };
   }
-  warning() {
-    const cfg = this.state.cfg;
-    const pairs = [['stred','kapsy'],['vrch','stred'],['stred','spodek'],['rukavy','vrch']];
-    for (const [x, y] of pairs) {
-      if (cfg[x] === cfg[y]) continue;
-      const a = FAB[cfg[x]], b = FAB[cfg[y]];
-      const d = Math.hypot(a.lch.L - b.lch.L, a.lch.C - b.lch.C, (a.lch.C + b.lch.C) / 2 * hd(a.lch.H, b.lch.H) / 57);
-      if (d < 0.06) return `${PNAME[x]} a ${PNAME[y].toLowerCase()} jsou si hodně podobné (${a.name} / ${b.name}). Zvolte buď stejnou látku, nebo výraznější rozdíl.`;
-    }
-    return '';
-  }
 
   async buildImage() {
     try {
-      const cfg = { ...this.state.cfg };
+      const cfg = { ...this.state.cfg }, exportName = this.state.draftName || 'Moje bunda';
       const views = [[this.svgFront.current.cloneNode(true), 'Zepředu'], [this.svgBack.current.cloneNode(true), 'Zezadu'], [this.svgInside.current.cloneNode(true), 'Vnitřek']];
       const embeddedImages = new Map();
       const embed = async u => {
@@ -618,7 +613,7 @@ class Component extends DCLogic {
         ctx.fillText(views[i][1].toUpperCase(), x + 260, 830);
       }
       ctx.textAlign = 'left'; ctx.fillStyle = '#1e2230'; ctx.font = '800 64px Archivo, sans-serif'; ctx.fillText('o’jeb', 60, 100);
-      ctx.font = '500 26px Archivo, sans-serif'; ctx.fillStyle = '#5d616c'; ctx.fillText('Moje kombinace bundy', 250, 98);
+      ctx.font = '500 26px Archivo, sans-serif'; ctx.fillStyle = '#5d616c'; ctx.fillText(exportName, 250, 98, 1450);
       const sws = await Promise.all(PARTS.map(p => new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = FAB[cfg[p.id]].sw; })));
       PARTS.forEach((p, i) => {
         const x = 60 + (i % 3) * 570, y = 900 + Math.floor(i / 3) * 110, f = FAB[cfg[p.id]];
@@ -631,229 +626,6 @@ class Component extends DCLogic {
       return png;
     } catch (e) { throw e; }
   }
-  async saveImage() {
-    const request = this.previewRequest = (this.previewRequest || 0) + 1;
-    const key = JSON.stringify(this.state.cfg);
-    this.setState({ preview: { loading: true, url: '', error: '' } });
-    try {
-      if (!this.previewCache || this.previewCache.key !== key) {
-        const blob = await this.buildImage();
-        if (request !== this.previewRequest) return;
-        if (this.previewCache) URL.revokeObjectURL(this.previewCache.url);
-        this.previewCache = { key, blob, url: URL.createObjectURL(blob) };
-      }
-      if (request !== this.previewRequest) return;
-      const file = new File([this.previewCache.blob], 'ojeb-bunda.png', { type: 'image/png' });
-      let canShare = false;
-      try { canShare = !!(navigator.share && navigator.canShare && navigator.canShare({ files: [file] })); } catch (e) {}
-      this.setState({ preview: { loading: false, url: this.previewCache.url, error: '', canShare } });
-    } catch (e) {
-      console.error(e);
-      if (request === this.previewRequest) this.setState({ preview: { loading: false, url: '', error: 'Obrázek se nepodařilo vytvořit.' } });
-    }
-  }
-  closePreview() { this.previewRequest = (this.previewRequest || 0) + 1; this.setState({ preview: null }); }
-  downloadPreview() {
-    if (!this.previewCache) return;
-    const url = URL.createObjectURL(this.previewCache.blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'ojeb-bunda.png';
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
-  }
-  async sharePreview() {
-    if (!this.previewCache) return;
-    const file = new File([this.previewCache.blob], 'ojeb-bunda.png', { type: 'image/png' });
-    try { await navigator.share({ files: [file], title: 'Moje bunda o’jeb' }); }
-    catch (e) { if (e && e.name !== 'AbortError') this.toast('Sdílení se nepodařilo. Obrázek můžeš stáhnout.'); }
-  }
-  async share() {
-    const url = location.href;
-    if (this.state.mobile && navigator.share) { try { await navigator.share({ title: 'Moje bunda o’jeb', url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
-    try { await navigator.clipboard.writeText(url); this.toast('Odkaz na kombinaci zkopírován'); }
-    catch (e) { this.toast('Zkopírujte odkaz:', url); }
-  }
-  shuffle() {
-    const solids = OUTER_IDS.filter(id => !FAB[id].print);
-    const col = solids.filter(id => FAB[id].lch.C >= 0.05), neu = solids.filter(id => FAB[id].lch.C < 0.035);
-    const base = FAB[pick(col)];
-    const tone = col.filter(id => id !== base.id && hd(FAB[id].lch.H, base.lch.H) < 45);
-    const con = col.filter(id => hd(FAB[id].lch.H, base.lch.H) >= 110);
-    const second = pick(Math.random() < 0.5 && neu.length ? neu : (tone.length ? tone : neu));
-    const accent = pick(con.length ? con : col);
-    const cfg = { spodek: base.id, vrch: second, stred: pick([accent, pick(neu)]), rukavy: pick([second, base.id]), kapsy: pick([accent, base.id, second]) };
-    const lin = INNER_IDS.filter(id => FAB[id].print && hd(FAB[id].lch.H, base.lch.H) < 50);
-    cfg.podsivka = pick(lin.length ? lin : INNER_IDS);
-    this.setState({ cfg, ripple: null });
-  }
 
-  renderVals() {
-    const s = this.state, cfg = s.cfg, view = s.view;
-    const pat = {};
-    PARTS.forEach(p => { const f = FAB[cfg[p.id]]; pat[p.id] = { color: f.color, img: f.tile || BLANK, s: f.tile ? (f.inner ? 130 : 150) : 120, grain: f.tile ? 0 : 0.55 }; });
-    const hl = {};
-    ['front','back','inside'].forEach(v => {
-      const H = HL[v];
-      hl[v] = { sel: v === view ? (H[s.sel] || '') : '', hover: v === view && s.hoverPart && !s.dropPart ? (H[s.hoverPart] || '') : '', drop: v === view && s.dropPart ? (H[s.dropPart] || '') : '' };
-    });
-    const clipDefs = { front: [], back: [], inside: [] };
-    ['front','back','inside'].forEach(v => Object.keys(HL[v]).forEach(p => { if (HL[v][p]) clipDefs[v].push(React.createElement('clipPath', { key: v + p, id: `clip-${v}-${p}` }, React.createElement('path', { d: HL[v][p] }))); }));
-    const ripple = { front: [], back: [], inside: [] };
-    if (s.ripple) {
-      const r = s.ripple;
-      ripple[r.view] = React.createElement('g', { key: r.id, clipPath: `url(#clip-${r.view}-${r.part})`, style: { pointerEvents: 'none' } },
-        React.createElement('circle', { cx: r.x, cy: r.y, r: 420, style: { fill: '#fff', transformBox: 'fill-box', transformOrigin: 'center', animation: 'ojRipple 700ms ease-out forwards' } }));
-    }
-    const ring = on => on ? '0 0 0 2px #faf8f4, 0 0 0 4px #1e2230' : 'inset 0 0 0 1px rgba(0,0,0,0.1)';
-    const activeFab = s.mode === 'brush' ? s.brush : cfg[s.sel];
-    const mkItems = (ids, act) => ids.map(id => ({ id, name: FAB[id].name, sw: FAB[id].sw, color: FAB[id].color, ring: ring(id === act) }));
-    const groupsFor = (inner, act) => inner ? [{ label: G_BAV + ' · ' + INNER_IDS.length + ' látek', items: mkItems(INNER_IDS, act) }]
-      : [{ label: G_SOFT, items: mkItems(OUTER_IDS, act) }];
-    const shownFab = FAB[s.hoverFab] || FAB[activeFab];
-    const hp = s.hoverPart || s.sel;
-    const views = [['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id, label]) => ({ id, label, bg: id === view ? '#1e2230' : 'transparent', fg: id === view ? '#f3f0ea' : '#1e2230' }));
-    const tips = this.tipsFor(s.sel); tips.warn = this.warning();
-    tips.groups = tips.groups.map(g => ({ ...g, items: g.items.map(f => ({ id: f.id, name: f.name, sw: f.sw, color: f.color })) }));
-    const brushF = FAB[s.brush];
-    let pop = { open: false };
-    if (s.pop) {
-      const inner = s.pop.part === 'podsivka';
-      pop = { open: true, x: s.pop.x, y: s.pop.y, title: PNAME[s.pop.part], groups: groupsFor(inner, cfg[s.pop.part]), info: (FAB[s.hoverFab] || FAB[cfg[s.pop.part]]).name };
-    }
-    const allF = FAB[cfg[s.sel === 'podsivka' ? 'spodek' : s.sel]];
-    const M = s.mobile, compact = s.viewportH < 700;
-    const pager = (count, size, value) => {
-      const pages = Math.max(1, Math.ceil(count / size)), index = Math.max(0, Math.min(value, pages - 1));
-      return { index, pages, first: index === 0, last: index === pages - 1, show: pages > 1, label: (index + 1) + ' / ' + pages };
-    };
-    const pageSize = compact ? 6 : 12, paletteIds = s.tab === 'in' ? INNER_IDS : OUTER_IDS;
-    const fabricPager = pager(paletteIds.length, pageSize, s.fabricPage);
-    const tipPager = pager(tips.groups.length, 1, s.tipPage);
-    tips.groups = tips.groups.slice(tipPager.index, tipPager.index + 1);
-    if (compact) tips.warn = '';
-    const presetSize = compact ? 2 : 6, presetPager = pager(PRESETS.length, presetSize, s.presetPage);
-    const overview = s.mtab === 'souhrn' || s.mtab === 'kombinace';
-    const L = M ? {
-      rootMinH: '0', rootH: '100dvh', rootOv: 'hidden', headPad: '8px 12px', logo: '24px', desk: 'none', mob: 'flex',
-      shareLbl: 'Sdílet', saveLbl: 'Uložit', mainDir: 'column', mainWrap: 'nowrap',
-      stageFlex: '0 0 auto', stageDisplay: s.viewportH < 500 ? 'none' : 'flex', stageH: s.mtab === 'souhrn' ? 'clamp(90px, calc(100dvh - 440px), 380px)' : s.mtab === 'kombinace' ? (compact ? 'clamp(90px, calc(100dvh - 400px), 300px)' : 'clamp(90px, calc(100dvh - 530px), 280px)') : 'clamp(100px, calc(100dvh - 430px), 300px)', stageMinH: '0', stagePad: '6px 12px',
-      jw: 'min(100%, 300px)', jh: '100%', jratio: 'auto', capMinH: '0', capFs: '14px',
-      asideOv: 'hidden', asideBorder: 'none', asidePad: '8px 12px', asideGap: '8px'
-    } : {
-      rootMinH: '0', rootH: '100dvh', rootOv: 'hidden', headPad: '14px 28px', logo: '30px', desk: 'flex', mob: 'none',
-      shareLbl: 'Sdílet odkaz', saveLbl: 'Uložit obrázek', mainDir: 'row', mainWrap: 'nowrap',
-      stageFlex: '1 1 560px', stageDisplay: 'flex', stageH: 'auto', stageMinH: '0', stagePad: compact ? '12px 16px' : '20px 24px 22px',
-      jw: 'min(100%, 540px)', jh: '100%', jratio: 'auto', capMinH: '52px', capFs: '18px',
-      asideOv: 'hidden', asideBorder: '1px solid #dcd6ca', asidePad: compact ? '12px 16px' : '16px', asideGap: '8px'
-    };
-    const secOn = id => s.mtab === id ? 'flex' : 'none';
-    const sec = { parts: !M && !overview && s.viewportH >= 550 ? 'flex' : 'none', fabrics: secOn('latky'), tips: secOn('tipy'), presets: secOn('kombinace'), summary: secOn('souhrn') };
-    const mtabs = [['latky','Látky'],['tipy','Tipy'],['kombinace','Kombinace'],['souhrn','Souhrn']].filter(t => t[0] !== 'tipy' || (this.props.showTips ?? true))
-      .map(([id, label]) => ({ id, label, active: id === s.mtab, fg: id === s.mtab ? '#1e2230' : '#8a8d96', bd: id === s.mtab ? '#e07a2e' : 'transparent' }));
-    return {
-      mobile: M, desktop: !M, L, sec, mtabs, appClass: 'ojeb-app' + (compact ? ' is-compact' : '') + (s.viewportH < 500 ? ' is-short' : ''),
-      selectedPart: s.sel, showPartSelect: !overview, showDesktopSelect: !M && !overview && s.viewportH < 550,
-      onSelectPart: e => this.selectPart(e.currentTarget.value, true),
-      fabricPager, tipPager, presetPager,
-      previousFabrics: () => this.setState({ fabricPage: Math.max(0, fabricPager.index - 1) }),
-      nextFabrics: () => this.setState({ fabricPage: Math.min(fabricPager.pages - 1, fabricPager.index + 1) }),
-      previousTips: () => this.setState({ tipPage: Math.max(0, tipPager.index - 1) }),
-      nextTips: () => this.setState({ tipPage: Math.min(tipPager.pages - 1, tipPager.index + 1) }),
-      previousPresets: () => this.setState({ presetPage: Math.max(0, presetPager.index - 1) }),
-      nextPresets: () => this.setState({ presetPage: Math.min(presetPager.pages - 1, presetPager.index + 1) }),
-      previewRef: this.previewRef,
-      preview: { ...(s.preview || {}), ready: !!(s.preview && s.preview.url), title: s.preview && s.preview.loading ? 'Připravuji obrázek' : 'Obrázek je připravený' },
-      closePreview: e => { if (e && e.preventDefault) e.preventDefault(); this.closePreview(); },
-      onPreviewBackdrop: e => { if (e.target === this.previewRef.current) this.closePreview(); },
-      downloadPreview: () => this.downloadPreview(), sharePreview: () => this.sharePreview(),
-      onMTab: e => this.setState({ mtab: e.currentTarget.getAttribute('data-mtab') }),
-      onTouchStart: e => { const t = e.touches[0]; this.touch = { x: t.clientX, y: t.clientY }; },
-      onTouchEnd: e => {
-        if (!this.touch) return; const t = e.changedTouches[0], dx = t.clientX - this.touch.x, dy = t.clientY - this.touch.y; this.touch = null;
-        if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
-        const order = ['front','back','inside'], v = order[(order.indexOf(this.state.view) + (dx < 0 ? 1 : 2)) % 3];
-        this.setView(v); this.setState(v === 'inside' ? { sel: 'podsivka', tab: 'in' } : (this.state.sel === 'podsivka' ? { sel: 'vrch', tab: 'out' } : {}));
-      },
-      stageRef: this.stageRef, optionsRef: this.optionsRef, svgFront: this.svgFront, svgBack: this.svgBack, svgInside: this.svgInside,
-      pat, hl, clipDefs, ripple, viewDefs: Object.fromEntries(['front','back','inside'].map(v => [v, makeViewDefs(v, pat)])),
-      disp: { front: view === 'front' ? 'block' : 'none', back: view === 'back' ? 'block' : 'none', inside: view === 'inside' ? 'block' : 'none' },
-      stageCursor: s.mode === 'brush' ? 'copy' : 'default',
-      views, asideFlex: s.mobile ? '1 1 0' : (s.narrow ? '0 0 340px' : '0 0 440px'),
-      capPart: PNAME[hp] + (s.hoverPart ? '' : ' · vybráno'),
-      capFab: FAB[cfg[hp]].name,
-      capHint: s.mode === 'brush' ? `Štětec: ${brushF.name}. Klikněte na díl bundy.` : 'Klikněte na díl bundy a vyberte látku v panelu, nebo ji přetáhněte přímo na bundu.',
-      pop,
-      partRows: PARTS.map(p => { const f = FAB[cfg[p.id]], on = p.id === s.sel; return { id: p.id, name: p.name, note: p.note, fab: f.name, title: p.name + ': ' + f.name, sw: f.sw, color: f.color, bg: on ? '#1e2230' : 'transparent', fg: on ? '#f3f0ea' : '#1e2230' }; }),
-      allSameLabel: `Celá bunda: ${allF.name}`,
-      modes: [['part','Díl → látka'],['brush','Štětec']].map(([id, label]) => ({ id, label, bg: id === s.mode ? '#1e2230' : 'transparent', fg: id === s.mode ? '#f3f0ea' : '#1e2230' })),
-      modeHint: s.mode === 'brush' ? `Vyberte látku a pak klikejte na díly bundy. V ruce máte: ${brushF.name}.` : `Vybraný díl: ${PNAME[s.sel]}. Kliknutím na látku ji použijete, nebo ji přetáhněte přímo na bundu.`,
-      tabs: [['out','Vnější látka'],['in','Podšívka']].map(([id, label]) => ({ id, label, fg: id === s.tab ? '#1e2230' : '#8a8d96', bd: id === s.tab ? '#e07a2e' : 'transparent' })),
-      palette: [{ label: (s.tab === 'in' ? G_BAV : 'Vnější látky') + ' · ' + paletteIds.length + ' látek', items: mkItems(paletteIds.slice(fabricPager.index * pageSize, (fabricPager.index + 1) * pageSize), activeFab) }],
-      info: { name: shownFab.name, group: shownFab.group + (shownFab.inner ? ' · š. 160 cm' : '') },
-      showTips: this.props.showTips ?? true, tips,
-      presets: PRESETS.map((p, i) => { const c = {}, sw = {}; PARTS.forEach(x => { c[x.id] = FAB[p.cfg[x.id]].color; sw[x.id] = FAB[p.cfg[x.id]].sw; }); return { i, name: p.name, sub: p.sub, c, s: sw }; }).slice(presetPager.index * presetSize, (presetPager.index + 1) * presetSize),
-      summary: PARTS.map(p => { const f = FAB[cfg[p.id]]; return { part: p.name, fab: f.name, group: f.group }; }),
-      toast: s.toast ? { open: true, text: s.toast.text, url: s.toast.url || '' } : { open: false },
-
-      stop: e => e.stopPropagation(),
-      closePop: () => { if (this.state.pop) this.setState({ pop: null }); },
-      onViewBtn: e => { const v = e.currentTarget.getAttribute('data-view'); this.setView(v); if (v === 'inside') this.setState({ sel: 'podsivka', tab: 'in' }); else if (this.state.sel === 'podsivka') this.setState({ sel: 'vrch', tab: 'out' }); },
-      spin: () => { const order = ['front','back','inside']; const v = order[(order.indexOf(this.state.view) + 1) % 3]; this.setView(v); this.setState(v === 'inside' ? { sel: 'podsivka', tab: 'in' } : (this.state.sel === 'podsivka' ? { sel: 'vrch', tab: 'out' } : {})); },
-      onPart: e => {
-        e.stopPropagation();
-        const part = e.currentTarget.getAttribute('data-part'), pt = this.svgPt(e);
-        if (this.state.mode === 'brush') {
-          if (!this.apply(part, this.state.brush, pt)) this.toast(FAB[this.state.brush].inner ? 'Podšívka patří dovnitř.' : 'Na podšívku vyberte látku ze vzorníku bavlny.');
-          return;
-        }
-        this.selectPart(part, false);
-      },
-      onPartEnter: e => this.setState({ hoverPart: e.currentTarget.getAttribute('data-part') }),
-      onPartLeave: () => this.setState({ hoverPart: null }),
-      onPartRow: e => this.selectPart(e.currentTarget.getAttribute('data-part'), true),
-      onRowDragOver: e => e.preventDefault(),
-      onRowDrop: e => { e.preventDefault(); const part = e.currentTarget.getAttribute('data-part'); if (this.dragFab) this.apply(part, this.dragFab); this.dragFab = null; this.setState({ dropPart: null }); },
-      onFab: e => {
-        const id = e.currentTarget.getAttribute('data-fab');
-        if (this.state.mode === 'brush') { this.setState({ brush: id }); return; }
-        let part = this.state.sel;
-        if (FAB[id].inner && part !== 'podsivka') { part = 'podsivka'; this.setState({ sel: 'podsivka' }); }
-        this.apply(part, id);
-      },
-      onPopFab: e => { e.stopPropagation(); this.apply(this.state.pop.part, e.currentTarget.getAttribute('data-fab')); },
-      onTip: e => this.apply(this.state.sel, e.currentTarget.getAttribute('data-fab')),
-      onFabEnter: e => this.setState({ hoverFab: e.currentTarget.getAttribute('data-fab') }),
-      onFabLeave: () => this.setState({ hoverFab: null }),
-      onFabDrag: e => { const id = e.currentTarget.getAttribute('data-fab'); this.dragFab = id; e.dataTransfer.setData('text/plain', id); e.dataTransfer.effectAllowed = 'copy'; },
-      onFabDragEnd: () => { this.dragFab = null; if (this.state.dropPart) this.setState({ dropPart: null }); },
-      onDragOver: e => {
-        e.preventDefault(); e.dataTransfer.dropEffect = 'copy';
-        const f = FAB[this.dragFab]; let p = this.partAt(e.clientX, e.clientY);
-        if (f && f.inner) p = this.state.view === 'inside' ? 'podsivka' : p;
-        else if (p === 'podsivka') p = null;
-        if (p !== this.state.dropPart) this.setState({ dropPart: p });
-      },
-      onDragLeave: e => { if (!e.currentTarget.contains(e.relatedTarget) && this.state.dropPart) this.setState({ dropPart: null }); },
-      onDrop: e => {
-        e.preventDefault();
-        const id = this.dragFab || e.dataTransfer.getData('text/plain'), f = FAB[id];
-        const part = f && f.inner ? 'podsivka' : this.partAt(e.clientX, e.clientY);
-        this.setState({ dropPart: null }); this.dragFab = null;
-        if (!f || !part) return;
-        let pt = null;
-        const svg = document.querySelector(`svg[data-view="${this.state.view}"]`);
-        if (svg) { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; pt = p.matrixTransform(svg.getScreenCTM().inverse()); }
-        if (this.apply(part, id, pt)) this.selectPart(part, false);
-      },
-      onMode: e => { const m = e.currentTarget.getAttribute('data-mode'); this.setState({ mode: m, pop: null, brush: m === 'brush' ? this.state.cfg[this.state.sel] : this.state.brush }); },
-      onTab: e => { const t = e.currentTarget.getAttribute('data-tab'); if (this.state.mode === 'brush') this.setState({ tab: t }); else this.selectPart(t === 'in' ? 'podsivka' : 'vrch', true); },
-      allSame: () => { const id = cfg[s.sel === 'podsivka' ? 'spodek' : s.sel]; this.setState(st => ({ cfg: { ...st.cfg, rukavy: id, vrch: id, stred: id, kapsy: id, spodek: id }, ripple: null })); this.toast('Celá bunda: ' + FAB[id].name); },
-      shuffle: () => this.shuffle(),
-      onPreset: e => { const p = PRESETS[+e.currentTarget.getAttribute('data-preset')]; this.setState({ cfg: { ...p.cfg }, ripple: null }); },
-      share: () => this.share(), saveImage: () => this.saveImage(),
-      selectAll: e => e.currentTarget.select()
-    };
-  }
 }
-</script>
-</body>
-</html>
+</script></body></html>
