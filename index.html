@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+body{margin:0;background:#f3f0ea}
+a{color:#1e2230}
+a:hover{color:#c4611a}
+button{font-family:inherit}
+@keyframes ojRipple{from{transform:scale(0);opacity:.6}to{transform:scale(1);opacity:0}}
+@keyframes ojPop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="min-height:{{ L.rootMinH }}; height:{{ L.rootH }}; overflow:{{ L.rootOv }}; background:#f3f0ea; color:#1e2230; font-family:'Archivo', system-ui, sans-serif; display:flex; flex-direction:column">
+
+<svg ref="{{ defsRef }}" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+<defs>
+<filter id="grain" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency="0.9 0.45" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+<feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.7 0 0 0 -0.18"></feColorMatrix>
+</filter>
+<linearGradient id="shadeX" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" style="stop-color:#000; stop-opacity:0.22"></stop>
+<stop offset="0.22" style="stop-color:#000; stop-opacity:0"></stop>
+<stop offset="0.5" style="stop-color:#fff; stop-opacity:0.06"></stop>
+<stop offset="0.78" style="stop-color:#000; stop-opacity:0"></stop>
+<stop offset="1" style="stop-color:#000; stop-opacity:0.22"></stop>
+</linearGradient>
+<linearGradient id="shadeY" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" style="stop-color:#fff; stop-opacity:0.1"></stop>
+<stop offset="0.5" style="stop-color:#fff; stop-opacity:0"></stop>
+<stop offset="1" style="stop-color:#000; stop-opacity:0.14"></stop>
+</linearGradient>
+<pattern id="pt-rukavy" patternUnits="userSpaceOnUse" width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}">
+<rect width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}" fill="{{ pat.rukavy.color }}"></rect>
+<image href="{{ pat.rukavy.img }}" width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}" preserveAspectRatio="none"></image>
+<rect width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.rukavy.grain }}"></rect>
+</pattern>
+<pattern id="pt-vrch" patternUnits="userSpaceOnUse" width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}">
+<rect width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}" fill="{{ pat.vrch.color }}"></rect>
+<image href="{{ pat.vrch.img }}" width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}" preserveAspectRatio="none"></image>
+<rect width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.vrch.grain }}"></rect>
+</pattern>
+<pattern id="pt-stred" patternUnits="userSpaceOnUse" width="{{ pat.stred.s }}" height="{{ pat.stred.s }}">
+<rect width="{{ pat.stred.s }}" height="{{ pat.stred.s }}" fill="{{ pat.stred.color }}"></rect>
+<image href="{{ pat.stred.img }}" width="{{ pat.stred.s }}" height="{{ pat.stred.s }}" preserveAspectRatio="none"></image>
+<rect width="{{ pat.stred.s }}" height="{{ pat.stred.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.stred.grain }}"></rect>
+</pattern>
+<pattern id="pt-kapsy" patternUnits="userSpaceOnUse" width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}">
+<rect width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}" fill="{{ pat.kapsy.color }}"></rect>
+<image href="{{ pat.kapsy.img }}" width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}" preserveAspectRatio="none"></image>
+<rect width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.kapsy.grain }}"></rect>
+</pattern>
+<pattern id="pt-spodek" patternUnits="userSpaceOnUse" width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}">
+<rect width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}" fill="{{ pat.spodek.color }}"></rect>
+<image href="{{ pat.spodek.img }}" width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}" preserveAspectRatio="none"></image>
+<rect width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.spodek.grain }}"></rect>
+</pattern>
+<pattern id="pt-podsivka" patternUnits="userSpaceOnUse" width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}">
+<rect width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}" fill="{{ pat.podsivka.color }}"></rect>
+<image href="{{ pat.podsivka.img }}" width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}" preserveAspectRatio="none"></image>
+<rect width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.podsivka.grain }}"></rect>
+</pattern>
+</defs>
+<defs data-noexport="1">{{ clipDefs }}</defs>
+</svg>
+
+<header style="flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:{{ L.headPad }}; border-bottom:1px solid #dcd6ca">
+<div style="display:flex; align-items:baseline; gap:16px">
+<div style="font-size:{{ L.logo }}; font-weight:800; letter-spacing:-0.03em; line-height:1">o<span style="color:#e07a2e">’</span>jeb</div>
+<div style="display:{{ L.desk }}; font-size:14px; color:#5d616c">Konfigurátor bundy na míru</div>
+</div>
+<div style="display:flex; gap:8px">
+<button onClick="{{ share }}" style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #1e2230; background:transparent; color:#1e2230; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap" style-hover="background:#e6e0d4">{{ L.shareLbl }}</button>
+<button onClick="{{ saveImage }}" style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #1e2230; background:#1e2230; color:#f3f0ea; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap" style-hover="background:#343a4d">{{ L.saveLbl }}</button>
+</div>
+</header>
+
+<main style="flex:1; display:flex; flex-direction:{{ L.mainDir }}; flex-wrap:{{ L.mainWrap }}; align-items:stretch; min-height:0; overflow:{{ L.rootOv }}">
+
+<section ref="{{ stageRef }}" onClick="{{ closePop }}" onDragOver="{{ onDragOver }}" onDrop="{{ onDrop }}" onDragLeave="{{ onDragLeave }}" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}" style="position:relative; flex:{{ L.stageFlex }}; height:{{ L.stageH }}; min-width:0; min-height:{{ L.stageMinH }}; background:#e9e4da; display:flex; flex-direction:column; align-items:center; padding:{{ L.stagePad }}; box-sizing:border-box; overflow:hidden; cursor:{{ stageCursor }}">
+
+<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center">
+<div style="display:flex; gap:4px; padding:4px; background:#dcd5c7; border-radius:999px">
+<sc-for list="{{ views }}" as="v" hint-placeholder-count="3">
+<button data-view="{{ v.id }}" onClick="{{ onViewBtn }}" style="height:34px; padding:0 16px; border:none; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer; background:{{ v.bg }}; color:{{ v.fg }}">{{ v.label }}</button>
+</sc-for>
+</div>
+<button onClick="{{ spin }}" title="Otočit bundu" style="display:{{ L.desk }}; align-items:center; justify-content:center; height:42px; padding:0 16px; border:1px solid #bfb7a7; border-radius:999px; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="background:#dcd5c7">↻ Otočit</button>
+</div>
+
+<div style="flex:1; width:100%; min-height:0; display:flex; align-items:center; justify-content:center; perspective:1600px; padding:10px 0">
+<div style="width:{{ L.jw }}; aspect-ratio:520 / 640; transform:rotateY({{ rot }}deg); transition:{{ flipTrans }}">
+
+<div style="display:{{ disp.front }}; width:100%; height:100%">
+<svg ref="{{ svgFront }}" data-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
+<path data-part="kapsy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-kapsy)" d="M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M192,299 L280,303 L280,416 L194,414 Z M408,299 L320,303 L320,416 L406,414 Z" style="fill:none; stroke:#fff; stroke-opacity:0.45; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M260,58 Q300,50 340,58 Q324,76 300,78 Q276,76 260,58 Z" style="fill:#000; fill-opacity:0.3; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeX); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M300,50 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
+<path d="M300,50 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
+<rect x="295" y="62" width="10" height="17" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
+<rect x="297.5" y="77" width="5" height="16" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
+<text x="384" y="204" style="font-family:Archivo, sans-serif; font-weight:800; font-size:17px; fill:#e8853a; text-anchor:middle; pointer-events:none">o’jeb</text>
+<text x="384" y="213" style="font-family:Archivo, sans-serif; font-weight:700; font-size:5.6px; letter-spacing:0.6px; fill:#e8853a; text-anchor:middle; pointer-events:none">TRAVEL SMART</text>
+<path data-noexport="1" d="{{ hl.front.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.front.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.front.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
+<g data-noexport="1">{{ ripple.front }}</g>
+</svg>
+</div>
+
+<div style="display:{{ disp.back }}; width:100%; height:100%">
+<svg ref="{{ svgBack }}" data-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
+<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeX); pointer-events:none"></path>
+<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.back.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.back.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.back.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
+<g data-noexport="1">{{ ripple.back }}</g>
+</svg>
+</div>
+
+<div style="display:{{ disp.inside }}; width:100%; height:100%">
+<svg ref="{{ svgInside }}" data-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
+<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M168,262 Q234,272 300,274 Q366,272 432,262 M166,430 L434,430" style="fill:none; stroke:#000; stroke-opacity:0.18; stroke-width:0.9; stroke-dasharray:3 3; pointer-events:none"></path>
+<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-stred)" d="M284,274 L316,274 L316,430 L284,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path d="M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeX); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M300,64 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
+<path d="M300,64 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
+<rect x="276" y="112" width="48" height="20" rx="2" style="fill:#f6f3ec; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></rect>
+<text x="300" y="126" style="font-family:Archivo, sans-serif; font-weight:800; font-size:10px; fill:#1e2230; text-anchor:middle; pointer-events:none">o’jeb</text>
+<path data-noexport="1" d="{{ hl.inside.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.inside.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
+<path data-noexport="1" d="{{ hl.inside.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
+<g data-noexport="1">{{ ripple.inside }}</g>
+</svg>
+</div>
+
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:2px; text-align:center; min-height:{{ L.capMinH }}">
+<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">{{ capPart }}</div>
+<div style="font-size:{{ L.capFs }}; font-weight:700">{{ capFab }}</div>
+<div style="display:{{ L.desk }}; font-size:13px; color:#6b6f7a">{{ capHint }}</div>
+</div>
+
+</section>
+
+<sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+<div style="flex:none; background:#faf8f4; border-top:1px solid #dcd6ca">
+<div style="display:flex; gap:8px; overflow-x:auto; padding:10px 12px; scrollbar-width:none">
+<sc-for list="{{ partRows }}" as="p" hint-placeholder-count="6">
+<button data-part="{{ p.id }}" onClick="{{ onPartRow }}" style="flex:none; display:flex; align-items:center; gap:8px; height:52px; padding:0 14px 0 6px; border:none; border-radius:999px; text-align:left; cursor:pointer; background:{{ p.bg }}; color:{{ p.fg }}; box-shadow:inset 0 0 0 1px rgba(30,34,48,0.12)">
+<span style="flex:none; width:40px; height:40px; border-radius:999px; background-color:{{ p.color }}; background-image:url({{ p.sw }}); background-size:cover; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.12)"></span>
+<span style="display:flex; flex-direction:column; gap:0; max-width:130px">
+<span style="font-size:14px; font-weight:700; white-space:nowrap">{{ p.name }}</span>
+<span style="font-size:12px; opacity:0.75; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ p.fab }}</span>
+</span>
+</button>
+</sc-for>
+</div>
+<div style="display:flex; border-top:1px solid #dcd6ca">
+<sc-for list="{{ mtabs }}" as="t" hint-placeholder-count="4">
+<button data-mtab="{{ t.id }}" onClick="{{ onMTab }}" style="flex:1; height:46px; border:none; background:transparent; font-size:14px; font-weight:700; cursor:pointer; color:{{ t.fg }}; box-shadow:inset 0 -2px 0 {{ t.bd }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<aside style="flex:{{ asideFlex }}; min-width:0; min-height:0; overflow-y:{{ L.asideOv }}; background:#faf8f4; border-left:{{ L.asideBorder }}; padding:{{ L.asidePad }}; box-sizing:border-box; display:flex; flex-direction:column; gap:{{ L.asideGap }}">
+
+<div style="display:{{ sec.parts }}; flex-direction:column; gap:10px">
+<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Díly bundy</div>
+<div style="display:flex; flex-direction:column; gap:4px">
+<sc-for list="{{ partRows }}" as="p" hint-placeholder-count="6">
+<button data-part="{{ p.id }}" onClick="{{ onPartRow }}" onDragOver="{{ onRowDragOver }}" onDrop="{{ onRowDrop }}" style="display:grid; grid-template-columns:40px minmax(0,1fr) auto; gap:12px; align-items:center; padding:7px 10px 7px 7px; border:none; border-radius:10px; text-align:left; cursor:pointer; background:{{ p.bg }}; color:{{ p.fg }}">
+<span style="width:40px; height:40px; border-radius:8px; background-color:{{ p.color }}; background-image:url({{ p.sw }}); background-size:cover; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.1)"></span>
+<span style="display:flex; flex-direction:column; gap:1px; min-width:0">
+<span style="font-size:15px; font-weight:700">{{ p.name }}</span>
+<span style="font-size:13px; opacity:0.75; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ p.fab }}</span>
+</span>
+<span style="font-family:'IBM Plex Mono', monospace; font-size:11px; opacity:0.6">{{ p.note }}</span>
+</button>
+</sc-for>
+</div>
+<div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
+<button onClick="{{ allSame }}" style="height:38px; padding:0 14px; border-radius:999px; border:1px solid #cfc8ba; background:transparent; font-size:13px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="background:#ece7dd">{{ allSameLabel }}</button>
+<button onClick="{{ shuffle }}" style="height:38px; padding:0 14px; border-radius:999px; border:1px solid #cfc8ba; background:transparent; font-size:13px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="background:#ece7dd">Zamíchat kombinaci</button>
+</div>
+</div>
+
+<div style="display:{{ sec.fabrics }}; flex-direction:column; gap:12px">
+<div style="display:{{ L.desk }}; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Vzorník</div>
+<div style="display:flex; gap:3px; padding:3px; background:#ece7dd; border-radius:999px">
+<sc-for list="{{ modes }}" as="m" hint-placeholder-count="2">
+<button data-mode="{{ m.id }}" onClick="{{ onMode }}" style="height:30px; padding:0 12px; border:none; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; background:{{ m.bg }}; color:{{ m.fg }}">{{ m.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:{{ L.desk }}; font-size:14px; line-height:1.45; color:#3d414c; text-wrap:pretty">{{ modeHint }}</div>
+<div style="display:flex; gap:18px; border-bottom:1px solid #dcd6ca">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+<button data-tab="{{ t.id }}" onClick="{{ onTab }}" style="padding:8px 0 10px; margin-bottom:-1px; border:none; background:transparent; font-size:15px; font-weight:700; cursor:pointer; color:{{ t.fg }}; border-bottom:2px solid {{ t.bd }}">{{ t.label }}</button>
+</sc-for>
+</div>
+<sc-for list="{{ palette }}" as="g" hint-placeholder-count="2">
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="font-size:13px; color:#6b6f7a">{{ g.label }}</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(46px, 1fr)); gap:8px">
+<sc-for list="{{ g.items }}" as="f" hint-placeholder-count="8">
+<button draggable="true" data-fab="{{ f.id }}" title="{{ f.name }}" onClick="{{ onFab }}" onDragStart="{{ onFabDrag }}" onDragEnd="{{ onFabDragEnd }}" onMouseEnter="{{ onFabEnter }}" onMouseLeave="{{ onFabLeave }}" style="aspect-ratio:1; border:none; padding:0; border-radius:8px; cursor:grab; background-color:{{ f.color }}; background-image:url({{ f.sw }}); background-size:cover; box-shadow:{{ f.ring }}"></button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="display:flex; flex-direction:column; gap:2px; min-height:40px">
+<div style="font-size:15px; font-weight:700">{{ info.name }}</div>
+<div style="font-size:13px; color:#6b6f7a">{{ info.group }}</div>
+</div>
+</div>
+
+<sc-if value="{{ showTips }}" hint-placeholder-val="{{ true }}">
+<div style="display:{{ sec.tips }}; flex-direction:column; gap:12px">
+<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Tipy · {{ tips.forName }}</div>
+<div style="font-size:14px; color:#3d414c; line-height:1.45">{{ tips.lead }}</div>
+<sc-for list="{{ tips.groups }}" as="g" hint-placeholder-count="3">
+<div style="display:flex; flex-direction:column; gap:6px">
+<div style="font-size:13px; font-weight:700">{{ g.label }} <span style="font-weight:400; color:#6b6f7a">· {{ g.why }}</span></div>
+<div style="display:flex; gap:6px; flex-wrap:wrap">
+<sc-for list="{{ g.items }}" as="f" hint-placeholder-count="3">
+<button data-fab="{{ f.id }}" onClick="{{ onTip }}" draggable="true" onDragStart="{{ onFabDrag }}" onDragEnd="{{ onFabDragEnd }}" style="display:flex; align-items:center; gap:8px; height:36px; padding:0 12px 0 4px; border-radius:999px; border:1px solid #dcd6ca; background:#fff; font-size:13px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="border-color:#1e2230">
+<span style="width:28px; height:28px; border-radius:999px; background-color:{{ f.color }}; background-image:url({{ f.sw }}); background-size:cover"></span>
+<span>{{ f.name }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<sc-if value="{{ tips.warn }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex; gap:10px; align-items:flex-start; padding:12px 14px; background:#fbeee2; border-radius:10px; font-size:14px; line-height:1.4; color:#5a3414">
+<span style="flex:none; width:8px; height:8px; margin-top:6px; border-radius:999px; background:#e07a2e"></span>
+<span>{{ tips.warn }}</span>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<div style="display:{{ sec.presets }}; flex-direction:column; gap:12px">
+<div style="display:{{ L.mob }}; gap:8px; flex-wrap:wrap">
+<button onClick="{{ allSame }}" style="height:44px; padding:0 16px; border-radius:999px; border:1px solid #cfc8ba; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer">{{ allSameLabel }}</button>
+<button onClick="{{ shuffle }}" style="height:44px; padding:0 16px; border-radius:999px; border:1px solid #cfc8ba; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer">Zamíchat kombinaci</button>
+</div>
+<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Hotové kombinace</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px">
+<sc-for list="{{ presets }}" as="pr" hint-placeholder-count="6">
+<button data-preset="{{ pr.i }}" onClick="{{ onPreset }}" style="display:flex; flex-direction:column; gap:8px; padding:8px; border-radius:12px; border:1px solid #dcd6ca; background:#fff; text-align:left; cursor:pointer; color:#1e2230" style-hover="border-color:#1e2230">
+<span style="display:flex; height:64px; border-radius:6px; overflow:hidden; gap:2px; background:#1e2230">
+<span style="flex:0 0 14%; background-color:{{ pr.c.rukavy }}; background-image:url({{ pr.s.rukavy }}); background-size:cover"></span>
+<span style="flex:1; display:flex; flex-direction:column; gap:2px">
+<span style="flex:3; background-color:{{ pr.c.vrch }}; background-image:url({{ pr.s.vrch }}); background-size:cover"></span>
+<span style="flex:3; display:flex; gap:2px; background-color:{{ pr.c.stred }}; background-image:url({{ pr.s.stred }}); background-size:cover; padding:4px 6px; box-sizing:border-box; justify-content:space-between">
+<span style="width:34%; background-color:{{ pr.c.kapsy }}; background-image:url({{ pr.s.kapsy }}); background-size:cover"></span>
+<span style="width:34%; background-color:{{ pr.c.kapsy }}; background-image:url({{ pr.s.kapsy }}); background-size:cover"></span>
+</span>
+<span style="flex:4; background-color:{{ pr.c.spodek }}; background-image:url({{ pr.s.spodek }}); background-size:cover"></span>
+</span>
+<span style="flex:0 0 14%; background-color:{{ pr.c.podsivka }}; background-image:url({{ pr.s.podsivka }}); background-size:cover"></span>
+</span>
+<span style="display:flex; flex-direction:column; gap:1px; padding:0 2px 2px">
+<span style="font-size:14px; font-weight:700">{{ pr.name }}</span>
+<span style="font-size:12px; color:#6b6f7a">{{ pr.sub }}</span>
+</span>
+</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display:{{ sec.summary }}; flex-direction:column; gap:12px">
+<div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Souhrn</div>
+<div style="display:flex; flex-direction:column; border-top:1px solid #dcd6ca">
+<sc-for list="{{ summary }}" as="s" hint-placeholder-count="6">
+<div style="display:grid; grid-template-columns:120px minmax(0,1fr); gap:12px; padding:10px 0; border-bottom:1px solid #dcd6ca; font-size:14px">
+<div style="color:#6b6f7a">{{ s.part }}</div>
+<div style="display:flex; flex-direction:column; gap:1px">
+<span style="font-weight:600">{{ s.fab }}</span>
+<span style="font-size:12px; color:#6b6f7a">{{ s.group }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="font-size:12px; line-height:1.5; color:#6b6f7a">Odstíny se mohou lišit podle obrazovky a tisku. Pro přesný výběr doporučujeme fyzický vzorek látky.</div>
+<div style="display:flex; gap:8px; flex-wrap:wrap">
+<button onClick="{{ share }}" style="height:40px; padding:0 18px; border-radius:999px; border:1px solid #1e2230; background:transparent; color:#1e2230; font-size:14px; font-weight:600; cursor:pointer" style-hover="background:#ece7dd">Sdílet odkaz</button>
+<button onClick="{{ saveImage }}" style="height:40px; padding:0 18px; border-radius:999px; border:1px solid #1e2230; background:#1e2230; color:#f3f0ea; font-size:14px; font-weight:600; cursor:pointer" style-hover="background:#343a4d">Uložit obrázek</button>
+</div>
+</div>
+
+</aside>
+</main>
+
+<sc-if value="{{ toast.open }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed; left:50%; bottom:24px; transform:translateX(-50%); max-width:calc(100% - 32px); background:#1e2230; color:#f3f0ea; padding:12px 18px; border-radius:12px; font-size:14px; box-shadow:0 10px 30px rgba(0,0,0,0.25); animation:ojPop 160ms ease-out; z-index:20; display:flex; flex-direction:column; gap:6px">
+<span>{{ toast.text }}</span>
+<sc-if value="{{ toast.url }}" hint-placeholder-val="{{ false }}">
+<input readonly="readonly" value="{{ toast.url }}" onFocus="{{ selectAll }}" style="width:min(520px, 80vw); font-family:'IBM Plex Mono', monospace; font-size:12px; padding:6px 8px; border-radius:6px; border:none; background:#343a4d; color:#f3f0ea">
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Zepředu&quot;,&quot;Zezadu&quot;,&quot;Vnitřek&quot;],&quot;default&quot;:&quot;Zepředu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;startPreset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Originál&quot;,&quot;Les&quot;,&quot;Noc&quot;,&quot;Pastel&quot;,&quot;Signál&quot;,&quot;Celá petrolej&quot;],&quot;default&quot;:&quot;Originál&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showTips&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const G_SOFT = 'Jednobarevný softshell 18/12', G_REFL = 'Reflexní vzory', G_BAV = 'Vzorník bavlny';
+const FAB_LIST = [
+  ['out1-0','Růžová neon','#d96c86',G_SOFT],['out1-1','Světlá mint','#8bacaa',G_SOFT],['out1-2','Růžovo-šeříková','#cf83b0',G_SOFT],
+  ['out1-3','Světle šedá','#b0aeae',G_SOFT],['out1-4','Světle modrá','#b9b9cf',G_SOFT],['out1-5','Starorůžová','#ca9ca8',G_SOFT],
+  ['out1-6','Světlá petrolej','#3a8498',G_SOFT],['out1-7','Vínová','#80424d',G_SOFT],['out1-8','Žlutá hořčice','#a8854d',G_SOFT],
+  ['out2-0','Khaki','#4e4f49',G_SOFT],['out2-1','Hnědá','#8e7268',G_SOFT],['out2-2','Červená','#b62830',G_SOFT],
+  ['out2-3','Tmavě modrá','#434e67',G_SOFT],['out2-4','Modrý tyrkys','#479fcc',G_SOFT],['out2-5','Fuchsiová','#e8437d',G_SOFT],
+  ['out2-6','Šedá','#8b8a8b',G_SOFT],['out2-7','Černá','#3a3b3d',G_SOFT],
+  ['out3-0','Srdíčka na starorůžové','#b479a5',G_REFL,1],['out3-1','Srdíčka na tmavě modré','#565570',G_REFL,1],
+  ['out3-2','Maskáč','#656566',G_REFL,1],['out3-3','Auta','#545355',G_REFL,1],
+  ['in1-0','V kapradinách – bílozelená','#e8e9db',G_BAV,1,'#8aa36a'],['in1-1','Oranžová – Karla','#f99044',G_BAV,0],
+  ['in1-2','Černá – Adel','#252525',G_BAV,0],['in1-3','Borghese červená','#e1d5d6',G_BAV,1,'#b23a5a'],
+  ['in1-4','Perkál Proužky – béžová','#e7e3d7',G_BAV,1,'#c8b98a'],['in1-5','Stíny stromů – zelená','#e1e4de',G_BAV,1,'#7d9a6e'],
+  ['in2-0','Stíny stromů – modrá','#d0d8dd',G_BAV,1,'#3f5f86'],['in2-1','Stíny stromů – barevná','#dbdad5',G_BAV,1,'#c9a34a'],
+  ['in2-2','Kostka šedá','#c1c7d6',G_BAV,1,'#9aa3b5'],['in2-3','Stíny stromů – žlutá','#e4e0d7',G_BAV,1,'#c9b04a'],
+  ['in2-4','Proužky – barevná','#969176',G_BAV,1,'#4f6f8f'],['in2-5','Saténová látka Akia béžová','#e2ceb0',G_BAV,1,'#d9a877'],
+  ['in3-0','Divoké traviny – bílá','#f2f0eb',G_BAV,1,'#b8a585'],['in3-1','Ptáčci v kvítí – zelená','#90a48e',G_BAV,1,'#90a48e'],
+  ['in3-2','Trivento – šedá','#b8b8bd',G_BAV,1,'#8c8c94'],['in3-3','Venkov růžová – bílá','#d6bbc9',G_BAV,1,'#d6a0b8'],
+  ['in3-4','Bavlněný satén šedá','#c3c1c4',G_BAV,0],['in3-5','Komiksový vzor','#95836f',G_BAV,1,'#c4553a']
+];
+const FAB = {};
+FAB_LIST.forEach(([id,name,color,group,print,accent]) => {
+  FAB[id] = { id, name, color, group, print: !!print, accent: accent || color, inner: id.startsWith('in'),
+    sw: (id.startsWith('out') && !print ? 'fabrics/swc/' : 'fabrics/sw/') + id + '.jpg?v=3', tile: print ? 'fabrics/tile/' + id + '.jpg' : null };
+});
+const OUTER_IDS = FAB_LIST.filter(f => f[0].startsWith('out')).map(f => f[0]);
+const INNER_IDS = FAB_LIST.filter(f => f[0].startsWith('in')).map(f => f[0]);
+
+const PARTS = [
+  { id:'rukavy', name:'Rukávy', note:'2 ks', area:3 },
+  { id:'vrch', name:'Vrchní díl', note:'+ límec', area:4 },
+  { id:'stred', name:'Prostřední díl', note:'', area:2 },
+  { id:'kapsy', name:'Kapsy', note:'2 ks', area:1 },
+  { id:'spodek', name:'Spodní díl', note:'', area:5 },
+  { id:'podsivka', name:'Podšívka', note:'uvnitř', area:0 }
+];
+const PNAME = Object.fromEntries(PARTS.map(p => [p.id, p.name]));
+const OUTER_PARTS = ['rukavy','vrch','stred','kapsy','spodek'];
+const HKEY = { rukavy:'r', vrch:'v', stred:'s', kapsy:'k', spodek:'d', podsivka:'p' };
+
+const SL = 'M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z';
+const SIL = 'M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z';
+const HL = {
+  front: {
+    rukavy: SL,
+    vrch: 'M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z',
+    stred: 'M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z',
+    kapsy: 'M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z',
+    spodek: 'M166,430 L434,430 L438,640 Q300,650 162,640 Z', podsivka: ''
+  },
+  back: {
+    rukavy: SL,
+    vrch: 'M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z',
+    stred: 'M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z',
+    kapsy: '', spodek: 'M166,430 L434,430 L438,640 Q300,650 162,640 Z', podsivka: ''
+  },
+  inside: {
+    podsivka: SIL + ' M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z',
+    rukavy: 'M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z',
+    vrch: 'M284,108 L316,108 L316,274 L284,274 Z M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z',
+    stred: 'M284,274 L316,274 L316,430 L284,430 Z',
+    kapsy: '',
+    spodek: 'M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z'
+  }
+};
+
+const PRESETS = [
+  { name:'Originál', sub:'Jak na fotce', cfg:{ rukavy:'out2-3', vrch:'out2-3', stred:'out1-3', kapsy:'out2-1', spodek:'out1-6', podsivka:'in2-2' } },
+  { name:'Les', sub:'Zemité tóny', cfg:{ rukavy:'out2-0', vrch:'out2-0', stred:'out1-8', kapsy:'out2-1', spodek:'out2-0', podsivka:'in1-5' } },
+  { name:'Noc', sub:'Tmavá s komiksem uvnitř', cfg:{ rukavy:'out2-7', vrch:'out2-3', stred:'out2-6', kapsy:'out2-7', spodek:'out2-3', podsivka:'in3-5' } },
+  { name:'Pastel', sub:'Světlé a jemné', cfg:{ rukavy:'out1-4', vrch:'out1-1', stred:'out1-5', kapsy:'out1-4', spodek:'out1-1', podsivka:'in3-3' } },
+  { name:'Signál', sub:'Červená a černá', cfg:{ rukavy:'out2-2', vrch:'out2-7', stred:'out2-6', kapsy:'out2-2', spodek:'out2-7', podsivka:'in1-1' } },
+  { name:'Celá petrolej', sub:'Jednobarevná, oranžová uvnitř', cfg:{ rukavy:'out1-6', vrch:'out1-6', stred:'out1-6', kapsy:'out1-6', spodek:'out1-6', podsivka:'in1-1' } }
+];
+
+function oklch(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const [r, g, b] = [n >> 16 & 255, n >> 8 & 255, n & 255].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  const l = Math.cbrt(0.4122214708*r + 0.5363325363*g + 0.0514459929*b), m = Math.cbrt(0.2119034982*r + 0.6806995451*g + 0.1073969566*b), s = Math.cbrt(0.0883024619*r + 0.2817188376*g + 0.6299787005*b);
+  const L = 0.2104542553*l + 0.793617785*m - 0.0040720468*s, A = 1.9779984951*l - 2.428592205*m + 0.4505937099*s, B = 0.0259040371*l + 0.7827717662*m - 0.808675766*s;
+  return { L, C: Math.hypot(A, B), H: (Math.atan2(B, A) * 180 / Math.PI + 360) % 360 };
+}
+Object.values(FAB).forEach(f => { f.lch = oklch(f.accent); });
+const hd = (a, b) => { const d = Math.abs(a - b) % 360; return d > 180 ? 360 - d : d; };
+const pick = a => a[Math.floor(Math.random() * a.length)];
+
+class Component extends DCLogic {
+  state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', rot: 0, trans: true, mode: 'part', brush: 'out2-3', tab: 'out',
+    hoverPart: null, dropPart: null, hoverFab: null, pop: null, toast: null, ripple: null, narrow: false, mobile: false, mtab: 'latky' };
+  stageRef = React.createRef(); defsRef = React.createRef();
+  svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
+
+  componentDidMount() {
+    const cfg = this.readHash();
+    if (cfg) this.setState({ cfg });
+    else {
+      const pi = PRESETS.findIndex(p => p.name === this.props.startPreset);
+      if (pi > 0) this.setState({ cfg: { ...PRESETS[pi].cfg } });
+    }
+    const dv = { 'Zepředu':'front', 'Zezadu':'back', 'Vnitřek':'inside' }[this.props.defaultView];
+    if (dv && dv !== 'front') this.setState({ view: dv, sel: dv === 'inside' ? 'podsivka' : 'vrch', tab: dv === 'inside' ? 'in' : 'out' });
+    this.onResize = () => { const n = window.innerWidth < 1000, m = window.innerWidth < 720; if (n !== this.state.narrow || m !== this.state.mobile) this.setState({ narrow: n, mobile: m, mode: m ? 'part' : this.state.mode }); };
+    this.onKey = e => { if (e.key === 'Escape') this.setState({ pop: null }); };
+    window.addEventListener('resize', this.onResize); window.addEventListener('keydown', this.onKey);
+    this.onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); clearTimeout(this.tt); }
+  componentDidUpdate() {
+    const qs = Object.keys(HKEY).map(k => HKEY[k] + '=' + this.state.cfg[k]).join('&');
+    if (location.hash !== '#' + qs) {
+      try { history.replaceState(null, '', '#' + qs); } catch (e) {}
+    }
+  }
+  readHash() {
+    const h = (location.hash || '').slice(1); if (!h) return null;
+    const p = Object.fromEntries(h.split('&').map(x => x.split('=')));
+    const cfg = { ...PRESETS[0].cfg }; let ok = false;
+    Object.keys(HKEY).forEach(k => { const v = p[HKEY[k]]; if (FAB[v] && FAB[v].inner === (k === 'podsivka')) { cfg[k] = v; ok = true; } });
+    return ok ? cfg : null;
+  }
+  toast(text, url) { clearTimeout(this.tt); this.setState({ toast: { text, url } }); this.tt = setTimeout(() => this.setState({ toast: null }), url ? 9000 : 2600); }
+
+  setView(v) {
+    if (v === this.state.view || this.flipping) return;
+    this.flipping = true;
+    this.setState({ rot: 90, trans: true, pop: null });
+    setTimeout(() => {
+      this.setState({ view: v, rot: -90, trans: false });
+      setTimeout(() => { this.setState({ rot: 0, trans: true }); this.flipping = false; }, 30);
+    }, 240);
+  }
+  apply(part, fabId, pt) {
+    const f = FAB[fabId]; if (!f) return false;
+    if (f.inner) part = 'podsivka';
+    else if (part === 'podsivka') return false;
+    let view = this.state.view;
+    if (part === 'podsivka' && view !== 'inside') { this.setView('inside'); view = 'inside'; }
+    if (part === 'kapsy' && view !== 'front') { this.setView('front'); view = 'front'; }
+    if (!pt) {
+      const el = document.querySelector(`svg[data-view="${view}"] [data-part="${part}"]`);
+      try { const b = el.getBBox(); pt = { x: b.x + b.width / 2, y: b.y + b.height / 2 }; } catch (e) { pt = { x: 300, y: 340 }; }
+    }
+    this.setState(s => ({ cfg: { ...s.cfg, [part]: fabId }, ripple: { id: Date.now(), view, part, x: pt.x, y: pt.y } }));
+    return true;
+  }
+  selectPart(id, fromPanel) {
+    this.setState({ sel: id, tab: id === 'podsivka' ? 'in' : 'out', mtab: this.state.mtab === 'souhrn' || this.state.mtab === 'kombinace' ? 'latky' : this.state.mtab });
+    if (!fromPanel) return;
+    const v = this.state.view;
+    if (id === 'podsivka' && v !== 'inside') this.setView('inside');
+    else if (id === 'kapsy' && v !== 'front') this.setView('front');
+    else if (id !== 'podsivka' && v === 'inside') this.setView('front');
+  }
+  svgPt(e) {
+    const svg = e.currentTarget.ownerSVGElement; const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    return p.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  partAt(x, y) { const el = document.elementFromPoint(x, y); const p = el && el.closest && el.closest('svg[data-view] [data-part]'); return p ? p.getAttribute('data-part') : null; }
+
+  tipsFor(part) {
+    const cfg = this.state.cfg, cur = cfg[part];
+    if (part === 'podsivka') {
+      const anchor = FAB[cfg.spodek], outs = OUTER_PARTS.map(p => FAB[cfg[p]]);
+      const cands = INNER_IDS.filter(id => id !== cur).map(id => FAB[id]);
+      const tone = cands.filter(c => c.lch.C >= 0.03 && outs.some(o => o.lch.C >= 0.03 && hd(o.lch.H, c.lch.H) < 35))
+        .sort((a, b) => Math.min(...outs.map(o => hd(o.lch.H, a.lch.H))) - Math.min(...outs.map(o => hd(o.lch.H, b.lch.H)))).slice(0, 3);
+      const contrast = cands.filter(c => c.lch.C >= 0.06 && (anchor.lch.C < 0.035 || hd(anchor.lch.H, c.lch.H) >= 110) && !tone.includes(c)).sort((a, b) => b.lch.C - a.lch.C).slice(0, 3);
+      const calm = cands.filter(c => c.lch.C < 0.035 && !tone.includes(c)).slice(0, 3);
+      return { forName: 'Podšívka', lead: `Vychází z barev vnějších dílů, hlavně ze spodního dílu (${anchor.name}).`,
+        groups: [ { label:'Ladí s bundou', why:'stejný barevný tón', items: tone }, { label:'Překvapení uvnitř', why:'kontrastní barva', items: contrast }, { label:'Klidná', why:'neutrální vzor', items: calm } ].filter(g => g.items.length) };
+    }
+    const others = OUTER_PARTS.filter(p => p !== part).sort((a, b) => PARTS.find(x => x.id === b).area - PARTS.find(x => x.id === a).area);
+    const ap = others.find(p => cfg[p] !== cur) || others[0];
+    const a = FAB[cfg[ap]], A = a.lch;
+    const cands = OUTER_IDS.filter(id => id !== cur && id !== a.id).map(id => FAB[id]);
+    let groups;
+    if (A.C < 0.035) {
+      groups = [
+        { label:'Barevný akcent', why:'k neutrální barvě sedí výrazná', items: cands.filter(c => c.lch.C >= 0.08).sort((x, y) => y.lch.C - x.lch.C).slice(0, 3) },
+        { label:'Neutrální', why:'jiný stupeň světlosti', items: cands.filter(c => c.lch.C < 0.035 && Math.abs(c.lch.L - A.L) > 0.12).slice(0, 3) },
+        { label:'Vzor', why:'reflexní, viditelný ve tmě', items: cands.filter(c => c.print).slice(0, 2) }
+      ];
+    } else {
+      groups = [
+        { label:'Tón v tónu', why:'stejný odstín, jiná světlost', items: cands.filter(c => c.lch.C >= 0.03 && hd(c.lch.H, A.H) < 40 && Math.abs(c.lch.L - A.L) > 0.06).sort((x, y) => hd(x.lch.H, A.H) - hd(y.lch.H, A.H)).slice(0, 3) },
+        { label:'Kontrast', why:'barva z druhé strany kruhu', items: cands.filter(c => c.lch.C >= 0.05 && hd(c.lch.H, A.H) >= 110).sort((x, y) => hd(y.lch.H, A.H) - hd(x.lch.H, A.H)).slice(0, 3) },
+        { label:'Neutrální', why:'uklidní kombinaci', items: cands.filter(c => !c.print && c.lch.C < 0.035).sort((x, y) => Math.abs(y.lch.L - A.L) - Math.abs(x.lch.L - A.L)).slice(0, 3) }
+      ];
+    }
+    const used = new Set();
+    groups.forEach(g => { g.items = g.items.filter(f => !used.has(f.id)); g.items.forEach(f => used.add(f.id)); });
+    return { forName: PNAME[part], lead: `Vychází z látky ${a.name} (${PNAME[ap].toLowerCase()}).`, groups: groups.filter(g => g.items.length) };
+  }
+  warning() {
+    const cfg = this.state.cfg;
+    const pairs = [['stred','kapsy'],['vrch','stred'],['stred','spodek'],['rukavy','vrch']];
+    for (const [x, y] of pairs) {
+      if (cfg[x] === cfg[y]) continue;
+      const a = FAB[cfg[x]], b = FAB[cfg[y]];
+      const d = Math.hypot(a.lch.L - b.lch.L, a.lch.C - b.lch.C, (a.lch.C + b.lch.C) / 2 * hd(a.lch.H, b.lch.H) / 57);
+      if (d < 0.06) return `${PNAME[x]} a ${PNAME[y].toLowerCase()} jsou si hodně podobné (${a.name} / ${b.name}). Zvolte buď stejnou látku, nebo výraznější rozdíl.`;
+    }
+    return '';
+  }
+
+  async saveImage() {
+    try {
+      this.toast('Připravuji obrázek…');
+      const defs = this.defsRef.current.querySelector('defs').cloneNode(true);
+      const imgs = [...defs.querySelectorAll('image')];
+      await Promise.all(imgs.map(async im => {
+        const u = im.getAttribute('href'); if (!u || u.startsWith('data:')) return;
+        const b = await (await fetch(u)).blob();
+        const d = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(b); });
+        im.setAttribute('href', d);
+      }));
+      const W = 1800, H = 1180, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      const ctx = cv.getContext('2d'); ctx.fillStyle = '#f3f0ea'; ctx.fillRect(0, 0, W, H);
+      await document.fonts.ready;
+      const views = [[this.svgFront, 'Zepředu'], [this.svgBack, 'Zezadu'], [this.svgInside, 'Vnitřek']];
+      for (let i = 0; i < 3; i++) {
+        const c = views[i][0].current.cloneNode(true);
+        c.querySelectorAll('[data-noexport]').forEach(n => n.remove());
+        c.insertBefore(defs.cloneNode(true), c.firstChild);
+        c.setAttribute('xmlns', 'http://www.w3.org/2000/svg'); c.setAttribute('width', 520); c.setAttribute('height', 640);
+        const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(c)], { type: 'image/svg+xml' }));
+        const img = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = url; });
+        const x = 60 + i * 570; ctx.drawImage(img, x, 150, 520, 640); URL.revokeObjectURL(url);
+        ctx.fillStyle = '#6b6f7a'; ctx.font = '500 20px "IBM Plex Mono", monospace'; ctx.textAlign = 'center';
+        ctx.fillText(views[i][1].toUpperCase(), x + 260, 830);
+      }
+      ctx.textAlign = 'left'; ctx.fillStyle = '#1e2230'; ctx.font = '800 64px Archivo, sans-serif'; ctx.fillText('o’jeb', 60, 100);
+      ctx.font = '500 26px Archivo, sans-serif'; ctx.fillStyle = '#5d616c'; ctx.fillText('Moje kombinace bundy', 250, 98);
+      const sws = await Promise.all(PARTS.map(p => new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = FAB[this.state.cfg[p.id]].sw; })));
+      PARTS.forEach((p, i) => {
+        const x = 60 + (i % 3) * 570, y = 900 + Math.floor(i / 3) * 110, f = FAB[this.state.cfg[p.id]];
+        ctx.fillStyle = f.color; ctx.fillRect(x, y, 72, 72); if (sws[i]) ctx.drawImage(sws[i], x, y, 72, 72);
+        ctx.fillStyle = '#6b6f7a'; ctx.font = '500 20px Archivo, sans-serif'; ctx.fillText(p.name, x + 92, y + 28);
+        ctx.fillStyle = '#1e2230'; ctx.font = '700 26px Archivo, sans-serif'; ctx.fillText(f.name, x + 92, y + 62);
+      });
+      const a = document.createElement('a'); a.href = cv.toDataURL('image/png'); a.download = 'ojeb-bunda.png';
+      document.body.appendChild(a); a.click(); a.remove();
+      this.toast('Obrázek uložen (ojeb-bunda.png)');
+    } catch (e) { console.error(e); this.toast('Obrázek se nepodařilo vytvořit.'); }
+  }
+  async share() {
+    const url = location.href;
+    if (this.state.mobile && navigator.share) { try { await navigator.share({ title: 'Moje bunda o’jeb', url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+    try { await navigator.clipboard.writeText(url); this.toast('Odkaz na kombinaci zkopírován'); }
+    catch (e) { this.toast('Zkopírujte odkaz:', url); }
+  }
+  shuffle() {
+    const solids = OUTER_IDS.filter(id => !FAB[id].print);
+    const col = solids.filter(id => FAB[id].lch.C >= 0.05), neu = solids.filter(id => FAB[id].lch.C < 0.035);
+    const base = FAB[pick(col)];
+    const tone = col.filter(id => id !== base.id && hd(FAB[id].lch.H, base.lch.H) < 45);
+    const con = col.filter(id => hd(FAB[id].lch.H, base.lch.H) >= 110);
+    const second = pick(Math.random() < 0.5 && neu.length ? neu : (tone.length ? tone : neu));
+    const accent = pick(con.length ? con : col);
+    const cfg = { spodek: base.id, vrch: second, stred: pick([accent, pick(neu)]), rukavy: pick([second, base.id]), kapsy: pick([accent, base.id, second]) };
+    const lin = INNER_IDS.filter(id => FAB[id].print && hd(FAB[id].lch.H, base.lch.H) < 50);
+    cfg.podsivka = pick(lin.length ? lin : INNER_IDS);
+    this.setState({ cfg, ripple: null });
+  }
+
+  renderVals() {
+    const s = this.state, cfg = s.cfg, view = s.view;
+    const pat = {};
+    PARTS.forEach(p => { const f = FAB[cfg[p.id]]; pat[p.id] = { color: f.color, img: f.tile || BLANK, s: f.tile ? (f.inner ? 130 : 150) : 120, grain: f.tile ? 0 : 0.55 }; });
+    const hl = {};
+    ['front','back','inside'].forEach(v => {
+      const H = HL[v];
+      hl[v] = { sel: v === view ? (H[s.sel] || '') : '', hover: v === view && s.hoverPart && !s.dropPart ? (H[s.hoverPart] || '') : '', drop: v === view && s.dropPart ? (H[s.dropPart] || '') : '' };
+    });
+    const clipDefs = [];
+    ['front','back','inside'].forEach(v => Object.keys(HL[v]).forEach(p => { if (HL[v][p]) clipDefs.push(React.createElement('clipPath', { key: v + p, id: `clip-${v}-${p}` }, React.createElement('path', { d: HL[v][p] }))); }));
+    const ripple = {};
+    if (s.ripple) {
+      const r = s.ripple;
+      ripple[r.view] = React.createElement('g', { key: r.id, clipPath: `url(#clip-${r.view}-${r.part})`, style: { pointerEvents: 'none' } },
+        React.createElement('circle', { cx: r.x, cy: r.y, r: 420, style: { fill: '#fff', transformBox: 'fill-box', transformOrigin: 'center', animation: 'ojRipple 700ms ease-out forwards' } }));
+    }
+    const ring = on => on ? '0 0 0 2px #faf8f4, 0 0 0 4px #1e2230' : 'inset 0 0 0 1px rgba(0,0,0,0.1)';
+    const activeFab = s.mode === 'brush' ? s.brush : cfg[s.sel];
+    const mkItems = (ids, act) => ids.map(id => ({ id, name: FAB[id].name, sw: FAB[id].sw, color: FAB[id].color, ring: ring(id === act) }));
+    const groupsFor = (inner, act) => inner ? [{ label: G_BAV + ' · ' + INNER_IDS.length + ' látek', items: mkItems(INNER_IDS, act) }]
+      : [{ label: G_SOFT, items: mkItems(OUTER_IDS.filter(id => !FAB[id].print), act) }, { label: G_REFL, items: mkItems(OUTER_IDS.filter(id => FAB[id].print), act) }];
+    const shownFab = FAB[s.hoverFab] || FAB[activeFab];
+    const hp = s.hoverPart || s.sel;
+    const views = [['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id, label]) => ({ id, label, bg: id === view ? '#1e2230' : 'transparent', fg: id === view ? '#f3f0ea' : '#1e2230' }));
+    const tips = this.tipsFor(s.sel); tips.warn = this.warning();
+    tips.groups = tips.groups.map(g => ({ ...g, items: g.items.map(f => ({ id: f.id, name: f.name, sw: f.sw, color: f.color })) }));
+    const brushF = FAB[s.brush];
+    let pop = { open: false };
+    if (s.pop) {
+      const inner = s.pop.part === 'podsivka';
+      pop = { open: true, x: s.pop.x, y: s.pop.y, title: PNAME[s.pop.part], groups: groupsFor(inner, cfg[s.pop.part]), info: (FAB[s.hoverFab] || FAB[cfg[s.pop.part]]).name };
+    }
+    const allF = FAB[cfg[s.sel === 'podsivka' ? 'spodek' : s.sel]];
+    const M = s.mobile;
+    const L = M ? {
+      rootMinH: '0', rootH: '100dvh', rootOv: 'hidden', headPad: '8px 12px', logo: '24px', desk: 'none', mob: 'flex',
+      shareLbl: 'Sdílet', saveLbl: 'Uložit', mainDir: 'column', mainWrap: 'nowrap',
+      stageFlex: '0 0 auto', stageH: '44dvh', stageMinH: '280px', stagePad: '8px 12px 6px',
+      jw: 'min(100%, calc((44dvh - 100px) * 0.8125))', capMinH: '0', capFs: '15px',
+      asideOv: 'auto', asideBorder: 'none', asidePad: '14px 14px 28px', asideGap: '20px'
+    } : {
+      rootMinH: '100vh', rootH: 'auto', rootOv: 'visible', headPad: '14px 28px', logo: '30px', desk: 'flex', mob: 'none',
+      shareLbl: 'Sdílet odkaz', saveLbl: 'Uložit obrázek', mainDir: 'row', mainWrap: 'wrap',
+      stageFlex: '1 1 560px', stageH: 'auto', stageMinH: '680px', stagePad: '20px 24px 22px',
+      jw: 'min(100%, 540px)', capMinH: '52px', capFs: '18px',
+      asideOv: 'visible', asideBorder: '1px solid #dcd6ca', asidePad: '24px 26px 40px', asideGap: '30px'
+    };
+    const secOn = id => !M || s.mtab === id ? 'flex' : 'none';
+    const sec = { parts: M ? 'none' : 'flex', fabrics: secOn('latky'), tips: secOn('tipy'), presets: secOn('kombinace'), summary: secOn('souhrn') };
+    const mtabs = [['latky','Látky'],['tipy','Tipy'],['kombinace','Kombinace'],['souhrn','Souhrn']].filter(t => t[0] !== 'tipy' || (this.props.showTips ?? true))
+      .map(([id, label]) => ({ id, label, fg: id === s.mtab ? '#1e2230' : '#8a8d96', bd: id === s.mtab ? '#e07a2e' : 'transparent' }));
+    return {
+      mobile: M, L, sec, mtabs,
+      onMTab: e => this.setState({ mtab: e.currentTarget.getAttribute('data-mtab') }),
+      onTouchStart: e => { const t = e.touches[0]; this.touch = { x: t.clientX, y: t.clientY }; },
+      onTouchEnd: e => {
+        if (!this.touch) return; const t = e.changedTouches[0], dx = t.clientX - this.touch.x, dy = t.clientY - this.touch.y; this.touch = null;
+        if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+        const order = ['front','back','inside'], v = order[(order.indexOf(this.state.view) + (dx < 0 ? 1 : 2)) % 3];
+        this.setView(v); this.setState(v === 'inside' ? { sel: 'podsivka', tab: 'in' } : (this.state.sel === 'podsivka' ? { sel: 'vrch', tab: 'out' } : {}));
+      },
+      defsRef: this.defsRef, stageRef: this.stageRef, svgFront: this.svgFront, svgBack: this.svgBack, svgInside: this.svgInside,
+      pat, hl, clipDefs, ripple,
+      disp: { front: view === 'front' ? 'block' : 'none', back: view === 'back' ? 'block' : 'none', inside: view === 'inside' ? 'block' : 'none' },
+      rot: s.rot, flipTrans: s.trans ? 'transform 240ms cubic-bezier(.4,0,.6,1)' : 'none',
+      stageCursor: s.mode === 'brush' ? 'copy' : 'default',
+      views, asideFlex: s.mobile ? '1 1 0' : (s.narrow ? '1 1 100%' : '0 0 440px'),
+      capPart: PNAME[hp] + (s.hoverPart ? '' : ' · vybráno'),
+      capFab: FAB[cfg[hp]].name,
+      capHint: s.mode === 'brush' ? `Štětec: ${brushF.name}. Klikněte na díl bundy.` : 'Klikněte na díl bundy a vyberte látku v panelu, nebo ji přetáhněte přímo na bundu.',
+      pop,
+      partRows: PARTS.map(p => { const f = FAB[cfg[p.id]], on = p.id === s.sel; return { id: p.id, name: p.name, note: p.note, fab: f.name, sw: f.sw, color: f.color, bg: on ? '#1e2230' : 'transparent', fg: on ? '#f3f0ea' : '#1e2230' }; }),
+      allSameLabel: `Celá bunda: ${allF.name}`,
+      modes: [['part','Díl → látka'],['brush','Štětec']].map(([id, label]) => ({ id, label, bg: id === s.mode ? '#1e2230' : 'transparent', fg: id === s.mode ? '#f3f0ea' : '#1e2230' })),
+      modeHint: s.mode === 'brush' ? `Vyberte látku a pak klikejte na díly bundy. V ruce máte: ${brushF.name}.` : `Vybraný díl: ${PNAME[s.sel]}. Kliknutím na látku ji použijete, nebo ji přetáhněte přímo na bundu.`,
+      tabs: [['out','Vnější látka'],['in','Podšívka']].map(([id, label]) => ({ id, label, fg: id === s.tab ? '#1e2230' : '#8a8d96', bd: id === s.tab ? '#e07a2e' : 'transparent' })),
+      palette: groupsFor(s.tab === 'in', activeFab),
+      info: { name: shownFab.name, group: shownFab.group + (shownFab.inner ? ' · š. 160 cm' : '') },
+      showTips: this.props.showTips ?? true, tips,
+      presets: PRESETS.map((p, i) => { const c = {}, sw = {}; PARTS.forEach(x => { c[x.id] = FAB[p.cfg[x.id]].color; sw[x.id] = FAB[p.cfg[x.id]].sw; }); return { i, name: p.name, sub: p.sub, c, s: sw }; }),
+      summary: PARTS.map(p => { const f = FAB[cfg[p.id]]; return { part: p.name, fab: f.name, group: f.group }; }),
+      toast: s.toast ? { open: true, text: s.toast.text, url: s.toast.url || '' } : { open: false },
+
+      stop: e => e.stopPropagation(),
+      closePop: () => { if (this.state.pop) this.setState({ pop: null }); },
+      onViewBtn: e => { const v = e.currentTarget.getAttribute('data-view'); this.setView(v); if (v === 'inside') this.setState({ sel: 'podsivka', tab: 'in' }); else if (this.state.sel === 'podsivka') this.setState({ sel: 'vrch', tab: 'out' }); },
+      spin: () => { const order = ['front','back','inside']; const v = order[(order.indexOf(this.state.view) + 1) % 3]; this.setView(v); this.setState(v === 'inside' ? { sel: 'podsivka', tab: 'in' } : (this.state.sel === 'podsivka' ? { sel: 'vrch', tab: 'out' } : {})); },
+      onPart: e => {
+        e.stopPropagation();
+        const part = e.currentTarget.getAttribute('data-part'), pt = this.svgPt(e);
+        if (this.state.mode === 'brush') {
+          if (!this.apply(part, this.state.brush, pt)) this.toast(FAB[this.state.brush].inner ? 'Podšívka patří dovnitř.' : 'Na podšívku vyberte látku ze vzorníku bavlny.');
+          return;
+        }
+        this.selectPart(part, false);
+      },
+      onPartEnter: e => this.setState({ hoverPart: e.currentTarget.getAttribute('data-part') }),
+      onPartLeave: () => this.setState({ hoverPart: null }),
+      onPartRow: e => this.selectPart(e.currentTarget.getAttribute('data-part'), true),
+      onRowDragOver: e => e.preventDefault(),
+      onRowDrop: e => { e.preventDefault(); const part = e.currentTarget.getAttribute('data-part'); if (this.dragFab) this.apply(part, this.dragFab); this.dragFab = null; this.setState({ dropPart: null }); },
+      onFab: e => {
+        const id = e.currentTarget.getAttribute('data-fab');
+        if (this.state.mode === 'brush') { this.setState({ brush: id }); return; }
+        let part = this.state.sel;
+        if (FAB[id].inner && part !== 'podsivka') { part = 'podsivka'; this.setState({ sel: 'podsivka' }); }
+        this.apply(part, id);
+      },
+      onPopFab: e => { e.stopPropagation(); this.apply(this.state.pop.part, e.currentTarget.getAttribute('data-fab')); },
+      onTip: e => this.apply(this.state.sel, e.currentTarget.getAttribute('data-fab')),
+      onFabEnter: e => this.setState({ hoverFab: e.currentTarget.getAttribute('data-fab') }),
+      onFabLeave: () => this.setState({ hoverFab: null }),
+      onFabDrag: e => { const id = e.currentTarget.getAttribute('data-fab'); this.dragFab = id; e.dataTransfer.setData('text/plain', id); e.dataTransfer.effectAllowed = 'copy'; },
+      onFabDragEnd: () => { this.dragFab = null; if (this.state.dropPart) this.setState({ dropPart: null }); },
+      onDragOver: e => {
+        e.preventDefault(); e.dataTransfer.dropEffect = 'copy';
+        const f = FAB[this.dragFab]; let p = this.partAt(e.clientX, e.clientY);
+        if (f && f.inner) p = this.state.view === 'inside' ? 'podsivka' : p;
+        else if (p === 'podsivka') p = null;
+        if (p !== this.state.dropPart) this.setState({ dropPart: p });
+      },
+      onDragLeave: e => { if (!e.currentTarget.contains(e.relatedTarget) && this.state.dropPart) this.setState({ dropPart: null }); },
+      onDrop: e => {
+        e.preventDefault();
+        const id = this.dragFab || e.dataTransfer.getData('text/plain'), f = FAB[id];
+        const part = f && f.inner ? 'podsivka' : this.partAt(e.clientX, e.clientY);
+        this.setState({ dropPart: null }); this.dragFab = null;
+        if (!f || !part) return;
+        let pt = null;
+        const svg = document.querySelector(`svg[data-view="${this.state.view}"]`);
+        if (svg) { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; pt = p.matrixTransform(svg.getScreenCTM().inverse()); }
+        if (this.apply(part, id, pt)) this.selectPart(part, false);
+      },
+      onMode: e => { const m = e.currentTarget.getAttribute('data-mode'); this.setState({ mode: m, pop: null, brush: m === 'brush' ? this.state.cfg[this.state.sel] : this.state.brush }); },
+      onTab: e => { const t = e.currentTarget.getAttribute('data-tab'); if (this.state.mode === 'brush') this.setState({ tab: t }); else this.selectPart(t === 'in' ? 'podsivka' : 'vrch', true); },
+      allSame: () => { const id = cfg[s.sel === 'podsivka' ? 'spodek' : s.sel]; this.setState(st => ({ cfg: { ...st.cfg, rukavy: id, vrch: id, stred: id, kapsy: id, spodek: id }, ripple: null })); this.toast('Celá bunda: ' + FAB[id].name); },
+      shuffle: () => this.shuffle(),
+      onPreset: e => { const p = PRESETS[+e.currentTarget.getAttribute('data-preset')]; this.setState({ cfg: { ...p.cfg }, ripple: null }); },
+      share: () => this.share(), saveImage: () => this.saveImage(),
+      selectAll: e => e.currentTarget.select()
+    };
+  }
+}
+</script>
+</body>
+</html>
