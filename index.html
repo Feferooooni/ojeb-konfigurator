@@ -15,63 +15,17 @@ body{margin:0;background:#f3f0ea}
 a{color:#1e2230}
 a:hover{color:#c4611a}
 button{font-family:inherit}
+.ojeb-options>div{flex-shrink:0}
+@media(min-width:720px){
+  .ojeb-view-controls,.ojeb-caption{flex:none}
+  .ojeb-jacket{min-height:0;max-height:100%}
+  .ojeb-options{overscroll-behavior:contain;scrollbar-gutter:stable}
+}
 @keyframes ojRipple{from{transform:scale(0);opacity:.6}to{transform:scale(1);opacity:0}}
 @keyframes ojPop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 </style>
 </helmet>
 <div style="min-height:{{ L.rootMinH }}; height:{{ L.rootH }}; overflow:{{ L.rootOv }}; background:#f3f0ea; color:#1e2230; font-family:'Archivo', system-ui, sans-serif; display:flex; flex-direction:column">
-
-<svg ref="{{ defsRef }}" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
-<defs>
-<filter id="grain" x="0" y="0" width="100%" height="100%">
-<feTurbulence type="fractalNoise" baseFrequency="0.9 0.45" numOctaves="2" stitchTiles="stitch"></feTurbulence>
-<feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.7 0 0 0 -0.18"></feColorMatrix>
-</filter>
-<linearGradient id="shadeX" x1="0" y1="0" x2="1" y2="0">
-<stop offset="0" style="stop-color:#000; stop-opacity:0.22"></stop>
-<stop offset="0.22" style="stop-color:#000; stop-opacity:0"></stop>
-<stop offset="0.5" style="stop-color:#fff; stop-opacity:0.06"></stop>
-<stop offset="0.78" style="stop-color:#000; stop-opacity:0"></stop>
-<stop offset="1" style="stop-color:#000; stop-opacity:0.22"></stop>
-</linearGradient>
-<linearGradient id="shadeY" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" style="stop-color:#fff; stop-opacity:0.1"></stop>
-<stop offset="0.5" style="stop-color:#fff; stop-opacity:0"></stop>
-<stop offset="1" style="stop-color:#000; stop-opacity:0.14"></stop>
-</linearGradient>
-<pattern id="pt-rukavy" patternUnits="userSpaceOnUse" width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}">
-<rect width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}" fill="{{ pat.rukavy.color }}"></rect>
-<image href="{{ pat.rukavy.img }}" width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}" preserveAspectRatio="none"></image>
-<rect width="{{ pat.rukavy.s }}" height="{{ pat.rukavy.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.rukavy.grain }}"></rect>
-</pattern>
-<pattern id="pt-vrch" patternUnits="userSpaceOnUse" width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}">
-<rect width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}" fill="{{ pat.vrch.color }}"></rect>
-<image href="{{ pat.vrch.img }}" width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}" preserveAspectRatio="none"></image>
-<rect width="{{ pat.vrch.s }}" height="{{ pat.vrch.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.vrch.grain }}"></rect>
-</pattern>
-<pattern id="pt-stred" patternUnits="userSpaceOnUse" width="{{ pat.stred.s }}" height="{{ pat.stred.s }}">
-<rect width="{{ pat.stred.s }}" height="{{ pat.stred.s }}" fill="{{ pat.stred.color }}"></rect>
-<image href="{{ pat.stred.img }}" width="{{ pat.stred.s }}" height="{{ pat.stred.s }}" preserveAspectRatio="none"></image>
-<rect width="{{ pat.stred.s }}" height="{{ pat.stred.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.stred.grain }}"></rect>
-</pattern>
-<pattern id="pt-kapsy" patternUnits="userSpaceOnUse" width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}">
-<rect width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}" fill="{{ pat.kapsy.color }}"></rect>
-<image href="{{ pat.kapsy.img }}" width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}" preserveAspectRatio="none"></image>
-<rect width="{{ pat.kapsy.s }}" height="{{ pat.kapsy.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.kapsy.grain }}"></rect>
-</pattern>
-<pattern id="pt-spodek" patternUnits="userSpaceOnUse" width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}">
-<rect width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}" fill="{{ pat.spodek.color }}"></rect>
-<image href="{{ pat.spodek.img }}" width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}" preserveAspectRatio="none"></image>
-<rect width="{{ pat.spodek.s }}" height="{{ pat.spodek.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.spodek.grain }}"></rect>
-</pattern>
-<pattern id="pt-podsivka" patternUnits="userSpaceOnUse" width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}">
-<rect width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}" fill="{{ pat.podsivka.color }}"></rect>
-<image href="{{ pat.podsivka.img }}" width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}" preserveAspectRatio="none"></image>
-<rect width="{{ pat.podsivka.s }}" height="{{ pat.podsivka.s }}" fill="#000" filter="url(#grain)" opacity="{{ pat.podsivka.grain }}"></rect>
-</pattern>
-</defs>
-<defs data-noexport="1">{{ clipDefs }}</defs>
-</svg>
 
 <header style="flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:{{ L.headPad }}; border-bottom:1px solid #dcd6ca">
 <div style="display:flex; align-items:baseline; gap:16px">
@@ -84,11 +38,11 @@ button{font-family:inherit}
 </div>
 </header>
 
-<main style="flex:1; display:flex; flex-direction:{{ L.mainDir }}; flex-wrap:{{ L.mainWrap }}; align-items:stretch; min-height:0; overflow:{{ L.rootOv }}">
+<main style="flex:1 1 0; display:flex; flex-direction:{{ L.mainDir }}; flex-wrap:{{ L.mainWrap }}; align-items:stretch; min-height:0; overflow:{{ L.rootOv }}">
 
 <section ref="{{ stageRef }}" onClick="{{ closePop }}" onDragOver="{{ onDragOver }}" onDrop="{{ onDrop }}" onDragLeave="{{ onDragLeave }}" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}" style="position:relative; flex:{{ L.stageFlex }}; height:{{ L.stageH }}; min-width:0; min-height:{{ L.stageMinH }}; background:#e9e4da; display:flex; flex-direction:column; align-items:center; padding:{{ L.stagePad }}; box-sizing:border-box; overflow:hidden; cursor:{{ stageCursor }}">
 
-<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center">
+<div class="ojeb-view-controls" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center">
 <div style="display:flex; gap:4px; padding:4px; background:#dcd5c7; border-radius:999px">
 <sc-for list="{{ views }}" as="v" hint-placeholder-count="3">
 <button data-view="{{ v.id }}" onClick="{{ onViewBtn }}" style="height:34px; padding:0 16px; border:none; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer; background:{{ v.bg }}; color:{{ v.fg }}">{{ v.label }}</button>
@@ -97,25 +51,27 @@ button{font-family:inherit}
 <button onClick="{{ spin }}" title="Otočit bundu" style="display:{{ L.desk }}; align-items:center; justify-content:center; height:42px; padding:0 16px; border:1px solid #bfb7a7; border-radius:999px; background:transparent; font-size:14px; font-weight:600; color:#1e2230; cursor:pointer" style-hover="background:#dcd5c7">↻ Otočit</button>
 </div>
 
-<div style="flex:1; width:100%; min-height:0; display:flex; align-items:center; justify-content:center; perspective:1600px; padding:10px 0">
-<div style="width:{{ L.jw }}; aspect-ratio:520 / 640; transform:rotateY({{ rot }}deg); transition:{{ flipTrans }}">
+<div style="flex:1; width:100%; min-height:0; display:flex; align-items:center; justify-content:center; padding:10px 0">
+<div class="ojeb-jacket" style="width:{{ L.jw }}; height:{{ L.jh }}; aspect-ratio:{{ L.jratio }}">
 
 <div style="display:{{ disp.front }}; width:100%; height:100%">
 <svg ref="{{ svgFront }}" data-view="front" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<defs>{{ viewDefs.front }}</defs>
+<defs data-noexport="1">{{ clipDefs.front }}</defs>
 <ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-vrch)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="kapsy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-kapsy)" d="M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="kapsy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-kapsy)" d="M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M192,299 L280,303 L280,416 L194,414 Z M408,299 L320,303 L320,416 L406,414 Z" style="fill:none; stroke:#fff; stroke-opacity:0.45; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-vrch)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M260,58 Q300,50 340,58 Q324,76 300,78 Q276,76 260,58 Z" style="fill:#000; fill-opacity:0.3; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#front-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeX); pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#front-shadeX); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#front-shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#front-shadeY); pointer-events:none"></path>
 <path d="M300,50 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
 <path d="M300,50 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
 <rect x="295" y="62" width="10" height="17" rx="2" style="fill:#2a2c31; pointer-events:none"></rect>
@@ -131,17 +87,19 @@ button{font-family:inherit}
 
 <div style="display:{{ disp.back }}; width:100%; height:100%">
 <svg ref="{{ svgBack }}" data-view="back" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<defs>{{ viewDefs.back }}</defs>
+<defs data-noexport="1">{{ clipDefs.back }}</defs>
 <ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-vrch)" d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-stred)" d="M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-spodek)" d="M166,430 L434,430 L438,640 Q300,650 162,640 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M162,626 Q300,636 438,626" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; stroke-dasharray:3 2.5; pointer-events:none"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-vrch)" d="M258,52 Q300,44 342,52 L338,100 Q300,108 262,100 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#back-pt-rukavy)" d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M88,548 Q113,556 138,556 M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M512,548 Q487,556 462,556 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeX); pointer-events:none"></path>
-<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#back-shadeX); pointer-events:none"></path>
+<path d="M262,98 Q300,106 338,98 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#back-shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#back-shadeY); pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.back.hover }}" style="fill:#fff; fill-opacity:0.16; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.back.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.back.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
@@ -151,20 +109,22 @@ button{font-family:inherit}
 
 <div style="display:{{ disp.inside }}; width:100%; height:100%">
 <svg ref="{{ svgInside }}" data-view="inside" viewBox="40 30 520 640" width="100%" height="100%" style="display:block; overflow:visible">
+<defs>{{ viewDefs.inside }}</defs>
+<defs data-noexport="1">{{ clipDefs.inside }}</defs>
 <ellipse cx="300" cy="662" rx="215" ry="9" style="fill:#000; opacity:0.08"></ellipse>
-<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-podsivka)" d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M168,262 Q234,272 300,274 Q366,272 432,262 M166,430 L434,430" style="fill:none; stroke:#000; stroke-opacity:0.18; stroke-width:0.9; stroke-dasharray:3 3; pointer-events:none"></path>
-<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-stred)" d="M284,274 L316,274 L316,430 L284,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
-<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="spodek" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-spodek)" d="M162,622 Q300,632 438,622 L438,640 Q300,650 162,640 Z M284,430 L316,430 L316,646 L284,646 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="stred" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-stred)" d="M284,274 L316,274 L316,430 L284,430 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-vrch)" d="M284,108 L316,108 L316,274 L284,274 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-podsivka)" d="M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="vrch" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-vrch)" d="M258,54 Q300,46 342,54 L341,64 Q300,56 259,64 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="podsivka" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-podsivka)" d="M180,124 Q150,128 140,160 L88,548 Q113,556 138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 Q487,556 462,556 L424,300 Q414,210 420,124 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
+<path data-part="rukavy" onClick="{{ onPart }}" onMouseEnter="{{ onPartEnter }}" onMouseLeave="{{ onPartLeave }}" fill="url(#inside-pt-rukavy)" d="M88,548 L84,592 Q108,602 134,600 L138,556 Q113,556 88,548 Z M512,548 L516,592 Q492,602 466,600 L462,556 Q487,556 512,548 Z" style="stroke:#1e2230; stroke-width:1.1; stroke-linejoin:round; cursor:pointer"></path>
 <path d="M94,560 L92,594 M102,561 L101,596 M110,562 L110,598 M118,562 L119,599 M126,561 L127,599 M506,560 L508,594 M498,561 L499,596 M490,562 L490,598 M482,562 L481,599 M474,561 L473,599" style="fill:none; stroke:#000; stroke-opacity:0.3; stroke-width:0.9; pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeX); pointer-events:none"></path>
-<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
-<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#shadeY); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#inside-shadeX); pointer-events:none"></path>
+<path d="M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L434,430 L438,640 Q300,650 162,640 L166,430 L169,146 Q170,130 180,124 Z" style="fill:url(#inside-shadeY); pointer-events:none"></path>
+<path d="M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z" style="fill:url(#inside-shadeY); pointer-events:none"></path>
 <path d="M300,64 L300,645" style="fill:none; stroke:#16181d; stroke-width:4; pointer-events:none"></path>
 <path d="M300,64 L300,645" style="fill:none; stroke:#3b3e47; stroke-width:7; stroke-dasharray:1.3 2.2; pointer-events:none"></path>
 <rect x="276" y="112" width="48" height="20" rx="2" style="fill:#f6f3ec; stroke:#1e2230; stroke-width:0.8; pointer-events:none"></rect>
@@ -179,7 +139,7 @@ button{font-family:inherit}
 </div>
 </div>
 
-<div style="display:flex; flex-direction:column; align-items:center; gap:2px; text-align:center; min-height:{{ L.capMinH }}">
+<div class="ojeb-caption" style="display:flex; flex-direction:column; align-items:center; gap:2px; text-align:center; min-height:{{ L.capMinH }}">
 <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">{{ capPart }}</div>
 <div style="font-size:{{ L.capFs }}; font-weight:700">{{ capFab }}</div>
 <div style="display:{{ L.desk }}; font-size:13px; color:#6b6f7a">{{ capHint }}</div>
@@ -208,7 +168,7 @@ button{font-family:inherit}
 </div>
 </sc-if>
 
-<aside style="flex:{{ asideFlex }}; min-width:0; min-height:0; overflow-y:{{ L.asideOv }}; background:#faf8f4; border-left:{{ L.asideBorder }}; padding:{{ L.asidePad }}; box-sizing:border-box; display:flex; flex-direction:column; gap:{{ L.asideGap }}">
+<aside ref="{{ optionsRef }}" class="ojeb-options" style="flex:{{ asideFlex }}; min-width:0; min-height:0; overflow-y:{{ L.asideOv }}; background:#faf8f4; border-left:{{ L.asideBorder }}; padding:{{ L.asidePad }}; box-sizing:border-box; display:flex; flex-direction:column; gap:{{ L.asideGap }}">
 
 <div style="display:{{ sec.parts }}; flex-direction:column; gap:10px">
 <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b6f7a">Díly bundy</div>
@@ -439,10 +399,29 @@ Object.values(FAB).forEach(f => { f.lch = oklch(f.accent); });
 const hd = (a, b) => { const d = Math.abs(a - b) % 360; return d > 180 ? 360 - d : d; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
 
+
+// Each view owns its paint servers so Safari can render hidden views on reveal.
+function makeViewDefs(view, patterns) {
+  const e = React.createElement, id = name => view + '-' + name;
+  const gradient = (name, attrs, stops) => e('linearGradient', { key: name, id: id(name), ...attrs },
+    ...stops.map(([offset, stopColor, stopOpacity]) => e('stop', { key: offset, offset, stopColor, stopOpacity })));
+  return [
+    e('filter', { key: 'grain', id: id('grain'), x: '0', y: '0', width: '100%', height: '100%' },
+      e('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.9 0.45', numOctaves: 2, stitchTiles: 'stitch' }),
+      e('feColorMatrix', { type: 'matrix', values: '0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.7 0 0 0 -0.18' })),
+    gradient('shadeX', { x1: 0, y1: 0, x2: 1, y2: 0 }, [[0, '#000', .22], [.22, '#000', 0], [.5, '#fff', .06], [.78, '#000', 0], [1, '#000', .22]]),
+    gradient('shadeY', { x1: 0, y1: 0, x2: 0, y2: 1 }, [[0, '#fff', .1], [.5, '#fff', 0], [1, '#000', .14]]),
+    ...Object.entries(patterns).map(([part, p]) => e('pattern', { key: part, id: id('pt-' + part), patternUnits: 'userSpaceOnUse', width: p.s, height: p.s },
+      e('rect', { width: p.s, height: p.s, fill: p.color }),
+      e('image', { href: p.img, width: p.s, height: p.s, preserveAspectRatio: 'none' }),
+      e('rect', { width: p.s, height: p.s, fill: '#000', filter: 'url(#' + id('grain') + ')', opacity: p.grain })))
+  ];
+}
+
 class Component extends DCLogic {
-  state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', rot: 0, trans: true, mode: 'part', brush: 'out2-3', tab: 'out',
+  state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', mode: 'part', brush: 'out2-3', tab: 'out',
     hoverPart: null, dropPart: null, hoverFab: null, pop: null, toast: null, ripple: null, narrow: false, mobile: false, mtab: 'latky' };
-  stageRef = React.createRef(); defsRef = React.createRef();
+  stageRef = React.createRef(); optionsRef = React.createRef();
   svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
 
   componentDidMount() {
@@ -461,6 +440,10 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); clearTimeout(this.tt); }
   componentDidUpdate() {
+    if (this.state.mobile && this.lastMobileTab !== this.state.mtab) {
+      this.lastMobileTab = this.state.mtab;
+      if (this.optionsRef.current) this.optionsRef.current.scrollTop = 0;
+    }
     const qs = Object.keys(HKEY).map(k => HKEY[k] + '=' + this.state.cfg[k]).join('&');
     if (location.hash !== '#' + qs) {
       try { history.replaceState(null, '', '#' + qs); } catch (e) {}
@@ -476,14 +459,10 @@ class Component extends DCLogic {
   toast(text, url) { clearTimeout(this.tt); this.setState({ toast: { text, url } }); this.tt = setTimeout(() => this.setState({ toast: null }), url ? 9000 : 2600); }
 
   setView(v) {
-    if (v === this.state.view || this.flipping) return;
-    this.flipping = true;
-    this.setState({ rot: 90, trans: true, pop: null });
-    setTimeout(() => {
-      this.setState({ view: v, rot: -90, trans: false });
-      setTimeout(() => { this.setState({ rot: 0, trans: true }); this.flipping = false; }, 30);
-    }, 240);
+    if (v === this.state.view) return;
+    this.setState({ view: v, pop: null });
   }
+
   apply(part, fabId, pt) {
     const f = FAB[fabId]; if (!f) return false;
     if (f.inner) part = 'podsivka';
@@ -561,14 +540,16 @@ class Component extends DCLogic {
   async saveImage() {
     try {
       this.toast('Připravuji obrázek…');
-      const defs = this.defsRef.current.querySelector('defs').cloneNode(true);
-      const imgs = [...defs.querySelectorAll('image')];
-      await Promise.all(imgs.map(async im => {
-        const u = im.getAttribute('href'); if (!u || u.startsWith('data:')) return;
-        const b = await (await fetch(u)).blob();
-        const d = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(b); });
-        im.setAttribute('href', d);
-      }));
+      const embeddedImages = new Map();
+      const embed = async u => {
+        if (!embeddedImages.has(u)) embeddedImages.set(u, (async () => {
+          const response = await fetch(u);
+          if (!response.ok) throw new Error('Image request failed: ' + response.status);
+          const b = await response.blob();
+          return new Promise((resolve, reject) => { const fr = new FileReader(); fr.onload = () => resolve(fr.result); fr.onerror = reject; fr.readAsDataURL(b); });
+        })());
+        return embeddedImages.get(u);
+      };
       const W = 1800, H = 1180, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
       const ctx = cv.getContext('2d'); ctx.fillStyle = '#f3f0ea'; ctx.fillRect(0, 0, W, H);
       await document.fonts.ready;
@@ -576,7 +557,10 @@ class Component extends DCLogic {
       for (let i = 0; i < 3; i++) {
         const c = views[i][0].current.cloneNode(true);
         c.querySelectorAll('[data-noexport]').forEach(n => n.remove());
-        c.insertBefore(defs.cloneNode(true), c.firstChild);
+        await Promise.all([...c.querySelectorAll('image')].map(async im => {
+          const u = im.getAttribute('href');
+          if (u && !u.startsWith('data:')) im.setAttribute('href', await embed(u));
+        }));
         c.setAttribute('xmlns', 'http://www.w3.org/2000/svg'); c.setAttribute('width', 520); c.setAttribute('height', 640);
         const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(c)], { type: 'image/svg+xml' }));
         const img = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = url; });
@@ -593,9 +577,13 @@ class Component extends DCLogic {
         ctx.fillStyle = '#6b6f7a'; ctx.font = '500 20px Archivo, sans-serif'; ctx.fillText(p.name, x + 92, y + 28);
         ctx.fillStyle = '#1e2230'; ctx.font = '700 26px Archivo, sans-serif'; ctx.fillText(f.name, x + 92, y + 62);
       });
-      const a = document.createElement('a'); a.href = cv.toDataURL('image/png'); a.download = 'ojeb-bunda.png';
+      const png = await new Promise(resolve => cv.toBlob(resolve, 'image/png'));
+      if (!png) throw new Error('PNG export failed');
+      const url = URL.createObjectURL(png);
+      const a = document.createElement('a'); a.href = url; a.download = 'ojeb-bunda.png';
       document.body.appendChild(a); a.click(); a.remove();
-      this.toast('Obrázek uložen (ojeb-bunda.png)');
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      this.toast('Obrázek připraven ke stažení (ojeb-bunda.png)');
     } catch (e) { console.error(e); this.toast('Obrázek se nepodařilo vytvořit.'); }
   }
   async share() {
@@ -627,8 +615,8 @@ class Component extends DCLogic {
       const H = HL[v];
       hl[v] = { sel: v === view ? (H[s.sel] || '') : '', hover: v === view && s.hoverPart && !s.dropPart ? (H[s.hoverPart] || '') : '', drop: v === view && s.dropPart ? (H[s.dropPart] || '') : '' };
     });
-    const clipDefs = [];
-    ['front','back','inside'].forEach(v => Object.keys(HL[v]).forEach(p => { if (HL[v][p]) clipDefs.push(React.createElement('clipPath', { key: v + p, id: `clip-${v}-${p}` }, React.createElement('path', { d: HL[v][p] }))); }));
+    const clipDefs = { front: [], back: [], inside: [] };
+    ['front','back','inside'].forEach(v => Object.keys(HL[v]).forEach(p => { if (HL[v][p]) clipDefs[v].push(React.createElement('clipPath', { key: v + p, id: `clip-${v}-${p}` }, React.createElement('path', { d: HL[v][p] }))); }));
     const ripple = {};
     if (s.ripple) {
       const r = s.ripple;
@@ -657,14 +645,14 @@ class Component extends DCLogic {
       rootMinH: '0', rootH: '100dvh', rootOv: 'hidden', headPad: '8px 12px', logo: '24px', desk: 'none', mob: 'flex',
       shareLbl: 'Sdílet', saveLbl: 'Uložit', mainDir: 'column', mainWrap: 'nowrap',
       stageFlex: '0 0 auto', stageH: '44dvh', stageMinH: '280px', stagePad: '8px 12px 6px',
-      jw: 'min(100%, calc((44dvh - 100px) * 0.8125))', capMinH: '0', capFs: '15px',
+      jw: 'min(100%, calc((44dvh - 100px) * 0.8125))', jh: 'auto', jratio: '520 / 640', capMinH: '0', capFs: '15px',
       asideOv: 'auto', asideBorder: 'none', asidePad: '14px 14px 28px', asideGap: '20px'
     } : {
-      rootMinH: '100vh', rootH: 'auto', rootOv: 'visible', headPad: '14px 28px', logo: '30px', desk: 'flex', mob: 'none',
-      shareLbl: 'Sdílet odkaz', saveLbl: 'Uložit obrázek', mainDir: 'row', mainWrap: 'wrap',
-      stageFlex: '1 1 560px', stageH: 'auto', stageMinH: '680px', stagePad: '20px 24px 22px',
-      jw: 'min(100%, 540px)', capMinH: '52px', capFs: '18px',
-      asideOv: 'visible', asideBorder: '1px solid #dcd6ca', asidePad: '24px 26px 40px', asideGap: '30px'
+      rootMinH: '0', rootH: '100dvh', rootOv: 'hidden', headPad: '14px 28px', logo: '30px', desk: 'flex', mob: 'none',
+      shareLbl: 'Sdílet odkaz', saveLbl: 'Uložit obrázek', mainDir: 'row', mainWrap: 'nowrap',
+      stageFlex: '1 1 560px', stageH: 'auto', stageMinH: '0', stagePad: '20px 24px 22px',
+      jw: 'min(100%, 540px)', jh: '100%', jratio: 'auto', capMinH: '52px', capFs: '18px',
+      asideOv: 'auto', asideBorder: '1px solid #dcd6ca', asidePad: '24px 26px 40px', asideGap: '30px'
     };
     const secOn = id => !M || s.mtab === id ? 'flex' : 'none';
     const sec = { parts: M ? 'none' : 'flex', fabrics: secOn('latky'), tips: secOn('tipy'), presets: secOn('kombinace'), summary: secOn('souhrn') };
@@ -680,12 +668,11 @@ class Component extends DCLogic {
         const order = ['front','back','inside'], v = order[(order.indexOf(this.state.view) + (dx < 0 ? 1 : 2)) % 3];
         this.setView(v); this.setState(v === 'inside' ? { sel: 'podsivka', tab: 'in' } : (this.state.sel === 'podsivka' ? { sel: 'vrch', tab: 'out' } : {}));
       },
-      defsRef: this.defsRef, stageRef: this.stageRef, svgFront: this.svgFront, svgBack: this.svgBack, svgInside: this.svgInside,
-      pat, hl, clipDefs, ripple,
+      stageRef: this.stageRef, optionsRef: this.optionsRef, svgFront: this.svgFront, svgBack: this.svgBack, svgInside: this.svgInside,
+      pat, hl, clipDefs, ripple, viewDefs: Object.fromEntries(['front','back','inside'].map(v => [v, makeViewDefs(v, pat)])),
       disp: { front: view === 'front' ? 'block' : 'none', back: view === 'back' ? 'block' : 'none', inside: view === 'inside' ? 'block' : 'none' },
-      rot: s.rot, flipTrans: s.trans ? 'transform 240ms cubic-bezier(.4,0,.6,1)' : 'none',
       stageCursor: s.mode === 'brush' ? 'copy' : 'default',
-      views, asideFlex: s.mobile ? '1 1 0' : (s.narrow ? '1 1 100%' : '0 0 440px'),
+      views, asideFlex: s.mobile ? '1 1 0' : (s.narrow ? '0 0 340px' : '0 0 440px'),
       capPart: PNAME[hp] + (s.hoverPart ? '' : ' · vybráno'),
       capFab: FAB[cfg[hp]].name,
       capHint: s.mode === 'brush' ? `Štětec: ${brushF.name}. Klikněte na díl bundy.` : 'Klikněte na díl bundy a vyberte látku v panelu, nebo ji přetáhněte přímo na bundu.',
