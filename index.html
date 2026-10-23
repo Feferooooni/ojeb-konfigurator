@@ -360,7 +360,7 @@ button{font-family:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;defaultView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Zepředu&quot;,&quot;Zezadu&quot;,&quot;Vnitřek&quot;],&quot;default&quot;:&quot;Zepředu&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;startPreset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Originál&quot;,&quot;Les&quot;,&quot;Noc&quot;,&quot;Pastel&quot;,&quot;Signál&quot;,&quot;Celá petrolej&quot;],&quot;default&quot;:&quot;Originál&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showTips&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 const BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const G_SOFT = 'Jednobarevný softshell 18/12', G_REFL = 'Reflexní vzory', G_BAV = 'Vzorník bavlny';
+const G_SOFT = 'Jednobarevný softshell 18/12', G_BAV = 'Vzorník bavlny';
 const FAB_LIST = [
   ['out1-0','Růžová neon','#d96c86',G_SOFT],['out1-1','Světlá mint','#8bacaa',G_SOFT],['out1-2','Růžovo-šeříková','#cf83b0',G_SOFT],
   ['out1-3','Světle šedá','#b0aeae',G_SOFT],['out1-4','Světle modrá','#b9b9cf',G_SOFT],['out1-5','Starorůžová','#ca9ca8',G_SOFT],
@@ -368,8 +368,6 @@ const FAB_LIST = [
   ['out2-0','Khaki','#4e4f49',G_SOFT],['out2-1','Hnědá','#8e7268',G_SOFT],['out2-2','Červená','#b62830',G_SOFT],
   ['out2-3','Tmavě modrá','#434e67',G_SOFT],['out2-4','Modrý tyrkys','#479fcc',G_SOFT],['out2-5','Fuchsiová','#e8437d',G_SOFT],
   ['out2-6','Šedá','#8b8a8b',G_SOFT],['out2-7','Černá','#3a3b3d',G_SOFT],
-  ['out3-0','Srdíčka na starorůžové','#b479a5',G_REFL,1],['out3-1','Srdíčka na tmavě modré','#565570',G_REFL,1],
-  ['out3-2','Maskáč','#656566',G_REFL,1],['out3-3','Auta','#545355',G_REFL,1],
   ['in1-0','V kapradinách – bílozelená','#e8e9db',G_BAV,1,'#8aa36a'],['in1-1','Oranžová – Karla','#f99044',G_BAV,0],
   ['in1-2','Černá – Adel','#252525',G_BAV,0],['in1-3','Borghese červená','#e1d5d6',G_BAV,1,'#b23a5a'],
   ['in1-4','Perkál Proužky – béžová','#e7e3d7',G_BAV,1,'#c8b98a'],['in1-5','Stíny stromů – zelená','#e1e4de',G_BAV,1,'#7d9a6e'],
@@ -563,8 +561,7 @@ class Component extends DCLogic {
     if (A.C < 0.035) {
       groups = [
         { label:'Barevný akcent', why:'k neutrální barvě sedí výrazná', items: cands.filter(c => c.lch.C >= 0.08).sort((x, y) => y.lch.C - x.lch.C).slice(0, 3) },
-        { label:'Neutrální', why:'jiný stupeň světlosti', items: cands.filter(c => c.lch.C < 0.035 && Math.abs(c.lch.L - A.L) > 0.12).slice(0, 3) },
-        { label:'Vzor', why:'reflexní, viditelný ve tmě', items: cands.filter(c => c.print).slice(0, 2) }
+        { label:'Neutrální', why:'jiný stupeň světlosti', items: cands.filter(c => c.lch.C < 0.035 && Math.abs(c.lch.L - A.L) > 0.12).slice(0, 3) }
       ];
     } else {
       groups = [
@@ -710,7 +707,7 @@ class Component extends DCLogic {
     const activeFab = s.mode === 'brush' ? s.brush : cfg[s.sel];
     const mkItems = (ids, act) => ids.map(id => ({ id, name: FAB[id].name, sw: FAB[id].sw, color: FAB[id].color, ring: ring(id === act) }));
     const groupsFor = (inner, act) => inner ? [{ label: G_BAV + ' · ' + INNER_IDS.length + ' látek', items: mkItems(INNER_IDS, act) }]
-      : [{ label: G_SOFT, items: mkItems(OUTER_IDS.filter(id => !FAB[id].print), act) }, { label: G_REFL, items: mkItems(OUTER_IDS.filter(id => FAB[id].print), act) }];
+      : [{ label: G_SOFT, items: mkItems(OUTER_IDS, act) }];
     const shownFab = FAB[s.hoverFab] || FAB[activeFab];
     const hp = s.hoverPart || s.sel;
     const views = [['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id, label]) => ({ id, label, bg: id === view ? '#1e2230' : 'transparent', fg: id === view ? '#f3f0ea' : '#1e2230' }));
