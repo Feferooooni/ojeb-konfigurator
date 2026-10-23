@@ -8,14 +8,14 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 
 - Klepnutí na díl bundy otevře výběr látky pod celým náhledem. Na širokém displeji je panel vedle bundy. Náhled zůstává viditelný a lze rovnou zvolit další díl. Pohledy Zepředu, Zezadu a Vnitřek sdílejí jeden návrh.
 - Úvodní animovaná ruka ukazuje na rukáv. Po prvním výběru dílu se už nezobrazuje; respektuje omezený pohyb.
-- Návrh nabízí vrácení a opakování změn. Inspirace obsahuje šest výchozích kombinací.
+- Návrh nabízí vrácení a opakování změn. Trendy kombinace obsahují šest výchozích kombinací.
 - Moje návrhy ukládají rozpracované bundy v tomto prohlížeči. Nový návrh nebo inspirace zachovají předchozí práci.
-- Hotovo otevře souhrn, přejmenování, stažení PNG a sdílení obrázku, pokud ho prohlížeč podporuje. Jinak se otevře náhled obrázku.
-- Na menších displejích mají katalogy stránkování a souhrn přepínač Náhled/Látky, aby ovládání zůstalo dostupné bez posouvání stránky.
+- Hotovo vpravo nahoře potvrdí uložení a miniatura bundy přeletí do Moje návrhy. Poté se otevře souhrn s přejmenováním, stažením PNG a sdílením, pokud ho prohlížeč podporuje. Při omezeném pohybu se přelet přeskočí.
+- Všech 17 vnějších barev nebo 18 podšívek je vidět najednou. Tipy vedle bundy reagují na zvolenou látku i ostatní barvy návrhu. Stránkování zůstává pouze u delších seznamů návrhů a připravených kombinací; krátké displeje mají v souhrnu přepínač Náhled/Látky.
 
 ## Ukládání a provoz
 
-Návrhy se ukládají lokálně pod klíčem `ojeb-designs-v1`; nejsou synchronizované mezi zařízeními. Při nedostupném úložišti aplikace zobrazí stav „Jen v relaci“. Barvy aktuálního návrhu jsou také v URL za `#`.
+Návrhy se ukládají lokálně pod klíčem `ojeb-designs-v1`; nejsou synchronizované mezi zařízeními. Při nedostupném úložišti aplikace zobrazí stav „Jen v relaci“. Barvy aktuálního návrhu jsou také v URL za `#`. Návrat přes úvodní adresu bez `#` obnoví naposledy otevřený návrh. Odkaz s konkrétními barvami načte tuto kombinaci; dřívější návrhy zůstanou v Moje návrhy. Smazání dat prohlížeče odstraní i lokální návrhy.
 
 Aplikace potřebuje internet pro React, písma a obrázky látek. Offline režim není implementovaný.
 

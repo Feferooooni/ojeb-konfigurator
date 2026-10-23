@@ -25,14 +25,17 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 @media(max-width:719px){.bottom-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.ojeb-preview{margin:auto 12px calc(12px + env(safe-area-inset-bottom));width:calc(100vw - 24px)}}
 @media(max-height:700px){.bottom-nav{height:calc(67px + env(safe-area-inset-bottom));padding-bottom:calc(12px + env(safe-area-inset-bottom))}.draft-thumb{height:74px}.collection{gap:9px;padding:12px}.collection h1{font-size:21px}.draft-card{padding:7px}.fabric-sheet{gap:8px;padding-bottom:calc(12px + env(safe-area-inset-bottom))}.finish{gap:6px;padding:10px}.triptych{min-height:0}.finish .summary-grid{min-height:0}.short-screen .review-switch,.tiny-screen .review-switch{display:flex;justify-content:center;gap:4px;flex:none}.review-switch button{height:30px;border-radius:99px;padding:0 20px;background:#ded8cd;font-size:12px;font-weight:650}.review-switch button.selected{background:var(--ink);color:var(--paper)}.finish-actions{gap:6px}.finish-actions>button{min-height:44px}.export-status{min-height:12px}.short-screen .triptych,.tiny-screen .triptych{flex:1;min-height:0}.suggestions .suggestion-note{display:none}}
 @media(max-height:499px){.app-header{height:40px;padding-inline:12px}.wordmark{font-size:24px}.bottom-nav{height:calc(52px + env(safe-area-inset-bottom));padding:3px 8px calc(6px + env(safe-area-inset-bottom))}.nav-item{font-size:10px;gap:1px}.nav-item:after{bottom:-3px!important}.nav-item .icon{width:20px;height:20px}.editor{padding:6px 12px}.view-controls{padding:2px}.view-controls button{height:27px}.editor-actions .round{height:40px;width:40px}.editor-actions .primary{min-height:40px}.stage{padding:3px 0}.stage-hint{display:none}.fabric-sheet{gap:5px;padding-top:6px;padding-bottom:8px}.fabric-sheet .handle{display:none}.fabric-sheet .sheet-header h1{font-size:18px}.fabric-sheet .sheet-header p{margin-top:1px;font-size:10px}.fabric-sheet .close{height:36px;width:36px}.fabric{height:40px}.fabric-sheet .palette-pages .round{height:30px}.fabric-sheet .suggestions{padding-top:4px;min-height:30px}.fabric-sheet .suggestions button{height:30px;width:30px;border-width:3px}.fabric-sheet .suggestion-note{display:none}.fabric-sheet .sheet-done{min-height:36px}.finish .saved-line,.finish .export-status{display:none}.finish .name-row h1{font-size:16px}.finish .name-row .round{width:28px;height:28px}.finish .summary-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.finish .summary-item{min-height:42px;padding:4px;grid-template-columns:23px 1fr}.finish .mini-fabric{width:23px;height:27px}.finish .summary-item small{font-size:8px}.finish .summary-item strong{font-size:9px}.finish .review-switch button{height:24px}.finish-actions{flex-direction:row}.finish-actions>button{min-height:36px;flex:1;font-size:11px;padding:0 8px}.collection p{display:none}.collection h1{font-size:18px}.collection{padding:8px;gap:6px}.collection-heading .round{width:34px;height:34px}.draft-thumb{height:51px}.draft-card strong{font-size:12px}.draft-card small{font-size:9px}.collection-pager .round{height:32px;width:32px}.collection-pager{font-size:10px}.collection .draft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
-/* Fabric selection occupies its own space and never covers the preview. */
+/* Approved editor: complete palette, contextual tips and explicit completion. */
+.finish-action{min-height:36px;padding:0 13px;border:0;border-radius:99px;display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:700}
+.finish-action .icon{width:17px;height:17px}
+.finish-action:active{transform:scale(.96)}
+.editor-actions{justify-content:center}
 .app.fabric-open .app-header{height:54px}
 .app.fabric-open .editor{padding:0}
 .app.fabric-open .view-controls{margin:9px auto 4px;padding:3px}
 .app.fabric-open .view-controls button{height:30px;font-size:11px;padding:0 16px}
-.app.fabric-open .stage{max-width:none;padding:6px 20px 12px}
-.app.fabric-open .jacket-figure{max-width:350px}
+.app.fabric-open .stage{display:grid;grid-template-columns:minmax(0,1fr) 76px;gap:5px;max-width:none;padding:6px 12px 12px;align-items:center}
+.app.fabric-open .jacket-figure{max-width:480px;justify-self:center}
 .app.fabric-open .stage-hint,.app.fabric-open .editor-actions{display:none}
 .app.fabric-open .bottom-nav{height:calc(60px + env(safe-area-inset-bottom));padding:5px 8px calc(10px + env(safe-area-inset-bottom))}
 .app.fabric-open .nav-item{font-size:10px;gap:3px}
@@ -43,58 +46,71 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 .fabric-sheet .sheet-header p{font-size:12px;margin:4px 0 0}
 .fabric-sheet .color-dot{width:10px;height:10px}
 .fabric-sheet .close{width:38px;height:38px}
-.fabric-sheet .palette{gap:8px;padding:3px}
+.fabric-sheet .palette{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding:3px}
 .fabric-sheet .fabric{height:44px;border-radius:8px}
-.fabric-sheet .palette-pages{height:36px}
-.fabric-sheet .palette-pages .round{width:40px;height:36px}
-.fabric-sheet .page-dots i{display:none}
-.fabric-sheet .page-dots>span{margin:0;font-size:11px}
-.fabric-sheet .suggestions{display:flex;min-height:32px;gap:8px;padding-top:7px}
-.fabric-sheet .suggestions>span:first-child{max-width:none;font-size:11px;font-weight:500;color:var(--muted);margin-right:2px}
-.fabric-sheet .suggestions button{height:30px;width:30px;border-width:4px}
-.fabric-sheet .suggestions .suggestion-note{display:none}
-.fabric-sheet .sheet-done{min-height:44px;margin:0;font-size:14px}
+.suggestions-panel{align-self:center;flex-direction:column;align-items:center;gap:5px;border:1px solid #d7d0c5;border-radius:16px;background:#faf8f4d9;padding:9px 5px 6px;min-width:0}
+.suggestions-panel h2{font-size:11px;margin:0;font-weight:750}
+.suggestions-panel p{font-size:9px;color:var(--muted);margin:0;text-align:center;line-height:1.25;overflow-wrap:anywhere}
+.recommended{min-height:56px;width:62px;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:3px 0}
+.suggestion-swatch{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px var(--paper),0 0 0 3px #d5cec2;background-size:cover}
+.suggestion-name{font-size:9px;line-height:1.15;color:#535966;max-width:62px;text-align:center;overflow-wrap:anywhere}
+.saving-design .editor,.saving-design .bottom-nav{pointer-events:none}
+.save-flight{width:210px;height:210px;position:fixed;top:0;left:0;z-index:70;border:1px solid #d5cbbb;border-radius:20px;background:var(--paper);box-shadow:0 16px 44px #1e223036;padding:12px;pointer-events:none;opacity:0;transform-origin:center;will-change:transform}
+.save-flight>svg{width:100%;height:100%;display:block}
+.save-glow{position:fixed;width:52px;height:52px;border:2px solid var(--orange);background:#e07a2e16;border-radius:18px;z-index:60;pointer-events:none;opacity:0;transform:translate(-50%,-50%)}
+.save-glow.active{animation:save-arrival .65s ease-out both}
+.nav-item.save-landed{color:var(--orange)}
+.save-confirmation{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);border-radius:99px;padding:9px 14px;white-space:nowrap;background:var(--ink);color:var(--paper);font-size:11px;font-weight:600;z-index:80;pointer-events:none}
+.toast{pointer-events:none}
+.toast input{pointer-events:auto}
+@keyframes save-arrival{0%{opacity:.9;transform:translate(-50%,-50%) scale(.65)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.2)}}
 @media(max-height:680px){
   .app.fabric-open .app-header{height:48px}
   .app.fabric-open .view-controls{margin:7px auto 3px}
   .app.fabric-open .view-controls button{height:27px}
-  .app.fabric-open .stage{padding:4px 12px 8px}
+  .app.fabric-open .stage{grid-template-columns:minmax(0,1fr) 62px;gap:2px;padding:4px 10px 8px}
   .app.fabric-open .bottom-nav{height:calc(54px + env(safe-area-inset-bottom))}
-  .fabric-sheet{gap:6px;padding:10px 14px 12px}
+  .fabric-sheet{gap:6px;padding:10px 12px 12px}
   .fabric-sheet .sheet-header h1{font-size:17px}
   .fabric-sheet .sheet-header p{font-size:11px;margin-top:3px}
   .fabric-sheet .close{width:35px;height:35px}
-  .fabric-sheet .fabric{height:42px}
-  .fabric-sheet .palette-pages,.fabric-sheet .palette-pages .round{height:34px}
-  .fabric-sheet .suggestions{display:none}
-  .fabric-sheet .sheet-done{min-height:40px;font-size:13px}
+  .fabric-sheet .palette{gap:6px}
+  .suggestions-panel{padding:5px 3px;gap:3px;border-radius:14px}
+  .suggestions-panel h2{font-size:10px}
+  .suggestions-panel p,.suggestion-name{display:none}
+  .recommended{min-height:38px;width:52px;padding:3px 0}
+  .suggestion-swatch{width:28px;height:28px}
 }
+@media(max-width:350px){.fabric-sheet .palette{gap:4px}.fabric-sheet{padding-inline:12px}}
 @media(min-width:900px),(min-width:520px) and (max-height:500px){
-  .app.fabric-open .editor{display:grid;grid-template-columns:minmax(0,1fr) 370px;grid-template-rows:auto minmax(0,1fr);column-gap:24px;width:100%;max-width:1100px;align-self:center;padding:20px 24px}
+  .app.fabric-open .editor{display:grid;grid-template-columns:minmax(0,1fr) 350px;grid-template-rows:auto minmax(0,1fr);column-gap:20px;width:100%;max-width:1160px;align-self:center;padding:20px 24px}
   .app.fabric-open .view-controls{grid-column:1;grid-row:1;justify-self:center}
   .app.fabric-open .stage{grid-column:1;grid-row:2;width:100%;height:100%}
-  .app.fabric-open .jacket-figure{max-width:500px}
   .fabric-sheet{grid-column:2;grid-row:1 / -1;align-self:center;border:1px solid var(--line);border-radius:20px;box-shadow:none}
 }
 @media(min-width:520px) and (max-height:500px){
   .app.fabric-open .app-header{height:40px}
-  .app.fabric-open .editor{grid-template-columns:minmax(0,1fr) 280px;column-gap:10px;padding:6px 12px}
+  .app.fabric-open .editor{grid-template-columns:minmax(0,1fr) 280px;column-gap:8px;padding:6px 10px}
+  .app.fabric-open .stage{grid-template-columns:minmax(0,1fr) 44px;gap:2px;padding:3px 3px 5px}
   .app.fabric-open .view-controls{margin:0 auto 3px}
-  .app.fabric-open .view-controls button{font-size:10px;padding:0 10px}
+  .app.fabric-open .view-controls button{font-size:10px;padding:0 8px}
   .app.fabric-open .bottom-nav{height:calc(52px + env(safe-area-inset-bottom));padding-top:3px;padding-bottom:calc(6px + env(safe-area-inset-bottom))}
   .fabric-sheet{gap:4px;padding:8px 10px}
   .fabric-sheet .sheet-header p{margin-top:1px}
-  .fabric-sheet .fabric{height:38px}
-  .fabric-sheet .palette-pages,.fabric-sheet .palette-pages .round{height:30px}
-  .fabric-sheet .sheet-done{min-height:36px}
+  .fabric-sheet .palette{gap:5px}
+  .fabric-sheet .fabric{height:36px}
+  .suggestions-panel{padding:4px 2px;gap:2px}
+  .recommended{min-height:31px;width:36px}
+  .suggestion-swatch{width:23px;height:23px}
 }
+@media(prefers-reduced-motion:reduce){.save-glow.active{animation:none}.finish-action:active{transform:none}}
 </style>
 </helmet>
 <div class="app {{ appClass }}">
 <header class="app-header">
 <sc-if value="{{ isFinish }}"><button class="back-link" onClick="{{ returnToDesign }}">{{ icons.back }}Upravit</button><strong class="detail-title">Přehled</strong></sc-if>
 <sc-if value="{{ notFinish }}"><div class="wordmark">o<span>’</span>jeb</div></sc-if>
-<div class="save-status" role="status">{{ saveIcon }}{{ saveLabel }}</div>
+<sc-if value="{{ showDone }}"><button ref="{{ doneRef }}" class="finish-action" onClick="{{ completeDesign }}" disabled="{{ saving }}">Hotovo {{ icons.check }}</button></sc-if>
 </header>
 <main class="editor" style="display:{{ panels.design }}">
 <div class="view-controls"><sc-for list="{{ views }}" as="v"><button data-view="{{ v.id }}" onClick="{{ onView }}" class="{{ v.activeClass }}" aria-pressed="{{ v.active }}">{{ v.label }}</button></sc-for></div>
@@ -170,15 +186,12 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 <path data-noexport="1" d="{{ hl.inside.sel }}" style="fill:none; stroke:#e07a2e; stroke-width:3; stroke-linejoin:round; pointer-events:none"></path>
 <path data-noexport="1" d="{{ hl.inside.drop }}" style="fill:#fff; fill-opacity:0.22; stroke:#e07a2e; stroke-width:4; stroke-dasharray:8 5; pointer-events:none"></path>
 <g data-noexport="1">{{ ripple.inside }}</g>
-<g data-noexport="1">{{ tapHints.inside }}</g></svg></div></div></div>
+<g data-noexport="1">{{ tapHints.inside }}</g></svg></div></div><aside class="suggestions-panel" aria-label="Doporučené barvy" style="display:{{ suggestionsDisplay }}"><h2>Tipy</h2><p>{{ selectedFabric.name }}</p><sc-for list="{{ suggestions }}" as="f"><button class="recommended" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}"><span class="suggestion-swatch" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></span><span class="suggestion-name">{{ f.name }}</span></button></sc-for></aside></div>
 <p class="stage-hint">Klepni na díl bundy a vyber látku.</p>
-<div class="editor-actions"><button class="round" aria-label="Vrátit změnu" disabled="{{ undoDisabled }}" onClick="{{ undo }}">{{ icons.undo }}</button><button class="round" aria-label="Zopakovat změnu" disabled="{{ redoDisabled }}" onClick="{{ redo }}">{{ icons.redo }}</button><button class="primary complete" onClick="{{ finish }}">Hotovo {{ icons.check }}</button></div>
+<div class="editor-actions"><button class="round" aria-label="Vrátit změnu" disabled="{{ undoDisabled }}" onClick="{{ undo }}">{{ icons.undo }}</button><button class="round" aria-label="Zopakovat změnu" disabled="{{ redoDisabled }}" onClick="{{ redo }}">{{ icons.redo }}</button></div>
 <section ref="{{ sheetRef }}" class="fabric-sheet" aria-labelledby="fabric-title" style="display:{{ sheetDisplay }}">
 <header class="sheet-header"><div><h1 id="fabric-title">{{ selectedPartName }}</h1><p><span class="color-dot" style="background:{{ selectedFabric.color }}"></span>{{ selectedFabric.name }}</p></div><button class="round close" aria-label="Zavřít výběr látky" onClick="{{ closeSheet }}">{{ icons.close }}</button></header>
-<div class="palette" onTouchStart="{{ onPaletteTouchStart }}" onTouchEnd="{{ onPaletteTouchEnd }}"><sc-for list="{{ fabricItems }}" as="f"><button class="fabric {{ f.activeClass }}" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" aria-pressed="{{ f.active }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})">{{ f.check }}</button></sc-for></div>
-<div class="palette-pages"><button class="round" aria-label="Předchozí látky" onClick="{{ previousFabric }}" disabled="{{ fabricPager.first }}">{{ icons.back }}</button><span class="page-dots"><sc-for list="{{ fabricDots }}" as="d"><i class="{{ d.activeClass }}"></i></sc-for><span>{{ fabricPager.label }}</span></span><button class="round" aria-label="Další látky" onClick="{{ nextFabric }}" disabled="{{ fabricPager.last }}">{{ icons.next }}</button></div>
-<div class="suggestions"><span>Tipy k bundě</span><sc-for list="{{ suggestions }}" as="f"><button data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></button></sc-for><span class="suggestion-note">Ladí s ostatními díly</span></div>
-<button class="primary sheet-done" onClick="{{ closeSheet }}">Hotovo {{ icons.check }}</button>
+<div class="palette"><sc-for list="{{ fabricItems }}" as="f"><button class="fabric {{ f.activeClass }}" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" aria-pressed="{{ f.active }}" onClick="{{ onFabric }}" style="background-color:{{ f.color }};background-image:url({{ f.sw }})">{{ f.check }}</button></sc-for></div>
 </section>
 </main>
 <main class="finish" style="display:{{ panels.finish }}">
@@ -245,18 +258,21 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 <div class="finish-actions"><button class="primary" onClick="{{ shareImage }}" disabled="{{ exportBusy }}">{{ icons.share }}{{ exportActionLabel }}</button><button class="secondary" onClick="{{ downloadImage }}" disabled="{{ exportBusy }}">{{ icons.download }}Stáhnout PNG</button></div>
 </main>
 <main class="collection" style="display:{{ panels.inspiration }}">
-<div class="collection-heading"><div><h1>Inspirace</h1><p>Vyber základ a dolaď si ho po svém.</p></div><button class="round" aria-label="Náhodná kombinace" onClick="{{ randomDraft }}">{{ icons.shuffle }}</button></div>
+<div class="collection-heading"><div><h1>Trendy kombinace</h1><p>Vyber základ a dolaď si ho po svém.</p></div><button class="round" aria-label="Náhodná kombinace" onClick="{{ randomDraft }}">{{ icons.shuffle }}</button></div>
 <div class="draft-grid"><sc-for list="{{ presetCards }}" as="c"><button class="draft-card" data-preset="{{ c.index }}" onClick="{{ onPreset }}"><div class="draft-thumb">{{ c.preview }}</div><strong>{{ c.name }}</strong><small>{{ c.description }}</small></button></sc-for></div>
-<sc-if value="{{ presetPager.visible }}"><div class="collection-pager"><button class="round" onClick="{{ previousPreset }}" disabled="{{ presetPager.first }}" aria-label="Předchozí inspirace">{{ icons.back }}</button><span>{{ presetPager.label }}</span><button class="round" onClick="{{ nextPreset }}" disabled="{{ presetPager.last }}" aria-label="Další inspirace">{{ icons.next }}</button></div></sc-if>
+<sc-if value="{{ presetPager.visible }}"><div class="collection-pager"><button class="round" onClick="{{ previousPreset }}" disabled="{{ presetPager.first }}" aria-label="Předchozí kombinace">{{ icons.back }}</button><span>{{ presetPager.label }}</span><button class="round" onClick="{{ nextPreset }}" disabled="{{ presetPager.last }}" aria-label="Další kombinace">{{ icons.next }}</button></div></sc-if>
 </main>
 <main class="collection" style="display:{{ panels.saved }}">
 <div class="collection-heading"><div><h1>Moje návrhy</h1><p>{{ libraryExplanation }}</p></div><button class="round" aria-label="Nový návrh" onClick="{{ newDraft }}">{{ icons.plus }}</button></div>
 <div class="draft-grid"><sc-for list="{{ savedCards }}" as="c"><button class="draft-card" data-id="{{ c.id }}" onClick="{{ onSaved }}"><div class="draft-thumb">{{ c.preview }}</div><strong>{{ c.name }}</strong><small>{{ c.description }}</small></button></sc-for></div>
 <sc-if value="{{ savedPager.visible }}"><div class="collection-pager"><button class="round" onClick="{{ previousSaved }}" disabled="{{ savedPager.first }}" aria-label="Předchozí návrhy">{{ icons.back }}</button><span>{{ savedPager.label }}</span><button class="round" onClick="{{ nextSaved }}" disabled="{{ savedPager.last }}" aria-label="Další návrhy">{{ icons.next }}</button></div></sc-if>
 </main>
-<nav class="bottom-nav" aria-label="Hlavní navigace"><sc-for list="{{ navigation }}" as="n"><button class="nav-item {{ n.activeClass }}" data-nav="{{ n.id }}" aria-pressed="{{ n.active }}" onClick="{{ onNavigation }}">{{ n.icon }}<span>{{ n.label }}</span></button></sc-for></nav>
+<nav ref="{{ navRef }}" class="bottom-nav" aria-label="Hlavní navigace"><sc-for list="{{ navigation }}" as="n"><button class="nav-item {{ n.activeClass }}" data-nav="{{ n.id }}" aria-pressed="{{ n.active }}" onClick="{{ onNavigation }}">{{ n.icon }}<span>{{ n.label }}</span></button></sc-for></nav>
 </div>
 
+<div ref="{{ flightRef }}" class="save-flight" style="display:{{ flightDisplay }}" aria-hidden="true">{{ savedPreview }}</div>
+<div ref="{{ glowRef }}" class="save-glow {{ saveGlowClass }}" aria-hidden="true"></div>
+<sc-if value="{{ savedNotice }}"><div class="save-confirmation" role="status">Uloženo v mých návrzích</div></sc-if>
 <dialog ref="{{ renameRef }}" class="rename-dialog" aria-labelledby="rename-title" onCancel="{{ closeRename }}"><form onSubmit="{{ submitRename }}"><h2 id="rename-title">Název návrhu</h2><input ref="{{ nameInput }}" aria-label="Název návrhu" value="{{ renameValue }}" onChange="{{ changeName }}" maxlength="60" autocomplete="off"><div class="rename-actions"><button class="secondary" type="button" onClick="{{ closeRename }}">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form></dialog>
 <dialog ref="{{ previewRef }}" class="ojeb-preview" onCancel="{{ closePreview }}" onClick="{{ onPreviewBackdrop }}" aria-labelledby="ojeb-preview-title">
 <div class="ojeb-preview-content"><header><h2 id="ojeb-preview-title">{{ preview.title }}</h2><button class="ojeb-preview-close" onClick="{{ closePreview }}" aria-label="Zavřít náhled">×</button></header>
@@ -371,7 +387,7 @@ function makeViewDefs(view, patterns) {
 }
 
 
-const ICON_PATHS = {"pencil": "M4 16.8V20h3.2L19.5 7.7l-3.2-3.2L4 16.8ZM14.9 5.9l3.2 3.2", "spark": "m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z", "folder": "M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3V7Z", "undo": "M8 7 3 12l5 5M4 12h10a6 6 0 0 1 6 6", "redo": "m16 7 5 5-5 5m4-5H10a6 6 0 0 0-6 6", "check": "m5 12 4 4L19 6", "share": "M12 15V3m-4 4 4-4 4 4M5 12v8h14v-8", "download": "M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4", "back": "m14 5-7 7 7 7", "next": "m10 5 7 7-7 7", "close": "m6 6 12 12M18 6 6 18", "plus": "M12 5v14M5 12h14", "shuffle": "m4 5 14 14m-4 0h4v-4M4 19 18 5m-4 0h4v4"};
+const ICON_PATHS = {"pencil": "M4 16.8V20h3.2L19.5 7.7l-3.2-3.2L4 16.8ZM14.9 5.9l3.2 3.2", "spark": "m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z", "folder": "M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3V7Z", "undo": "M8 7 3 12l5 5M4 12h10a6 6 0 0 1 6 6", "redo": "m16 7 5 5-5 5m4-5H10a6 6 0 0 0-6 6", "check": "m5 12 4 4L19 6", "share": "M12 15V3m-4 4 4-4 4 4M5 12v8h14v-8", "download": "M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4", "back": "m14 5-7 7 7 7", "next": "m10 5 7 7-7 7", "close": "m6 6 12 12M18 6 6 18", "plus": "M12 5v14M5 12h14", "shuffle": "m4 5 14 14m-4 0h4v-4M4 19 18 5m-4 0h4v4", "hanger": "M9.5 6a2.5 2.5 0 0 1 5 0c0 1.3-1 2-2.5 2.8V11M12 11l-8.4 5.6c-1.1.7-.6 2.4.7 2.4h15.4c1.3 0 1.8-1.7.7-2.4L12 11Z"};
 const MINI_PARTS = [{"id": "vrch", "d": "M262,100 Q300,112 338,100 L420,124 Q430,130 431,146 L432,262 Q366,272 300,274 Q234,272 168,262 L169,146 Q170,130 180,124 Z"}, {"id": "stred", "d": "M168,262 Q234,272 300,274 Q366,272 432,262 L434,430 L166,430 Z"}, {"id": "spodek", "d": "M166,430 L434,430 L438,640 Q300,650 162,640 Z"}, {"id": "kapsy", "d": "M186,292 L286,297 L286,422 L188,420 Z M414,292 L314,297 L314,422 L412,420 Z"}, {"id": "vrch", "d": "M262,104 L258,54 Q300,46 342,54 L338,104 Q300,114 262,104 Z"}, {"id": "rukavy", "d": "M180,124 Q150,128 140,160 L88,548 L84,592 Q108,602 134,600 L138,556 L176,300 Q186,210 180,124 Z M420,124 Q450,128 460,160 L512,548 L516,592 Q492,602 466,600 L462,556 L424,300 Q414,210 420,124 Z"}];
 const STORAGE_KEY = 'ojeb-designs-v1';
 const configKey = cfg => PARTS.map(p => cfg[p.id]).join('|');
@@ -393,6 +409,23 @@ function miniJacket(cfg, key) {
     ...MINI_PARTS.map((p, i) => h('path', { key: i, d: p.d, fill: 'url(#' + prefix + '-pt-' + p.id + ')', stroke: '#1e2230', strokeWidth: 1.1 })),
     h('path', { d: 'M300,54 L300,645', fill: 'none', stroke: '#1e2230', strokeWidth: 3 }));
 }
+function colorSuggestions(cfg, part) {
+  const selected = FAB[cfg[part]], ids = part === 'podsivka' ? INNER_IDS : OUTER_IDS;
+  const others = PARTS.filter(p => p.id !== part).map(p => ({ fabric: FAB[cfg[p.id]], weight: Math.max(1, p.area) }));
+  const anchor = selected.lch.C >= .035 ? selected : [...others].sort((a,b) => b.fabric.lch.C*b.weight-a.fabric.lch.C*a.weight)[0].fabric;
+  const pool = ids.filter(id => id !== selected.id).map(id => FAB[id]), used = new Set(), result = [];
+  const familiarity = f => others.reduce((total, o) => total + (o.fabric.id === f.id ? o.weight : 0), 0) * .015;
+  const pick = (filter, score) => {
+    const list = pool.filter(f => !used.has(f.id) && filter(f)).sort((a,b) => score(a)-score(b) || a.id.localeCompare(b.id));
+    if (list[0]) { used.add(list[0].id); result.push(list[0]); }
+  };
+  const targetLightness = selected.lch.L > .65 ? .38 : .73;
+  pick(f => f.lch.C < .045, f => Math.abs(f.lch.L-targetLightness) + f.lch.C - familiarity(f));
+  pick(f => f.lch.C >= .03, f => hd(f.lch.H,anchor.lch.H)/180 + Math.abs(f.lch.L-selected.lch.L)*.2 - familiarity(f));
+  pick(f => f.lch.C >= .035, f => Math.abs(hd(f.lch.H,anchor.lch.H)-150)/180 + Math.abs(f.lch.L-.6)*.2 - familiarity(f));
+  while (result.length < 3 && used.size < pool.length) pick(() => true, f => Math.abs(f.lch.L-selected.lch.L) - familiarity(f));
+  return result;
+}
 function tapHint() {
   const h = React.createElement;
   return h('g', { transform: 'translate(111 346)', className: 'tap-hint', 'aria-hidden': true, pointerEvents: 'none' },
@@ -401,12 +434,13 @@ function tapHint() {
 }
 class Component extends DCLogic {
   state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', screen: 'design', sheetOpen: false,
-    viewportH: 800, viewportW: 1280, fabricPage: 0, presetPage: 0, savedPage: 0, review: 'view',
+    viewportH: 800, viewportW: 1280, presetPage: 0, savedPage: 0, review: 'view',
     hintDismissed: false, draftId: '', draftName: 'Moje bunda', records: [], storageStatus: 'pending', renameOpen: false, renameValue: '',
-    exporting: false, exportError: '', preview: null, toast: null };
+    exporting: false, exportError: '', preview: null, toast: null, saving: false, savedNotice: false, saveSnapshot: null };
   svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
   sheetRef = React.createRef(); renameRef = React.createRef(); nameInput = React.createRef(); previewRef = React.createRef();
-  past = []; future = []; previewRequest = 0;
+  doneRef = React.createRef(); navRef = React.createRef(); flightRef = React.createRef(); glowRef = React.createRef();
+  past = []; future = []; previewRequest = 0; saveSequence = 0;
   componentDidMount() {
     let records = [], activeId = '', hintDismissed = false;
     try {
@@ -431,23 +465,20 @@ class Component extends DCLogic {
       active = { id: makeId(), name: 'Moje bunda', cfg: { ...PRESETS[0].cfg }, updatedAt: Date.now() }; records.push(active);
     }
     this.setState({ records, hintDismissed, draftId: active.id, draftName: active.name, cfg: { ...active.cfg }, viewportH: innerHeight, viewportW: innerWidth });
-    this.onResize = () => {
-      const perPage = this.fabricPageSize(innerHeight), list = this.state.sel === 'podsivka' ? INNER_IDS : OUTER_IDS;
-      this.setState({ viewportH: innerHeight, viewportW: innerWidth,
-        ...(perPage !== this.fabricPageSize() ? { fabricPage: Math.floor(Math.max(0, list.indexOf(this.state.cfg[this.state.sel])) / perPage) } : {}) });
-    };
-    this.onKeyDown = e => { if (e.key === 'Escape' && this.state.sheetOpen) { e.preventDefault(); this.closeSheet(); } };
+    this.onResize = () => { this.setState({ viewportH: innerHeight, viewportW: innerWidth }); if (this.state.saving) this.completeSave(this.saveSequence); };
+    this.onKeyDown = e => { if (e.key === 'Escape' && this.state.sheetOpen && !this.state.saving) { e.preventDefault(); this.closeSheet(); } };
     this.onPop = e => {
       const ui = e.state?.ojebUX || {};
       this.previewRequest++;
-      const part = PNAME[ui.part] ? ui.part : this.state.sel, list = part === 'podsivka' ? INNER_IDS : OUTER_IDS;
+      this.cancelSaveMotion();
+      const part = PNAME[ui.part] ? ui.part : this.state.sel;
       let view = this.state.view;
       if (PNAME[ui.part]) {
         if (part === 'podsivka') view = 'inside';
         else if (view === 'inside' || part === 'kapsy') view = 'front';
       }
       this.setState({ screen: ['design','finish','inspiration','saved'].includes(ui.screen) ? ui.screen : 'design',
-        sheetOpen: !!PNAME[ui.part], sel: part, view, fabricPage: Math.floor(Math.max(0, list.indexOf(this.state.cfg[part])) / this.fabricPageSize()), preview: null, renameOpen: false },
+        sheetOpen: !!PNAME[ui.part], sel: part, view, preview: null, renameOpen: false, saving: false, saveSnapshot: null },
         () => { if (this.state.screen === 'finish') this.prepareExport().catch(() => {}); });
     };
     window.addEventListener('resize', this.onResize); window.addEventListener('popstate', this.onPop); window.addEventListener('keydown', this.onKeyDown);
@@ -456,6 +487,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize); window.removeEventListener('popstate', this.onPop); window.removeEventListener('keydown', this.onKeyDown);
+    this.cancelSaveMotion(); clearTimeout(this.savedNoticeTimer);
     clearTimeout(this.toastTimer); if (this.previewCache) URL.revokeObjectURL(this.previewCache.url);
   }
   componentDidUpdate() {
@@ -475,40 +507,40 @@ class Component extends DCLogic {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, activeId: item.id, drafts: records, hintDismissed: this.state.hintDismissed })); }
     catch (e) { storageStatus = 'session'; }
     this.setState({ records, storageStatus });
+    return storageStatus === 'saved';
   }
   uiState(flags = {}) { return { screen: this.state.screen, ...flags }; }
   replaceUI(flags) { history.replaceState({ ...(history.state || {}), ojebUX: this.uiState(flags) }, '', location.href); }
   pushUI(flags) { history.pushState({ ...(history.state || {}), ojebUX: this.uiState(flags) }, '', location.href); }
-  navigate(screen) { this.previewRequest++; this.setState({ screen, sheetOpen: false, renameOpen: false, preview: null }); this.replaceUI({ screen }); }
+  navigate(screen) { if (this.state.saving) return; this.previewRequest++; this.setState({ screen, sheetOpen: false, renameOpen: false, preview: null }); this.replaceUI({ screen }); }
   toast(text, url) { clearTimeout(this.toastTimer); this.setState({ toast: { text, url: url || '' } }); this.toastTimer = setTimeout(() => this.setState({ toast: null }), 4000); }
   commitConfig(cfg) {
+    if (this.state.saving) return;
     if (configKey(cfg) === configKey(this.state.cfg)) return;
     this.past.push({ ...this.state.cfg }); if (this.past.length > 100) this.past.shift(); this.future = [];
     this.setState({ cfg: { ...cfg }, exportError: '' });
   }
-  undo() { if (!this.past.length) return; this.future.push({ ...this.state.cfg }); this.setState({ cfg: this.past.pop(), exportError: '' }); }
-  redo() { if (!this.future.length) return; this.past.push({ ...this.state.cfg }); this.setState({ cfg: this.future.pop(), exportError: '' }); }
-  fabricPageSize(height = this.state.viewportH) { return height <= 680 ? 6 : 12; }
+  undo() { if (this.state.saving || !this.past.length) return; this.future.push({ ...this.state.cfg }); this.setState({ cfg: this.past.pop(), exportError: '' }); }
+  redo() { if (this.state.saving || !this.future.length) return; this.past.push({ ...this.state.cfg }); this.setState({ cfg: this.future.pop(), exportError: '' }); }
   setView(view) {
-    if (!['front','back','inside'].includes(view)) return;
+    if (this.state.saving || !['front','back','inside'].includes(view)) return;
     if (!this.state.sheetOpen) { this.setState({ view }); return; }
     let part = this.state.sel;
     if (view === 'inside') part = 'podsivka';
     else if (part === 'podsivka' || (view === 'back' && part === 'kapsy')) part = 'vrch';
-    const list = part === 'podsivka' ? INNER_IDS : OUTER_IDS;
     this.replaceUI({ screen: 'design', part });
-    this.setState({ view, sel: part, fabricPage: Math.floor(Math.max(0, list.indexOf(this.state.cfg[part])) / this.fabricPageSize()) });
+    this.setState({ view, sel: part });
   }
   openPart(part) {
-    if (!PNAME[part]) return;
-    const list = part === 'podsivka' ? INNER_IDS : OUTER_IDS, perPage = this.fabricPageSize();
+    if (this.state.saving || !PNAME[part]) return;
     let view = this.state.view;
     if (part === 'podsivka') view = 'inside'; else if (view === 'inside' || part === 'kapsy') view = 'front';
     if (!this.state.sheetOpen) this.pushUI({ screen: 'design', part });
     else this.replaceUI({ screen: 'design', part });
-    this.setState({ screen: 'design', sheetOpen: true, hintDismissed: true, sel: part, view, fabricPage: Math.floor(Math.max(0,list.indexOf(this.state.cfg[part])) / perPage) });
+    this.setState({ screen: 'design', sheetOpen: true, hintDismissed: true, sel: part, view });
   }
   closeSheet() {
+    if (this.state.saving) return;
     const owns = !!history.state?.ojebUX?.part; this.setState({ sheetOpen: false });
     if (owns) history.back(); else this.replaceUI({ screen: 'design' });
   }
@@ -518,17 +550,55 @@ class Component extends DCLogic {
     this.commitConfig({ ...this.state.cfg, [part]: id });
   }
   newDraft(cfg = PRESETS[0].cfg, name = 'Moje bunda') {
+    if (this.state.saving) return;
     this.past = []; this.future = [];
-    this.setState({ draftId: makeId(), draftName: name, cfg: { ...cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null, fabricPage: 0 });
+    this.setState({ draftId: makeId(), draftName: name, cfg: { ...cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null });
     this.replaceUI({ screen: 'design' });
   }
   openDraft(id) {
+    if (this.state.saving) return;
     const r = this.state.records.find(r => r.id === id); if (!r) return;
     this.past = []; this.future = [];
-    this.setState({ draftId: r.id, draftName: r.name, cfg: { ...r.cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null, fabricPage: 0 });
+    this.setState({ draftId: r.id, draftName: r.name, cfg: { ...r.cfg }, screen: 'design', view: 'front', sel: 'vrch', sheetOpen: false, preview: null });
     this.replaceUI({ screen: 'design' });
   }
-  finish() { this.pushUI({ screen: 'finish' }); this.setState({ screen: 'finish', sheetOpen: false }, () => this.prepareExport().catch(() => {})); }
+  finish(afterRender) { this.pushUI({ screen: 'finish' }); this.setState({ screen: 'finish', sheetOpen: false }, () => { this.prepareExport().catch(() => {}); afterRender?.(); }); }
+  cancelSaveMotion() { this.saveSequence++; this.flightAnimation?.cancel(); this.flightAnimation = null; }
+  completeSave(sequence) {
+    if (sequence !== this.saveSequence || !this.state.saving) return;
+    this.cancelSaveMotion();
+    this.setState({ saving: false, saveSnapshot: null, savedNotice: true }, () => {
+      this.finish(() => {
+        const target = this.navRef.current?.querySelector('[data-nav="saved"] .icon'), glow = this.glowRef.current;
+        if (target && glow) { const r = target.getBoundingClientRect(); glow.style.left = (r.x+r.width/2)+'px'; glow.style.top = (r.y+r.height/2)+'px'; }
+      });
+    });
+    clearTimeout(this.savedNoticeTimer); this.savedNoticeTimer = setTimeout(() => this.setState({ savedNotice: false }), 1800);
+  }
+  async animateSave(sequence) {
+    const card = this.flightRef.current, button = this.doneRef.current, target = this.navRef.current?.querySelector('[data-nav="saved"] .icon');
+    if (!card?.animate || !button || !target || matchMedia('(prefers-reduced-motion: reduce)').matches) { this.completeSave(sequence); return; }
+    const b = button.getBoundingClientRect(), n = target.getBoundingClientRect(), size = Math.min(210,innerWidth*.58);
+    card.style.width = size+'px'; card.style.height = size+'px';
+    const start = { x:b.x+b.width/2, y:b.y+b.height/2 }, middle = { x:innerWidth/2, y:innerHeight*.46 }, end = { x:n.x+n.width/2, y:n.y+n.height/2 };
+    const mix = (a,b,t) => a+(b-a)*t, smooth = t => t*t*(3-2*t);
+    const frames = Array.from({length:31},(_,i) => {
+      const t=i/30; let x=start.x,y=start.y,scale=.16,opacity=0,rotation=0;
+      if (t>.025 && t<.16) { const u=smooth((t-.025)/.135); y=mix(start.y,start.y+24,u);scale=mix(.16,.32,u);opacity=u; }
+      else if (t>=.16 && t<.48) { const u=smooth((t-.16)/.32);x=mix(start.x,middle.x,u);y=mix(start.y+24,middle.y,u);scale=mix(.32,1,u);opacity=1;rotation=-5*Math.sin(Math.PI*u); }
+      else if (t>=.48 && t<.58) { x=middle.x;y=middle.y;scale=1;opacity=1; }
+      else if (t>=.58) { const u=smooth(Math.min(1,(t-.58)/.38)),v=1-u;x=v*v*middle.x+2*v*u*(middle.x+90)+u*u*end.x;y=v*v*middle.y+2*v*u*(end.y-100)+u*u*end.y;scale=mix(1,.08,u);opacity=t>.92?Math.max(0,(.96-t)/.04):1;rotation=3*Math.sin(Math.PI*u); }
+      return {offset:t,transform:`translate3d(${x-size/2}px,${y-size/2}px,0) scale(${scale}) rotate(${rotation}deg)`,opacity};
+    });
+    try { this.flightAnimation = card.animate(frames,{duration:1100,fill:'forwards',easing:'linear'}); await this.flightAnimation.finished; this.completeSave(sequence); }
+    catch (e) { if (sequence === this.saveSequence) this.completeSave(sequence); }
+  }
+  completeDesign() {
+    if (this.state.saving) return;
+    if (!this.persistCurrent()) { this.toast('Návrh se nepodařilo trvale uložit. Stáhni si obrázek.'); this.finish(); return; }
+    const sequence = ++this.saveSequence;
+    this.setState({ saving:true, savedNotice:false, saveSnapshot:{ ...this.state.cfg } }, () => this.animateSave(sequence));
+  }
   returnToDesign() { const owns = history.state?.ojebUX?.screen === 'finish'; this.setState({ screen: 'design' }); if (owns) history.back(); else this.replaceUI({ screen: 'design' }); }
   openRename() { this.pushUI({ rename: true }); this.setState({ renameOpen: true, renameValue: this.state.draftName }, () => this.nameInput.current?.focus()); }
   closeRename() { const owns = !!history.state?.ojebUX?.rename; this.setState({ renameOpen: false }); if (owns) history.back(); else this.replaceUI({ screen: this.state.screen }); }
@@ -574,26 +644,29 @@ class Component extends DCLogic {
     const s = this.state, short = s.viewportH < 600, tiny = s.viewportH < 500;
     const pat = patternsFor(s.cfg), icons = Object.fromEntries(Object.keys(ICON_PATHS).map(k => [k,icon(k)]));
     const pager = (count, size, value) => { const pages = Math.max(1,Math.ceil(count / size)), index = Math.max(0,Math.min(value,pages-1)); return { index, pages, first: index === 0, last: index === pages-1, visible: pages > 1, label: (index+1) + ' / ' + pages }; };
-    const list = s.sel === 'podsivka' ? INNER_IDS : OUTER_IDS, fabricSize = this.fabricPageSize(), fabricPager = pager(list.length, fabricSize, s.fabricPage);
+    const list = s.sel === 'podsivka' ? INNER_IDS : OUTER_IDS;
     const cardSize = tiny ? 2 : (short ? 4 : 6), presetPager = pager(PRESETS.length,cardSize,s.presetPage), savedPager = pager(s.records.length,cardSize,s.savedPage);
     const makeCard = (cfg,key,name,description) => ({ name, description, preview: miniJacket(cfg,key) });
-    const tips = this.tipsFor(s.sel).groups.flatMap(g => g.items).slice(0,3);
+    const tips = colorSuggestions(s.cfg,s.sel);
     const isFinish = s.screen === 'finish', activeNav = isFinish ? 'design' : s.screen;
     const hl = Object.fromEntries(['front','back','inside'].map(v=>[v,{sel:s.sheetOpen && v===s.view ? HL[v][s.sel] || '' : '',hover:'',drop:''}]));
     const clipDefs = Object.fromEntries(['front','back','inside'].map(v=>[v,[]]));
     const cacheReady = this.previewCache?.key === this.exportKey();
     return {
-      icons, appClass: (tiny ? 'tiny-screen' : (short ? 'short-screen' : '')) + (s.sheetOpen && s.screen === 'design' ? ' fabric-open' : ''),
+      icons, appClass: (tiny ? 'tiny-screen' : (short ? 'short-screen' : '')) + (s.sheetOpen && s.screen === 'design' ? ' fabric-open' : '') + (s.saving ? ' saving-design' : ''),
       sheetDisplay: s.sheetOpen && s.screen === 'design' ? 'flex' : 'none',
+      suggestionsDisplay: s.sheetOpen && s.screen === 'design' ? 'flex' : 'none',
       isFinish, notFinish: !isFinish, panels: Object.fromEntries(['design','finish','inspiration','saved'].map(k=>[k,s.screen===k?(k==='design' && s.sheetOpen && (s.viewportW>=900 || (s.viewportW>=520 && s.viewportH<=500))?'grid':'flex'):'none'])),
-      navigation: [['design','Návrh','pencil'],['inspiration','Inspirace','spark'],['saved','Moje návrhy','folder']].map(([id,label,k])=>({id,label,icon:icons[k],active:id===activeNav,activeClass:id===activeNav?'active':''})),
+      navigation: [['design','Návrh','pencil'],['inspiration','Trendy kombinace','hanger'],['saved','Moje návrhy','folder']].map(([id,label,k])=>({id,label,icon:icons[k],active:id===activeNav,activeClass:(id===activeNav?'active':'')+(id==='saved' && s.savedNotice?' save-landed':'')})),
       onNavigation: e => this.navigate(e.currentTarget.dataset.nav),
-      saveLabel: s.storageStatus === 'saved' ? 'Uloženo' : (s.storageStatus === 'pending' ? 'Ukládám' : 'Jen v relaci'),
       saveIcon: s.storageStatus === 'saved' ? icons.check : [],
       saveExplanation: s.storageStatus === 'saved' ? 'Návrh máš uložený v tomto prohlížeči.' : 'Ukládání není dostupné. Návrh si stáhni jako obrázek.',
       libraryExplanation: s.storageStatus === 'saved' ? 'Uložené v tomto prohlížeči.' : 'Dočasné návrhy pro tuto relaci.',
       draftName:s.draftName, undoDisabled:!this.past.length,redoDisabled:!this.future.length,
-      undo:()=>this.undo(),redo:()=>this.redo(),finish:()=>this.finish(),returnToDesign:()=>this.returnToDesign(),
+      undo:()=>this.undo(),redo:()=>this.redo(),completeDesign:()=>this.completeDesign(),returnToDesign:()=>this.returnToDesign(),
+      showDone:s.screen==='design',doneRef:this.doneRef,navRef:this.navRef,saving:s.saving,
+      flightRef:this.flightRef,glowRef:this.glowRef,flightDisplay:s.saving?'block':'none',
+      savedPreview:s.saveSnapshot?miniJacket(s.saveSnapshot,'flight-'+s.draftId):[],savedNotice:s.savedNotice,saveGlowClass:s.savedNotice?'active':'',
       views:[['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id,label])=>({id,label,active:id===s.view,activeClass:id===s.view?'selected':''})),
       onView:e=>this.setView(e.currentTarget.dataset.view), onPart:e=>this.openPart(e.currentTarget.dataset.part), onPartRow:e=>this.openPart(e.currentTarget.dataset.part),
       onTouchStart:e=>{this.swipeStart=e.touches[0].clientX;},onTouchEnd:e=>{if(this.swipeStart==null)return;const dx=e.changedTouches[0].clientX-this.swipeStart;this.swipeStart=null;if(Math.abs(dx)>60){const order=['front','back','inside'];this.setView(order[(order.indexOf(s.view)+(dx<0?1:2))%3]);}},
@@ -605,11 +678,8 @@ class Component extends DCLogic {
       reviewViewClass:s.review==='view'?'selected':'',reviewFabricsClass:s.review==='fabrics'?'selected':'',switchReview:e=>this.setState({review:e.currentTarget.dataset.review}),
       reviewDisplays:{view:short?(s.review==='view'?'grid':'none'):'grid',fabrics:short?(s.review==='fabrics'?'grid':'none'):'grid'},
       selectedPartName:PNAME[s.sel],selectedFabric:FAB[s.cfg[s.sel]],sheetRef:this.sheetRef,
-      fabricItems:list.slice(fabricPager.index*fabricSize,(fabricPager.index+1)*fabricSize).map(id=>({...FAB[id],active:id===s.cfg[s.sel],activeClass:id===s.cfg[s.sel]?'chosen':'',check:id===s.cfg[s.sel]?icons.check:[]})),
-      fabricPager,fabricDots:Array.from({length:fabricPager.pages},(_,i)=>({activeClass:i===fabricPager.index?'current':''})),
-      previousFabric:()=>this.setState({fabricPage:Math.max(0,fabricPager.index-1)}),nextFabric:()=>this.setState({fabricPage:Math.min(fabricPager.pages-1,fabricPager.index+1)}),
+      fabricItems:list.map(id=>({...FAB[id],active:id===s.cfg[s.sel],activeClass:id===s.cfg[s.sel]?'chosen':'',check:id===s.cfg[s.sel]?icons.check:[]})),
       onFabric:e=>this.chooseFabric(e.currentTarget.dataset.fab),closeSheet:e=>{e?.preventDefault();this.closeSheet();},
-      onPaletteTouchStart:e=>{this.paletteStart=e.touches[0].clientX;},onPaletteTouchEnd:e=>{if(this.paletteStart==null)return;const dx=e.changedTouches[0].clientX-this.paletteStart;this.paletteStart=null;if(Math.abs(dx)>55)this.setState({fabricPage:Math.max(0,Math.min(fabricPager.pages-1,fabricPager.index+(dx<0?1:-1)))});},
       suggestions:tips,
       presetCards:PRESETS.map((p,index)=>({...makeCard(p.cfg,'preset'+index,p.name,p.sub),index})).slice(presetPager.index*cardSize,(presetPager.index+1)*cardSize),
       savedCards:s.records.map(r=>({...makeCard(r.cfg,r.id,r.name,r.id===s.draftId?'Právě otevřený':'Uložený návrh'),id:r.id})).slice(savedPager.index*cardSize,(savedPager.index+1)*cardSize),
@@ -632,40 +702,6 @@ class Component extends DCLogic {
     const cfg = { ...PRESETS[0].cfg }; let ok = false;
     Object.keys(HKEY).forEach(k => { const v = p[HKEY[k]]; if (FAB[v] && FAB[v].inner === (k === 'podsivka')) { cfg[k] = v; ok = true; } });
     return ok ? cfg : null;
-  }
-
-  tipsFor(part) {
-    const cfg = this.state.cfg, cur = cfg[part];
-    if (part === 'podsivka') {
-      const anchor = FAB[cfg.spodek], outs = OUTER_PARTS.map(p => FAB[cfg[p]]);
-      const cands = INNER_IDS.filter(id => id !== cur).map(id => FAB[id]);
-      const tone = cands.filter(c => c.lch.C >= 0.03 && outs.some(o => o.lch.C >= 0.03 && hd(o.lch.H, c.lch.H) < 35))
-        .sort((a, b) => Math.min(...outs.map(o => hd(o.lch.H, a.lch.H))) - Math.min(...outs.map(o => hd(o.lch.H, b.lch.H)))).slice(0, 3);
-      const contrast = cands.filter(c => c.lch.C >= 0.06 && (anchor.lch.C < 0.035 || hd(anchor.lch.H, c.lch.H) >= 110) && !tone.includes(c)).sort((a, b) => b.lch.C - a.lch.C).slice(0, 3);
-      const calm = cands.filter(c => c.lch.C < 0.035 && !tone.includes(c)).slice(0, 3);
-      return { forName: 'Podšívka', lead: `Vychází z barev vnějších dílů, hlavně ze spodního dílu (${anchor.name}).`,
-        groups: [ { label:'Ladí s bundou', why:'stejný barevný tón', items: tone }, { label:'Překvapení uvnitř', why:'kontrastní barva', items: contrast }, { label:'Klidná', why:'neutrální vzor', items: calm } ].filter(g => g.items.length) };
-    }
-    const others = OUTER_PARTS.filter(p => p !== part).sort((a, b) => PARTS.find(x => x.id === b).area - PARTS.find(x => x.id === a).area);
-    const ap = others.find(p => cfg[p] !== cur) || others[0];
-    const a = FAB[cfg[ap]], A = a.lch;
-    const cands = OUTER_IDS.filter(id => id !== cur && id !== a.id).map(id => FAB[id]);
-    let groups;
-    if (A.C < 0.035) {
-      groups = [
-        { label:'Barevný akcent', why:'k neutrální barvě sedí výrazná', items: cands.filter(c => c.lch.C >= 0.08).sort((x, y) => y.lch.C - x.lch.C).slice(0, 3) },
-        { label:'Neutrální', why:'jiný stupeň světlosti', items: cands.filter(c => c.lch.C < 0.035 && Math.abs(c.lch.L - A.L) > 0.12).slice(0, 3) }
-      ];
-    } else {
-      groups = [
-        { label:'Tón v tónu', why:'stejný odstín, jiná světlost', items: cands.filter(c => c.lch.C >= 0.03 && hd(c.lch.H, A.H) < 40 && Math.abs(c.lch.L - A.L) > 0.06).sort((x, y) => hd(x.lch.H, A.H) - hd(y.lch.H, A.H)).slice(0, 3) },
-        { label:'Kontrast', why:'barva z druhé strany kruhu', items: cands.filter(c => c.lch.C >= 0.05 && hd(c.lch.H, A.H) >= 110).sort((x, y) => hd(y.lch.H, A.H) - hd(x.lch.H, A.H)).slice(0, 3) },
-        { label:'Neutrální', why:'uklidní kombinaci', items: cands.filter(c => !c.print && c.lch.C < 0.035).sort((x, y) => Math.abs(y.lch.L - A.L) - Math.abs(x.lch.L - A.L)).slice(0, 3) }
-      ];
-    }
-    const used = new Set();
-    groups.forEach(g => { g.items = g.items.filter(f => !used.has(f.id)); g.items.forEach(f => used.add(f.id)); });
-    return { forName: PNAME[part], lead: `Vychází z látky ${a.name} (${PNAME[ap].toLowerCase()}).`, groups: groups.filter(g => g.items.length) };
   }
 
   async buildImage() {
