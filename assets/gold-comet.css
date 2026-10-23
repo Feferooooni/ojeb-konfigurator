@@ -1,0 +1,25 @@
+/* O'Jeb – zlatý paprsek kolem tlačítka (varianta B). Bez závislostí. */
+.ojg{position:absolute;left:0;top:0;pointer-events:none;opacity:0;visibility:hidden}
+.ojg.is-on{opacity:1;visibility:visible;transition:opacity .9s ease}
+.ojg>svg{position:absolute;left:0;top:0;overflow:visible}
+.ojg-static{display:none}
+.ojg.is-on .ojg-c{animation:ojg-dash var(--ojg-dur,5s) linear infinite}
+.ojg-sp{position:absolute;left:0;top:0;width:var(--s,6px);height:var(--s,6px);offset-rotate:auto;offset-anchor:center}
+.ojg-sp>i{display:block;width:100%;height:100%;opacity:0;transform:translateY(var(--dy,0px)) scale(.2)}
+.ojg-sp svg{display:block;width:100%;height:100%;overflow:visible}
+.ojg.is-on .ojg-sp{animation:ojg-run var(--ojg-dur,5s) linear infinite}
+.ojg.is-on .ojg-sp>i{animation:ojg-tw var(--tw,1.8s) ease-in-out var(--twd,0s) infinite}
+.ojg.is-paused .ojg-c,.ojg.is-paused .ojg-sp,.ojg.is-paused .ojg-sp>i{animation-play-state:paused}
+@keyframes ojg-dash{to{stroke-dashoffset:-100}}
+@keyframes ojg-run{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes ojg-tw{
+  0%,100%{opacity:0;transform:translateY(var(--dy,0px)) scale(.2) rotate(0deg)}
+  14%{opacity:1;transform:translateY(var(--dy,0px)) scale(1) rotate(25deg)}
+  32%{opacity:0;transform:translateY(var(--dy,0px)) scale(.35) rotate(50deg)}
+}
+@supports not (offset-path:path('M0 0')){.ojg-sp{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .ojg-anim,.ojg-sp{display:none}
+  .ojg-static{display:inline}
+  .ojg.is-on{transition:none}
+}

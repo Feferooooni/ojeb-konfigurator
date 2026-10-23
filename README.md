@@ -11,6 +11,7 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 - Úvodní animovaná ruka ukazuje na rukáv. Po prvním výběru dílu se už nezobrazuje; respektuje omezený pohyb.
 - Návrh nabízí vrácení a opakování změn. Trendy kombinace obsahují šest výchozích kombinací.
 - Moje návrhy ukládají rozpracované bundy v tomto prohlížeči. Uložená bunda se otevře rovnou v přehledu pro sdílení a stažení PNG; do editoru se přejde tlačítkem Upravit. Nový návrh nebo trendy kombinace zachovají předchozí práci.
+- Po první změně nebo úspěšném uložení návrhu se po pěti sekundách na Hotovo objeví dodaný zlatý paprsek (varianta B). Při ukládání je skrytý, při omezeném pohybu má statickou podobu. Na Sdílet obrázek se tento efekt nevztahuje.
 - Hotovo vpravo nahoře potvrdí uložení a miniatura bundy přeletí do Moje návrhy. Poté se otevře souhrn s přejmenováním, stažením PNG a sdílením, pokud ho prohlížeč podporuje. Při omezeném pohybu se přelet přeskočí.
 - Všech 17 vnějších barev nebo 18 podšívek je vidět najednou. Tipy vedle bundy reagují na zvolenou látku i ostatní barvy návrhu. Stránkování zůstává pouze u delších seznamů návrhů a připravených kombinací; krátké displeje mají v souhrnu přepínač Náhled/Látky.
 
@@ -21,6 +22,7 @@ Návrhy se ukládají lokálně pod klíčem `ojeb-designs-v1`; nejsou synchroni
 Aplikace potřebuje internet pro React, písma a obrázky látek. Offline režim není implementovaný.
 
 - `index.html` — šablona, styly a aplikační logika
+- `assets/gold-comet.css`, `assets/gold-comet.js` — dodaný zlatý efekt na Hotovo
 - `support.js` — runtime načítající React 18 z unpkg.com
 - `fabrics/sw/`, `fabrics/swc/`, `fabrics/tile/` — náhledy a textury látek
 - `.nojekyll` — vypnutí Jekyllu na GitHub Pages

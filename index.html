@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#faf8f4">
 <title>O’Jeb — moje bunda</title>
+<link rel="stylesheet" href="./assets/gold-comet.css">
+<script src="./assets/gold-comet.js"></script>
 <script src="./support.js"></script>
 </head><body><x-dc><helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +30,9 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 /* Approved editor: complete palette, contextual tips and explicit completion. */
 .finish-action{min-height:36px;padding:0 13px;border:0;border-radius:99px;display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:700}
 .finish-action .icon{width:17px;height:17px}
+.done-comet-host{display:inline-flex;flex:none;position:relative;border-radius:999px}
+.done-comet-host>.ojg{z-index:1}
+.done-comet-host .ojg.is-document-hidden .ojg-c,.done-comet-host .ojg.is-document-hidden .ojg-sp,.done-comet-host .ojg.is-document-hidden .ojg-sp>i{animation-play-state:paused}
 .finish-action:active{transform:scale(.96)}
 .editor-actions{justify-content:center}
 .app.fabric-open .app-header{height:54px}
@@ -110,7 +115,7 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 <header class="app-header">
 <sc-if value="{{ isFinish }}"><button class="back-link" onClick="{{ returnToDesign }}">{{ icons.back }}Upravit</button><strong class="detail-title">Přehled</strong></sc-if>
 <sc-if value="{{ notFinish }}"><div class="wordmark">o<span>’</span>jeb</div></sc-if>
-<sc-if value="{{ showDone }}"><button ref="{{ doneRef }}" class="finish-action" onClick="{{ completeDesign }}" disabled="{{ saving }}">Hotovo {{ icons.check }}</button></sc-if>
+<sc-if value="{{ showDone }}"><span ref="{{ doneCometHostRef }}" class="done-comet-host" aria-busy="{{ saving }}" aria-disabled="{{ saving }}"><button ref="{{ doneRef }}" class="finish-action" onClick="{{ completeDesign }}" disabled="{{ saving }}">Hotovo {{ icons.check }}</button></span></sc-if>
 </header>
 <main class="editor" style="display:{{ panels.design }}">
 <div class="view-controls"><sc-for list="{{ views }}" as="v"><button data-view="{{ v.id }}" onClick="{{ onView }}" class="{{ v.activeClass }}" aria-pressed="{{ v.active }}">{{ v.label }}</button></sc-for></div>
@@ -460,6 +465,7 @@ class Component extends DCLogic {
   svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
   sheetRef = React.createRef(); renameRef = React.createRef(); nameInput = React.createRef(); previewRef = React.createRef();
   doneRef = React.createRef(); navRef = React.createRef(); flightRef = React.createRef(); glowRef = React.createRef();
+  doneCometHostRef = React.createRef(); doneComet = null; doneCometHost = null; doneCueReadyAt = 0;
   past = []; future = []; previewRequest = 0; saveSequence = 0;
   componentDidMount() {
     let records = [], activeId = '', hintDismissed = false;
@@ -487,6 +493,7 @@ class Component extends DCLogic {
     this.setState({ records, hintDismissed, draftId: active.id, draftName: active.name, cfg: { ...active.cfg }, viewportH: innerHeight, viewportW: innerWidth });
     this.onResize = () => { this.setState({ viewportH: innerHeight, viewportW: innerWidth }); if (this.state.saving) this.completeSave(this.saveSequence); };
     this.onKeyDown = e => { if (e.key === 'Escape' && this.state.sheetOpen && !this.state.saving) { e.preventDefault(); this.closeSheet(); } };
+    this.onVisibilityChange = () => this.doneComet?.el.classList.toggle('is-document-hidden', document.hidden);
     this.onPop = e => {
       const ui = e.state?.ojebUX || {};
       this.previewRequest++;
@@ -502,12 +509,15 @@ class Component extends DCLogic {
         () => { if (this.state.screen === 'finish') this.prepareExport().catch(() => {}); });
     };
     window.addEventListener('resize', this.onResize); window.addEventListener('popstate', this.onPop); window.addEventListener('keydown', this.onKeyDown);
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
     this.replaceUI({ screen: 'design' });
     this.persistCurrent();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize); window.removeEventListener('popstate', this.onPop); window.removeEventListener('keydown', this.onKeyDown);
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
     this.cancelSaveMotion(); clearTimeout(this.savedNoticeTimer);
+    this.doneComet?.destroy(); this.doneComet = null; this.doneCometHost = null;
     clearTimeout(this.toastTimer); if (this.previewCache) URL.revokeObjectURL(this.previewCache.url);
   }
   componentDidUpdate() {
@@ -517,6 +527,20 @@ class Component extends DCLogic {
     if (this.state.draftId && key !== this.persistedKey) this.persistCurrent();
     const hash = '#' + Object.keys(HKEY).map(k => HKEY[k] + '=' + this.state.cfg[k]).join('&');
     if (location.hash !== hash) history.replaceState(history.state, '', hash);
+    this.syncDoneComet();
+  }
+  armDoneComet() { if (!this.doneCueReadyAt) this.doneCueReadyAt = Date.now() + 5000; }
+  syncDoneComet() {
+    const host = this.doneCometHostRef.current;
+    if (this.doneCometHost !== host || (this.doneComet && !this.doneComet.el.isConnected) || (host && !this.doneComet && window.OJGold)) {
+      this.doneComet?.destroy(); this.doneComet = null; this.doneCometHost = host;
+      if (host && window.OJGold) this.doneComet = window.OJGold.attach(host);
+    }
+    this.onVisibilityChange();
+    if (!this.doneComet || !this.doneCueReadyAt) return;
+    const remaining = this.doneCueReadyAt - Date.now();
+    if (remaining > 0) this.doneComet.activateAfter(remaining);
+    else this.doneComet.setActive(true);
   }
   persistCurrent() {
     if (!this.state.draftId) return;
@@ -537,6 +561,7 @@ class Component extends DCLogic {
   commitConfig(cfg) {
     if (this.state.saving) return;
     if (configKey(cfg) === configKey(this.state.cfg)) return;
+    this.armDoneComet();
     this.past.push({ ...this.state.cfg }); if (this.past.length > 100) this.past.shift(); this.future = [];
     this.setState({ cfg: { ...cfg }, exportError: '' });
   }
@@ -618,6 +643,7 @@ class Component extends DCLogic {
   completeDesign() {
     if (this.state.saving) return;
     if (!this.persistCurrent()) { this.toast('Návrh se nepodařilo trvale uložit. Stáhni si obrázek.'); this.finish(); return; }
+    this.armDoneComet();
     const sequence = ++this.saveSequence;
     this.setState({ saving:true, savedNotice:false, saveSnapshot:{ ...this.state.cfg } }, () => this.animateSave(sequence));
   }
@@ -691,7 +717,7 @@ class Component extends DCLogic {
       libraryExplanation: s.storageStatus === 'saved' ? 'Uložené v tomto prohlížeči.' : 'Dočasné návrhy pro tuto relaci.',
       draftName:s.draftName, undoDisabled:!this.past.length,redoDisabled:!this.future.length,
       undo:()=>this.undo(),redo:()=>this.redo(),completeDesign:()=>this.completeDesign(),returnToDesign:()=>this.returnToDesign(),
-      showDone:s.screen==='design',doneRef:this.doneRef,navRef:this.navRef,saving:s.saving,
+      showDone:s.screen==='design',doneRef:this.doneRef,doneCometHostRef:this.doneCometHostRef,navRef:this.navRef,saving:s.saving,
       flightRef:this.flightRef,glowRef:this.glowRef,flightDisplay:s.saving?'block':'none',
       savedPreview:s.saveSnapshot?miniJacket(s.saveSnapshot,'flight-'+s.draftId):[],savedNotice:s.savedNotice,saveGlowClass:s.savedNotice?'active':'',
       views:[['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id,label])=>({id,label,active:id===s.view,activeClass:id===s.view?'selected':''})),
