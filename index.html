@@ -20,6 +20,7 @@
 @keyframes hint-ring{0%,35%,100%{opacity:0;transform:scale(.6)}15%{opacity:.8;transform:scale(1.2)}}
 @keyframes hint-fade{to{opacity:0}}
 .tap-hand{animation:hint-hand-tap 2.6s ease-in-out 3;transform-box:fill-box;transform-origin:center}.tap-ring{animation:hint-ring 2.6s ease-out 3;transform-box:fill-box;transform-origin:center}.tap-hint{animation:hint-fade .4s linear 7.6s forwards;pointer-events:none}
+.tap-hint-desktop{animation:none}
 @media(prefers-reduced-motion:reduce){.tap-hint,.tap-ring,.tap-hand{animation:none}.tap-ring{opacity:.5}}
 
 html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{padding-top:env(safe-area-inset-top);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);max-width:1440px;margin:auto;position:relative}.bottom-nav{height:calc(76px + env(safe-area-inset-bottom));padding-bottom:calc(12px + env(safe-area-inset-bottom));grid-template-columns:repeat(3,minmax(0,180px));justify-content:center}.stage{max-width:650px}.editor{justify-content:flex-start}.editor-actions{max-width:520px}.stage svg [data-part]{cursor:pointer}.collection{display:flex;flex-direction:column;flex:1;min-height:0;gap:14px;padding:18px;width:100%;max-width:840px;align-self:center;background:#f3f0ea}.collection-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}.collection h1{font-size:23px;font-weight:800;letter-spacing:-.4px;margin:0}.collection p{font-size:12px;line-height:1.4;color:var(--muted);margin:5px 0 0}.draft-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;min-height:0}.draft-card{display:flex;flex-direction:column;gap:4px;min-width:0;min-height:0;padding:9px;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:12px}.draft-card strong{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.draft-card small{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.draft-thumb{height:100px;display:flex;justify-content:center;min-height:0;border-radius:7px;background:var(--canvas);padding:5px}.draft-thumb svg{height:100%;width:100%;max-width:100%}.collection-pager{display:flex;align-items:center;justify-content:space-between;flex:none;margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}.collection-pager .round{width:44px;height:44px}.finish{width:100%;max-width:840px;align-self:center}.finish-actions{max-width:520px;width:100%;align-self:center}.review-switch{display:none}.export-status{font-size:11px;color:var(--muted);line-height:1.2;min-height:13px;margin:0;text-align:center;flex:none}.draft-card:active,.summary-item:active{background:#ece7dd}.fabric-sheet .suggestions button{background-size:cover;background-origin:padding-box}.fabric-sheet .suggestions{display:flex}.suggestions .suggestion-note{display:block}.fabric-sheet{max-width:none;border:0;margin:0;width:100%;max-height:calc(100dvh - env(safe-area-inset-top));padding-bottom:calc(22px + env(safe-area-inset-bottom))}.fabric-sheet::backdrop{background:rgba(30,34,48,.14)}dialog:not([open]){display:none!important}.rename-dialog{width:min(380px,calc(100vw - 24px));border:0;border-radius:18px;padding:20px;background:var(--paper);color:var(--ink)}.rename-dialog::backdrop{background:#1e223055}.rename-dialog form{display:flex;flex-direction:column;gap:16px}.rename-dialog h2{font-size:18px;margin:0}.rename-dialog input{font:500 16px Archivo,system-ui;width:100%;min-height:44px;padding:8px 10px;border:1px solid #bfb7a7;border-radius:8px;background:white;color:var(--ink)}.rename-actions{display:flex;gap:8px}.rename-actions button{flex:1}.ojeb-preview{width:min(520px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);box-sizing:border-box;padding:18px;border:0;border-radius:20px;background:var(--paper);color:var(--ink);overflow:hidden}.ojeb-preview::backdrop{background:rgba(30,34,48,.38)}.ojeb-preview-content{display:flex;flex-direction:column;gap:12px;min-height:0;max-height:calc(100dvh - 60px)}.ojeb-preview header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}.ojeb-preview h2{font-size:18px;margin:0;font-weight:800}.ojeb-preview-close{width:36px;height:36px;border:0;border-radius:50%;background:#e9e4da;color:var(--ink);font-size:24px}.ojeb-preview-image{display:flex;min-height:0;flex:1;justify-content:center}.ojeb-preview-image img{display:block;max-width:100%;max-height:calc(100dvh - 240px);object-fit:contain;border-radius:8px}.ojeb-preview p{font-size:12px;line-height:1.4;margin:0;color:var(--muted);flex:none}.ojeb-preview-actions{display:flex;flex-direction:column;gap:8px;flex:none}.ojeb-primary,.ojeb-secondary{min-height:44px;padding:0 12px;border-radius:99px;font:700 13px Archivo,system-ui,sans-serif}.ojeb-primary{background:var(--ink);color:var(--paper)}.ojeb-secondary{border:1px solid #bfb7a7;background:transparent;color:var(--ink)}.ojeb-preview-status{padding:24px 0;font-size:14px;text-align:center}.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);max-width:calc(100% - 24px);padding:12px 16px;border-radius:12px;background:var(--ink);color:var(--paper);font-size:13px;z-index:99}.toast input{width:100%;font-size:12px}
@@ -193,7 +194,7 @@ html,body{overflow:hidden}button:disabled{opacity:.35;cursor:default}.app{paddin
 <g data-noexport="1">{{ ripple.inside }}</g>
 <g data-noexport="1">{{ tapHints.inside }}</g>
 </svg></div></div><aside class="suggestions-panel" aria-label="Doporučené barvy" style="display:{{ suggestionsDisplay }}"><h2>Tipy</h2><p>{{ selectedFabric.name }}</p><sc-for list="{{ suggestions }}" as="f"><button class="recommended" data-fab="{{ f.id }}" title="{{ f.name }}" aria-label="{{ f.name }}" onClick="{{ onFabric }}"><span class="suggestion-swatch" style="background-color:{{ f.color }};background-image:url({{ f.sw }})"></span><span class="suggestion-name">{{ f.name }}</span></button></sc-for></aside></div>
-<p class="stage-hint">Klepni na díl bundy a vyber látku.</p>
+<p class="stage-hint">{{ editingHint }}</p>
 <div class="editor-actions"><button class="round" aria-label="Vrátit změnu" disabled="{{ undoDisabled }}" onClick="{{ undo }}">{{ icons.undo }}</button><button class="round" aria-label="Zopakovat změnu" disabled="{{ redoDisabled }}" onClick="{{ redo }}">{{ icons.redo }}</button></div>
 <section ref="{{ sheetRef }}" class="fabric-sheet" aria-labelledby="fabric-title" style="display:{{ sheetDisplay }}">
 <header class="sheet-header"><div><h1 id="fabric-title">{{ selectedPartName }}</h1><p><span class="color-dot" style="background:{{ selectedFabric.color }}"></span>{{ selectedFabric.name }}</p></div><button class="round close" aria-label="Zavřít výběr látky" onClick="{{ closeSheet }}">{{ icons.close }}</button></header>
@@ -451,16 +452,16 @@ function colorSuggestions(cfg, part) {
   while (result.length < 3 && used.size < pool.length) pick(() => true, f => Math.abs(f.lch.L-selected.lch.L) - familiarity(f));
   return result;
 }
-function tapHint() {
+function tapHint(desktop = false) {
   const h = React.createElement;
-  return h('g', { transform: 'translate(111 346)', className: 'tap-hint', 'aria-hidden': true, pointerEvents: 'none' },
+  return h('g', { transform: 'translate(111 346)', className: 'tap-hint' + (desktop ? ' tap-hint-desktop' : ''), 'aria-hidden': true, pointerEvents: 'none' },
     h('circle', { className: 'tap-ring', cx: 22.5, cy: 4.5, r: 15, fill: 'none', stroke: '#e07a2e', strokeWidth: 3 }),
     h('g', { transform: 'scale(1.8)' }, h('path', { className: 'tap-hand', d: 'M10 16V5a2.5 2.5 0 0 1 5 0v8l1.5-1a2.4 2.4 0 0 1 3.5 1.3l1-.4a2.4 2.4 0 0 1 3 1.9l.7-.1a2.4 2.4 0 0 1 2.3 2.4V23c0 5-3.7 9-8.5 9H16c-3.3 0-5.8-1.7-7.6-4.1L2.8 20a2.6 2.6 0 0 1 3.8-3.5L10 20', fill: '#faf8f4', stroke: '#1e2230', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' })));
 }
 class Component extends DCLogic {
   state = { cfg: { ...PRESETS[0].cfg }, sel: 'vrch', view: 'front', screen: 'design', sheetOpen: false,
     viewportH: 800, viewportW: 1280, presetPage: 0, savedPage: 0, review: 'view',
-    hintDismissed: false, draftId: '', draftName: 'Moje bunda', records: [], storageStatus: 'pending', renameOpen: false, renameValue: '',
+    hintDismissed: false, desktopHintDismissed: false, draftId: '', draftName: 'Moje bunda', records: [], storageStatus: 'pending', renameOpen: false, renameValue: '',
     exporting: false, exportError: '', preview: null, toast: null, saving: false, savedNotice: false, saveSnapshot: null };
   svgFront = React.createRef(); svgBack = React.createRef(); svgInside = React.createRef();
   sheetRef = React.createRef(); renameRef = React.createRef(); nameInput = React.createRef(); previewRef = React.createRef();
@@ -582,7 +583,7 @@ class Component extends DCLogic {
     if (part === 'podsivka') view = 'inside'; else if (view === 'inside' || part === 'kapsy') view = 'front';
     if (!this.state.sheetOpen) this.pushUI({ screen: 'design', part });
     else this.replaceUI({ screen: 'design', part });
-    this.setState({ screen: 'design', sheetOpen: true, hintDismissed: true, sel: part, view });
+    this.setState({ screen: 'design', sheetOpen: true, hintDismissed: true, desktopHintDismissed: true, sel: part, view });
   }
   closeSheet() {
     if (this.state.saving) return;
@@ -694,7 +695,7 @@ class Component extends DCLogic {
     catch (e) { if (e.name !== 'AbortError') this.toast('Sdílení se nepodařilo. Obrázek můžeš stáhnout.'); }
   }
   renderVals() {
-    const s = this.state, short = s.viewportH < 600, tiny = s.viewportH < 500;
+    const s = this.state, short = s.viewportH < 600, tiny = s.viewportH < 500, desktop = s.viewportW >= 720;
     const pat = patternsFor(s.cfg), icons = Object.fromEntries(Object.keys(ICON_PATHS).map(k => [k,icon(k)]));
     const pager = (count, size, value) => { const pages = Math.max(1,Math.ceil(count / size)), index = Math.max(0,Math.min(value,pages-1)); return { index, pages, first: index === 0, last: index === pages-1, visible: pages > 1, label: (index+1) + ' / ' + pages }; };
     const list = s.sel === 'podsivka' ? INNER_IDS : OUTER_IDS;
@@ -723,7 +724,8 @@ class Component extends DCLogic {
       views:[['front','Zepředu'],['back','Zezadu'],['inside','Vnitřek']].map(([id,label])=>({id,label,active:id===s.view,activeClass:id===s.view?'selected':''})),
       onView:e=>this.setView(e.currentTarget.dataset.view), onPart:e=>this.openPart(e.currentTarget.dataset.part), onPartRow:e=>this.openPart(e.currentTarget.dataset.part),
       onTouchStart:e=>{this.swipeStart=e.touches[0].clientX;},onTouchEnd:e=>{if(this.swipeStart==null)return;const dx=e.changedTouches[0].clientX-this.swipeStart;this.swipeStart=null;if(Math.abs(dx)>60){const order=['front','back','inside'];this.setView(order[(order.indexOf(s.view)+(dx<0?1:2))%3]);}},
-      tapHints:Object.fromEntries(['front','back','inside'].map(v=>[v,!s.hintDismissed && !s.sheetOpen && s.screen==='design'?tapHint():[]])),
+      editingHint:desktop ? 'Klikni na díl bundy a vyber látku.' : 'Klepni na díl bundy a vyber látku.',
+      tapHints:Object.fromEntries(['front','back','inside'].map(v=>[v,!(desktop ? s.desktopHintDismissed : s.hintDismissed) && !s.sheetOpen && s.screen==='design'?tapHint(desktop):[]])),
       svgFront:this.svgFront,svgBack:this.svgBack,svgInside:this.svgInside,pat,hl,clipDefs,ripple:{front:[],back:[],inside:[]},
       disp:Object.fromEntries(['front','back','inside'].map(v=>[v,s.view===v?'block':'none'])),
       viewDefs:Object.fromEntries(['front','back','inside'].map(v=>[v,makeViewDefs(v,pat)])),reviewDefs:Object.fromEntries(['front','back','inside'].map(v=>[v,makeViewDefs('review-'+v,pat)])),

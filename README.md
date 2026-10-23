@@ -9,7 +9,7 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 - Klepnutí na díl bundy otevře výběr látky pod celým náhledem. Na širokém displeji je panel vedle bundy. Náhled zůstává viditelný a lze rovnou zvolit další díl. Pohledy Zepředu, Zezadu a Vnitřek sdílejí jeden návrh.
 - Prostřední panel je nejvyšší; spodní šev a kapsy jsou posunuté o 60 jednotek dolů. Stejné proporce mají všechny pohledy, obrysy výběru, miniatury a export PNG.
 - Logo bundy je pouze na vnitřním štítku na podšívce. Vnější přední ani zadní pohled není označený. Stejně se vykresluje export PNG.
-- Úvodní animovaná ruka ukazuje na rukáv. Po prvním výběru dílu se už nezobrazuje; respektuje omezený pohyb.
+- Animovaná ruka ukazuje na rukáv a neblokuje kliknutí. Na desktopu se při novém otevření webu znovu zobrazí, třikrát pokyne a zůstane viditelná do prvního kliknutí na díl. Text říká „Klikni na díl bundy a vyber látku.“ Na telefonu se po prvním použití znovu nezobrazuje; respektuje omezený pohyb.
 - Návrh nabízí vrácení a opakování změn. Trendy kombinace obsahují šest výchozích kombinací.
 - Moje návrhy ukládají rozpracované bundy v tomto prohlížeči. Uložená bunda se otevře rovnou v přehledu pro sdílení a stažení PNG; do editoru se přejde tlačítkem Upravit. Nový návrh nebo trendy kombinace zachovají předchozí práci.
 - Po první změně nebo úspěšném uložení návrhu se po pěti sekundách na Hotovo objeví dodaný zlatý paprsek (varianta B). Při ukládání je skrytý, při omezeném pohybu má statickou podobu. Na Sdílet obrázek se tento efekt nevztahuje.
