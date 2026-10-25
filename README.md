@@ -16,6 +16,10 @@ Statická aplikace pro telefon a desktop bez sestavovacího kroku. GitHub Pages 
 - Hotovo vpravo nahoře potvrdí uložení a miniatura bundy přeletí do Moje návrhy. Poté se otevře souhrn s přejmenováním, stažením PNG a sdílením, pokud ho prohlížeč podporuje. Při omezeném pohybu se přelet přeskočí.
 - Všech 17 vnějších barev nebo 18 podšívek je vidět najednou. Tipy vedle bundy reagují na zvolenou látku i ostatní barvy návrhu. Stránkování zůstává pouze u delších seznamů návrhů a připravených kombinací; krátké displeje mají v souhrnu přepínač Náhled/Látky.
 
+Názvy a popisky kartiček mají chráněnou výšku řádku, aby se při menší výšce displeje neořezávaly háčky a spodní části písmen.
+
+Náhled odkazu používá metadata Open Graph přímo v úvodním HTML a veřejný obrázek `assets/share-preview-v1.jpg` (1200 × 630). Jde o obecný náhled konfigurátoru. Konkrétní kombinaci barev lze dál poslat přes Sdílet obrázek; barvy v `#` nejsou součástí požadavku pro načtení náhledu.
+
 ## Ukládání a provoz
 
 Návrhy se ukládají lokálně pod klíčem `ojeb-designs-v1`; nejsou synchronizované mezi zařízeními. Při nedostupném úložišti aplikace zobrazí stav „Jen v relaci“. Barvy aktuálního návrhu jsou také v URL za `#`. Návrat přes úvodní adresu bez `#` obnoví naposledy otevřený návrh. Odkaz s konkrétními barvami načte tuto kombinaci; dřívější návrhy zůstanou v Moje návrhy. Smazání dat prohlížeče odstraní i lokální návrhy.
